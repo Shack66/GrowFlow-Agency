@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowFlow Agency - Servicios</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- METANAVEGACIÓN -->
+    <div class="meta-nav">
+        <a href="#">Iniciar sesión</a>
+        <a href="#">Registrarse</a>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <div class="logo-img"></div>
+            <h1>GrowFlow</h1>
+        </div>
+
+        <nav class="main-nav">
+            <a href="index.html">Inicio</a>
+            <a href="#">Blog / Noticias</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="#">Sobre Nosotros</a>
+            <a href="#">Preguntas Frecuentes</a>
+
+            <button class="btn-registrarse">Regístrate</button>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN SERVICIOS -->
+    <section class="servicios">
+        <h2 class="servicios-titulo">Servicios</h2>
+        
+        <div class="servicios-grid">
+            <!-- Servicio 1: Planes de Marketing -->
+            <div class="servicio-card" onclick="toggleServicio('servicio-1')">
+                <div class="servicio-icono">
+                    <div class="icono-bg">
+                        <img src="../imags/servicios/planes-de-marketing.png" alt="Marketing" class="icono-img">
+                    </div>
+                </div>
+                <div class="servicio-contenido">
+                    <h3>Planes de Marketing</h3>
+                    <p>Estrategias personalizadas para impulsar tu marca y alcanzar tus metas comerciales.</p>
+                    <button class="btn-ver-mas" onclick="event.stopPropagation(); mostrarFormulario('Planes de Marketing', 'marketing')">
+                        Contratar Servicio
+                    </button>
+                </div>
+            </div>
+
+            <!-- Servicio 2: Publicidad en Redes -->
+            <div class="servicio-card" onclick="toggleServicio('servicio-2')">
+                <div class="servicio-icono">
+                    <div class="icono-bg">
+                        <img src="../imags/servicios/publicidad-en-redes.png" alt="Redes Sociales" class="icono-img">
+                    </div>
+                </div>
+                <div class="servicio-contenido">
+                    <h3>Publicidad en Redes</h3>
+                    <p>Campañas efectivas en redes sociales para conectar con tu audiencia ideal.</p>
+                    <button class="btn-ver-mas" onclick="event.stopPropagation(); mostrarFormulario('Publicidad en Redes', 'redes')">
+                        Contratar Servicio
+                    </button>
+                </div>
+            </div>
+
+            <!-- Servicio 3: Diseño Gráfico -->
+            <div class="servicio-card" onclick="toggleServicio('servicio-3')">
+                <div class="servicio-icono">
+                    <div class="icono-bg">
+                        <img src="../imags/servicios/diseño-gráfico.png" alt="Diseño Gráfico" class="icono-img">
+                    </div>
+                </div>
+                <div class="servicio-contenido">
+                    <h3>Diseño Gráfico</h3>
+                    <p>Diseños creativos que comunican la identidad visual de tu marca.</p>
+                    <button class="btn-ver-mas" onclick="event.stopPropagation(); mostrarFormulario('Diseño Gráfico', 'diseno')">
+                        Contratar Servicio
+                    </button>
+                </div>
+            </div>
+
+            <!-- Servicio 4: Estrategia Digital -->
+            <div class="servicio-card" onclick="toggleServicio('servicio-4')">
+                <div class="servicio-icono">
+                    <div class="icono-bg">
+                        <img src="../imags/servicios/estrategia-digital.png" alt="Estrategia Digital" class="icono-img">
+                    </div>
+                </div>
+                <div class="servicio-contenido">
+                    <h3>Estrategia Digital</h3>
+                    <p>Consultoría especializada para optimizar tu presencia digital completa.</p>
+                    <button class="btn-ver-mas" onclick="event.stopPropagation(); mostrarFormulario('Estrategia Digital', 'estrategia')">
+                        Contratar Servicio
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL FORMULARIO DE CONTRATACIÓN -->
+    <div class="modal-overlay" id="modal-formulario" onclick="cerrarFormulario(event)">
+        <div class="modal-contenido" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>Contratar: <span id="servicio-nombre"></span></h2>
+                <button class="modal-cerrar" onclick="cerrarFormulario()">&times;</button>
+            </div>
+            
+            <form class="formulario-contratacion" id="form-contratacion">
+                <!-- Las preguntas se cargarán dinámicamente aquí -->
+                <div id="preguntas-dinamicas"></div>
+
+                <!-- Sección de Agendar Reunión -->
+                <div class="agendar-section">
+                    <h3 class="agendar-titulo">Agendar Reunión con Consultor <span class="badge-opcional">(Opcional)</span></h3>
+                    <p class="agendar-descripcion">Si deseas, puedes agendar una reunión para discutir tu proyecto en detalle</p>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fecha-reunion">Fecha de la reunión</label>
+                            <input type="date" id="fecha-reunion" name="fecha-reunion" min="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hora-reunion">Hora de la reunión</label>
+                            <select id="hora-reunion" name="hora-reunion">
+                                <option value="">Selecciona una hora</option>
+                                <option value="09:00">09:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="14:00">02:00 PM</option>
+                                <option value="15:00">03:00 PM</option>
+                                <option value="16:00">04:00 PM</option>
+                                <option value="17:00">05:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="reunion-confirmada" id="reunion-confirmada" style="display: none;">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="9" fill="#00C853"/>
+                            <path d="M6 10L9 13L14 7" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>Reunión agendada exitosamente</span>
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn-enviar" id="btn-enviar">Enviar Solicitud</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 - GrowFlow Agency</p>
+
+        <div class="footer-links">
+            <a href="#">Formulario de contacto</a>
+            <a href="#">Preguntas frecuentes</a>
+        </div>
+    </footer>
+
+    <script>
+        // Preguntas específicas por servicio
+        const preguntasBase = [
+            { label: "¿Cuál es tu objetivo principal?", type: "select", options: ["Aumentar ventas", "Generar leads", "Mejorar reconocimiento de marca", "Lanzar nuevo producto", "Otro"] },
+            { label: "¿Cuál es tu presupuesto mensual aproximado?", type: "select", options: ["Menos de $500", "$500 - $1,500", "$1,500 - $3,000", "$3,000 - $5,000", "Más de $5,000"] },
+            { label: "¿Cuánto tiempo llevas en el mercado?", type: "select", options: ["Menos de 6 meses", "6 meses - 1 año", "1 - 3 años", "3 - 5 años", "Más de 5 años"] },
+            { label: "Describe tu necesidad específica para este servicio", type: "textarea" }
+        ];
+        
+        const preguntasServicios = {
+            marketing: preguntasBase,
+            redes: preguntasBase,
+            diseno: preguntasBase,
+            estrategia: preguntasBase
+        };
+
+        let reunionAgendada = false;
+        let servicioActual = '';
+
+        // Establecer fecha mínima (hoy)
+        document.addEventListener('DOMContentLoaded', function() {
+            const hoy = new Date().toISOString().split('T')[0];
+            document.getElementById('fecha-reunion').setAttribute('min', hoy);
+        });
+
+        // Mostrar formulario con preguntas dinámicas
+        function mostrarFormulario(nombreServicio, tipoServicio) {
+            servicioActual = tipoServicio;
+            document.getElementById('servicio-nombre').textContent = nombreServicio;
+            
+            // Cargar preguntas específicas
+            const contenedor = document.getElementById('preguntas-dinamicas');
+            contenedor.innerHTML = '';
+            
+            preguntasServicios[tipoServicio].forEach((pregunta, index) => {
+                const formGroup = document.createElement('div');
+                formGroup.className = 'form-group';
+                
+                const label = document.createElement('label');
+                label.textContent = pregunta.label;
+                label.setAttribute('for', `pregunta-${index}`);
+                formGroup.appendChild(label);
+                
+                if (pregunta.type === 'select') {
+                    const select = document.createElement('select');
+                    select.id = `pregunta-${index}`;
+                    select.name = `pregunta-${index}`;
+                    select.required = true;
+                    
+                    const defaultOption = document.createElement('option');
+                    defaultOption.value = '';
+                    defaultOption.textContent = 'Selecciona una opción';
+                    select.appendChild(defaultOption);
+                    
+                    pregunta.options.forEach(opt => {
+                        const option = document.createElement('option');
+                        option.value = opt;
+                        option.textContent = opt;
+                        select.appendChild(option);
+                    });
+                    
+                    formGroup.appendChild(select);
+                } else if (pregunta.type === 'textarea') {
+                    const textarea = document.createElement('textarea');
+                    textarea.id = `pregunta-${index}`;
+                    textarea.name = `pregunta-${index}`;
+                    textarea.rows = 4;
+                    textarea.required = true;
+                    textarea.placeholder = 'Escribe tu respuesta aquí...';
+                    formGroup.appendChild(textarea);
+                }
+                
+                contenedor.appendChild(formGroup);
+            });
+            
+            // Resetear estado de reunión
+            reunionAgendada = false;
+            document.getElementById('reunion-confirmada').style.display = 'none';
+            document.getElementById('btn-enviar').disabled = false;
+            document.getElementById('fecha-reunion').value = '';
+            document.getElementById('hora-reunion').value = '';
+            
+            document.getElementById('modal-formulario').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Detectar cuando se agenda la reunión
+        document.getElementById('fecha-reunion').addEventListener('change', verificarReunion);
+        document.getElementById('hora-reunion').addEventListener('change', verificarReunion);
+
+        function verificarReunion() {
+            const fecha = document.getElementById('fecha-reunion').value;
+            const hora = document.getElementById('hora-reunion').value;
+            
+            if (fecha && hora) {
+                reunionAgendada = true;
+                document.getElementById('reunion-confirmada').style.display = 'flex';
+            } else {
+                reunionAgendada = false;
+                document.getElementById('reunion-confirmada').style.display = 'none';
+            }
+        }
+
+        // Cerrar formulario
+        function cerrarFormulario(event) {
+            if (!event || event.target.classList.contains('modal-overlay') || event.target.classList.contains('modal-cerrar')) {
+                document.getElementById('modal-formulario').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Envío del formulario
+        document.getElementById('form-contratacion').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const mensaje = reunionAgendada 
+                ? '¡Solicitud enviada exitosamente!\n\nHemos recibido tu información y tu reunión ha sido agendada.\nNos pondremos en contacto contigo pronto.'
+                : '¡Solicitud enviada exitosamente!\n\nHemos recibido tu información.\nNos pondremos en contacto contigo pronto.';
+            
+            alert(mensaje);
+            cerrarFormulario();
+            this.reset();
+        });
+
+        function toggleServicio(id) {
+            // Función vacía para compatibilidad
+        }
+    </script>
+</body>
+</html>
