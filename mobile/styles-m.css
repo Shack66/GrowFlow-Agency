@@ -1,0 +1,298 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* COLORES */
+:root {
+    --negro: #0D0D0D;
+    --gris: #E8E8E8;
+    --azul: #0077FF;
+    --azul-oscuro: #005FCC;
+}
+
+/* HTML Y BODY */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: #1F1F1F;
+    overflow-x: hidden;
+}
+
+.mobile-wrapper {
+    max-width: 480px;
+    margin: 0 auto;
+    background: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    outline: none;
+}
+
+/* METANAVEGACIÓN */
+.meta-nav {
+    background: var(--negro);
+    text-align: center;
+    padding: 8px;
+}
+
+.meta-nav a {
+    color: var(--gris);
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 14px;
+    position: relative;
+    padding-bottom: 3px;
+}
+
+/* Hover animado */
+.meta-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--azul);
+    transition: width 0.25s ease-out, transform 0.25s ease-out;
+    transform-origin: right;
+}
+
+.meta-nav a:hover {
+    color: var(--azul);
+}
+
+.meta-nav a:hover::after {
+    width: 100%;
+    transform-origin: left;
+}
+
+/* HEADER MÓVIL */
+.mobile-header {
+    background: #1F1F1F;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.logo-img {
+    width: 45px;
+    height: 45px;
+    background: var(--azul);
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+/* MENÚ HAMBURGUESA */
+.hamburger {
+    width: 32px;
+    height: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+/* Animación "X" al abrir */
+.hamburger.active span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+/* NAVBAR MÓVIL OCULTO */
+.mobile-nav {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    max-width: 480px;
+    background: #1F1F1F;
+    display: none;
+    flex-direction: column;
+    padding: 15px 20px;
+}
+
+/* Cuando se abre */
+.mobile-nav.open {
+    display: flex;
+}
+
+/* Links */
+.mobile-nav a {
+    color: var(--gris);
+    text-decoration: none;
+    margin: 12px 0;
+    font-size: 17px;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+/* Efecto hover animado */
+.mobile-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--azul);
+    transition: width 0.3s ease-out, transform 0.3s ease-out;
+    transform-origin: right;
+}
+
+.mobile-nav a:hover::after {
+    width: 100%;
+    transform-origin: left;
+}
+
+.btn-registrarse {
+    margin-top: 15px;
+    padding: 10px;
+    background: var(--azul);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-registrarse:hover {
+    background: var(--azul-oscuro);
+}
+
+/* HERO MÓVIL */
+.hero {
+    height: 60vh;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image:
+        radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
+    background-size: 8px 8px, 100% 100%;
+    color: white;
+}
+
+.hero-text {
+    text-align: center;
+    background: rgba(0,0,0,0.45);
+    padding: 20px;
+    border-radius: 12px;
+    width: 85%;
+}
+
+.hero-text h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.hero-text p {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* SECCIÓN SERVICIOS */
+.servicios {
+    background: white;
+    padding: 40px 20px;
+}
+
+.servicios-titulo {
+    font-size: 32px;
+    color: var(--negro);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.servicio-card {
+    background: #F5F5F5;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servicio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 119, 255, 0.15);
+}
+
+.servicio-icono {
+    flex-shrink: 0;
+}
+
+.servicio-info h3 {
+    color: var(--negro);
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.servicio-info p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* FOOTER */
+footer {
+    margin-top: auto;
+    background: #1F1F1F;
+    color: var(--gris);
+    text-align: center;
+    padding: 20px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: var(--gris);
+    text-decoration: none;
+    margin: 0 8px;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: var(--azul);
+}

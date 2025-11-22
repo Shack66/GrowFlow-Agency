@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowFlow Agency - Móvil</title>
+    <link rel="stylesheet" href="styles-m.css">
+</head>
+<body>
+
+<div class="mobile-wrapper"> 
+
+    <!-- METANAVEGACIÓN MÓVIL -->
+    <div class="meta-nav">
+        <a href="#">Iniciar sesión</a>
+        <a href="#">Registrarse</a>
+    </div>
+
+    <!-- HEADER MÓVIL -->
+    <header class="mobile-header">
+        <div class="logo">
+            <div class="logo-img"></div>
+            <h1>GrowFlow</h1>
+        </div>
+
+        <!-- Botón menú hamburguesa -->
+        <div class="hamburger" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- MENÚ DESPLEGABLE MÓVIL -->
+    <nav class="mobile-nav" id="mobile-menu">
+        <a href="#">Inicio</a>
+        <a href="#">Blog / Noticias</a>
+        <a href="#">Servicios</a>
+        <a href="#">Sobre Nosotros</a>
+        <a href="#">Preguntas Frecuentes</a>
+
+        <button class="btn-registrarse">Regístrate</button>
+    </nav>
+
+    <!-- HERO MÓVIL -->
+    <section class="hero">
+        <div class="hero-text">
+            <h2>Bienvenido</h2>
+            <p>
+                ¡Hola! Somos GrowFlow Agency. Nos dedicamos a ofrecer servicios de
+                marketing ajustados a tus necesidades.  
+                ¡Estamos siempre a la orden!
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 - GrowFlow Agency</p>
+
+        <div class="footer-links">
+            <a href="#">Formulario de contacto</a>
+            <a href="#">Preguntas frecuentes</a>
+        </div>
+    </footer>
+
+    <!-- SCRIPT para abrir/cerrar menú móvil -->
+    <script>
+        const hamburger = document.getElementById("hamburger-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        hamburger.addEventListener("click", () => {
+            mobileMenu.classList.toggle("open");
+            hamburger.classList.toggle("active");
+        });
+    </script>
+</div>
+</body>
+</html>
