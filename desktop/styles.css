@@ -764,6 +764,9 @@ footer {
     display: flex;
     justify-content: center;
     padding: 120px 20px;
+    background-image:
+    radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
 }
 
 .lgn-box {
