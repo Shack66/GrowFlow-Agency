@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowFlow Agency - Nosotros</title>
+    <link rel="stylesheet" href="styles-m.css">
+    <style>
+        /* ESTILOS ESPECÍFICOS PARA SCROLL */
+        .mobile-wrapper {
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+        
+        .nosotros {
+            min-height: auto;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="mobile-wrapper"> 
+
+    <!-- METANAVEGACIÓN MÓVIL -->
+    <div class="meta-nav">
+        <a href="#">Iniciar sesión</a>
+        <a href="#">Registrarse</a>
+    </div>
+
+    <!-- HEADER MÓVIL -->
+    <header class="mobile-header">
+        <div class="logo">
+            <div class="logo-img"></div>
+            <h1>GrowFlow Agency</h1>
+        </div>
+
+        <!-- Botón menú hamburguesa -->
+        <div class="hamburger" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- MENÚ DESPLEGABLE MÓVIL -->
+    <nav class="mobile-nav" id="mobile-menu">
+        <a href="index-m.html">Inicio</a>
+        <a href="#">Blog / Noticias</a>
+        <a href="servicios-m.html">Servicios</a>
+        <a href="nosotros-m.html">Sobre Nosotros</a>
+        <a href="preguntas-frecuentes-m.html">Preguntas Frecuentes</a>
+        <button class="btn-registrarse">Regístrate</button>
+    </nav>
+
+    <!-- SECCIÓN NOSOTROS MÓVIL -->
+    <section class="nosotros">
+        <h2 class="nosotros-titulo">Sobre Nosotros</h2>
+        
+        <div class="nosotros-intro">
+            <p>
+                En <strong>GrowFlow Agency</strong> somos un equipo apasionado de expertos en marketing digital 
+                comprometidos con impulsar el crecimiento de tu negocio.
+            </p>
+            <p>
+                Combinamos creatividad, estrategia y análisis de datos para entregar resultados tangibles 
+                que superan las expectativas.
+            </p>
+        </div>
+
+        <div class="equipo-section">
+            <h3 class="equipo-titulo">Nuestro Equipo</h3>
+            
+            <!-- Integrante 1 -->
+            <div class="integrante-card">
+                <div class="integrante-imagen">
+                    <img src="../imags/nosotros/octavio.jpg" alt="Octavio Ramos">
+                </div>
+                <div class="integrante-info">
+                    <h4>Octavio Ramos</h4>
+                    <p>Especialista en Estrategia Digital</p>
+                </div>
+            </div>
+
+            <!-- Integrante 2 -->
+            <div class="integrante-card">
+                <div class="integrante-imagen">
+                    <img src="../imags/nosotros/paola.jpg" alt="Paola Ran">
+                </div>
+                <div class="integrante-info">
+                    <h4>Paola Ran</h4>
+                    <p>Directora de Diseño y Creatividad</p>
+                </div>
+            </div>
+
+            <!-- Integrante 3 -->
+            <div class="integrante-card">
+                <div class="integrante-imagen">
+                    <img src="../imags/nosotros/samuel.jpg" alt="Samuel Arosemena">
+                </div>
+                <div class="integrante-info">
+                    <h4>Samuel Arosemena</h4>
+                    <p>Gerente de Marketing y Analytics</p>
+                </div>
+            </div>
+
+            <!-- Integrante 4 -->
+            <div class="integrante-card">
+                <div class="integrante-imagen">
+                    <img src="../imags/nosotros/alexis.jpg" alt="Alexis Miranda">
+                </div>
+                <div class="integrante-info">
+                    <h4>Alexis Miranda</h4>
+                    <p>Especialista en Publicidad Digital</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 - GrowFlow Agency</p>
+        <div class="footer-links">
+            <a href="#">Formulario de contacto</a>
+            <a href="preguntas-frecuentes-m.html">Preguntas frecuentes</a>
+        </div>
+    </footer>
+
+    <script>
+        // Menú hamburguesa
+        const hamburger = document.getElementById("hamburger-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        hamburger.addEventListener("click", () => {
+            mobileMenu.classList.toggle("open");
+            hamburger.classList.toggle("active");
+        });
+    </script>
+</div>
+</body>
+</html>

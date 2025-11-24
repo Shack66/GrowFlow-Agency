@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowFlow Agency - Preguntas Frecuentes</title>
+    <link rel="stylesheet" href="styles-m.css">
+    <style>
+        /* CORRECCIONES ESPECÍFICAS PARA PREGUNTAS FRECUENTES */
+        .mobile-wrapper {
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+        
+        .preguntas-frecuentes-mobile {
+            background-image:
+                radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+                linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
+            background-size: 8px 8px, 100% 100%;
+            padding: 25px 20px;
+            color: white;
+            flex: 1;
+            min-height: auto;
+        }
+        
+        .preguntas-titulo-mobile {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 8px;
+            color: white;
+        }
+        
+        .preguntas-descripcion-mobile {
+            font-size: 13px;
+            text-align: center;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            color: var(--gris);
+        }
+        
+        .pregunta-card-mobile {
+            background: #F5F5F5;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .pregunta-card-mobile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 119, 255, 0.15);
+        }
+        
+        .pregunta-header-mobile {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .pregunta-header-mobile h3 {
+            color: var(--negro);
+            font-size: 13px;
+            margin: 0;
+            flex: 1;
+            line-height: 1.3;
+        }
+        
+        .pregunta-arrow-mobile {
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .pregunta-card-mobile:hover .pregunta-arrow-mobile {
+            transform: translateY(2px);
+        }
+        
+        .pregunta-detalles-mobile {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: white;
+        }
+        
+        .pregunta-detalles-mobile.active {
+            max-height: 200px;
+            padding: 0 15px 15px 15px;
+        }
+        
+        .pregunta-detalles-mobile p {
+            color: #666;
+            font-size: 12px;
+            line-height: 1.4;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="mobile-wrapper"> 
+
+    <!-- METANAVEGACIÓN MÓVIL -->
+    <div class="meta-nav">
+        <a href="#">Iniciar sesión</a>
+        <a href="#">Registrarse</a>
+    </div>
+
+    <!-- HEADER MÓVIL -->
+    <header class="mobile-header">
+        <div class="logo">
+            <div class="logo-img"></div>
+            <h1>GrowFlow Agency</h1>
+        </div>
+
+        <!-- Botón menú hamburguesa -->
+        <div class="hamburger" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- MENÚ DESPLEGABLE MÓVIL -->
+    <nav class="mobile-nav" id="mobile-menu">
+        <a href="index-m.html">Inicio</a>
+        <a href="#">Blog / Noticias</a>
+        <a href="servicios-m.html">Servicios</a>
+        <a href="nosotros-m.html">Sobre Nosotros</a>
+        <a href="preguntas-frecuentes-m.html">Preguntas Frecuentes</a>
+        <button class="btn-registrarse">Regístrate</button>
+    </nav>
+
+    <!-- SECCIÓN PREGUNTAS FRECUENTES MÓVIL CORREGIDA -->
+    <section class="preguntas-frecuentes-mobile">
+        <h2 class="preguntas-titulo-mobile">Preguntas Frecuentes</h2>
+        
+        <p class="preguntas-descripcion-mobile">
+            Respuestas a las dudas más comunes sobre nuestros servicios
+        </p>
+
+        <!-- Pregunta 1 -->
+        <div class="pregunta-card-mobile" onclick="togglePregunta('pregunta-1')">
+            <div class="pregunta-header-mobile">
+                <h3>¿Cómo inicio un proyecto con ustedes?</h3>
+                <div class="pregunta-arrow-mobile">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M5 7.5L10 12.5L15 7.5" stroke="#0077FF" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="pregunta-detalles-mobile" id="pregunta-1">
+                <p>Puedes contactarnos a través de nuestro formulario, agendar una consultoría gratuita o llamarnos directamente. Evaluaremos tus necesidades y te presentaremos una propuesta personalizada.</p>
+            </div>
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div class="pregunta-card-mobile" onclick="togglePregunta('pregunta-2')">
+            <div class="pregunta-header-mobile">
+                <h3>¿Cuánto tiempo toma ver resultados?</h3>
+                <div class="pregunta-arrow-mobile">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M5 7.5L10 12.5L15 7.5" stroke="#0077FF" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="pregunta-detalles-mobile" id="pregunta-2">
+                <p>Los tiempos varían según el servicio. Estrategias de redes sociales pueden mostrar resultados en 2-3 semanas, mientras que SEO puede tomar 3-6 meses. Te mantendremos informado del progreso constante.</p>
+            </div>
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div class="pregunta-card-mobile" onclick="togglePregunta('pregunta-3')">
+            <div class="pregunta-header-mobile">
+                <h3>¿Trabajan con presupuestos ajustados?</h3>
+                <div class="pregunta-arrow-mobile">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M5 7.5L10 12.5L15 7.5" stroke="#0077FF" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="pregunta-detalles-mobile" id="pregunta-3">
+                <p>Sí, ofrecemos planes escalables según tu presupuesto. Desde servicios básicos para startups hasta estrategias completas para empresas establecidas. Encontramos la solución ideal para ti.</p>
+            </div>
+        </div>
+
+        <!-- Pregunta 4 -->
+        <div class="pregunta-card-mobile" onclick="togglePregunta('pregunta-4')">
+            <div class="pregunta-header-mobile">
+                <h3>¿Qué incluyen sus reportes de analytics?</h3>
+                <div class="pregunta-arrow-mobile">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M5 7.5L10 12.5L15 7.5" stroke="#0077FF" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="pregunta-detalles-mobile" id="pregunta-4">
+                <p>Nuestros reportes incluyen métricas clave, análisis de competencia, ROI, engagement, conversiones y recomendaciones específicas para optimizar tu estrategia continuamente.</p>
+            </div>
+        </div>
+
+        <!-- Pregunta 5 -->
+        <div class="pregunta-card-mobile" onclick="togglePregunta('pregunta-5')">
+            <div class="pregunta-header-mobile">
+                <h3>¿Ofrecen servicios de emergencia?</h3>
+                <div class="pregunta-arrow-mobile">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M5 7.5L10 12.5L15 7.5" stroke="#0077FF" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="pregunta-detalles-mobile" id="pregunta-5">
+                <p>Sí, tenemos planes de respuesta rápida para crisis de reputación, lanzamientos urgentes o problemas técnicos. Contamos con un equipo disponible para situaciones críticas.</p>
+            </div>
+        </div>
+
+        <!-- Pregunta 6 -->
+        <div class="pregunta-card-mobile" onclick="togglePregunta('pregunta-6')">
+            <div class="pregunta-header-mobile">
+                <h3>¿Pueden manejar redes sociales internacionales?</h3>
+                <div class="pregunta-arrow-mobile">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M5 7.5L10 12.5L15 7.5" stroke="#0077FF" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="pregunta-detalles-mobile" id="pregunta-6">
+                <p>Absolutamente. Contamos con especialistas en mercados globales y experiencia en campañas multilingües para llegar a audiencias en diferentes países y culturas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 - GrowFlow Agency</p>
+        <div class="footer-links">
+            <a href="#">Formulario de contacto</a>
+            <a href="preguntas-frecuentes-m.html">Preguntas frecuentes</a>
+        </div>
+    </footer>
+
+    <script>
+        // Menú hamburguesa
+        const hamburger = document.getElementById("hamburger-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        hamburger.addEventListener("click", () => {
+            mobileMenu.classList.toggle("open");
+            hamburger.classList.toggle("active");
+        });
+
+        // Toggle preguntas
+        function togglePregunta(id) {
+            const detalles = document.getElementById(id);
+            const todosDetalles = document.querySelectorAll('.pregunta-detalles-mobile');
+            
+            todosDetalles.forEach(detalle => {
+                if (detalle.id !== id) {
+                    detalle.classList.remove('active');
+                }
+            });
+            
+            detalles.classList.toggle('active');
+        }
+    </script>
+</div>
+</body>
+</html>
