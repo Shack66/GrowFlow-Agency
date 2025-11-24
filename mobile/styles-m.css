@@ -649,3 +649,69 @@ footer {
 .footer-links a:hover {
     color: var(--azul);
 }
+
+/* LOGIN */
+
+.lgn-container {
+    flex: 1;
+    background: white;
+    display: flex;
+    justify-content: center;
+    padding: 120px 20px;
+    background-image:
+    radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
+}
+
+.lgn-box {
+    background: #4B4B4B;
+    width: 100%;
+    max-width: 300px;
+    padding: 40px 35px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.lgn-title {
+    color: white;
+    font-size: 26px;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.lgn-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    background: #E8E8E8;
+}
+
+.lgn-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--azul);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.lgn-btn:hover {
+    background: var(--azul-oscuro);
+}
+
+.lgn-link {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+}
