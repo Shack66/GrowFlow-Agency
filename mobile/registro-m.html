@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrowFlow Agency - Iniciar Sesión</title>
+    <title>GrowFlow Agency - Registro</title>
     <link rel="stylesheet" href="styles-m.css">
 </head>
 <body>
@@ -12,8 +12,8 @@
 
     <!-- METANAVEGACIÓN MÓVIL -->
     <div class="meta-nav">
-        <a href="#">Iniciar sesión</a>
-        <a href="#">Registrarse</a>
+        <a href="../mobile/login-m.html">Iniciar sesión</a>
+        <a href="../mobile/registro-m.html">Registrarse</a>
     </div>
 
     <!-- HEADER MÓVIL -->
@@ -33,13 +33,15 @@
 
     <!-- MENÚ DESPLEGABLE MÓVIL -->
     <nav class="mobile-nav" id="mobile-menu">
-        <a href="#">Inicio</a>
+        <a href="../mobile/index-m.html">Inicio</a>
         <a href="#">Blog / Noticias</a>
-        <a href="#">Servicios</a>
-        <a href="#">Sobre Nosotros</a>
-        <a href="#">Preguntas Frecuentes</a>
+        <a href="../mobile/servicios-m.html">Servicios</a>
+        <a href="../mobile/nosotros-m.html">Sobre Nosotros</a>
+        <a href="../mobile/preguntas-frecuentes-m.html">Preguntas Frecuentes</a>
 
-        <button class="btn-registrarse">Regístrate</button>
+        <a href="../mobile/index-m.html">
+            <button class="btn-registrarse">Regístrate
+        </a>
     </nav>
 
     <!-- CONTENEDOR REGISTRO -->
@@ -47,7 +49,7 @@
         <div class="lgn-box">
             <h2 class="lgn-title">Registrarse</h2>
 
-            <form class="lgn-form">
+            <form id="form-registro" class="lgn-form">
                 <input type="text" placeholder="Nombre" required>
                 <input type="text" placeholder="Apellido" required>
                 <input type="email" placeholder="Correo electrónico" required>
@@ -57,7 +59,7 @@
             </form>
 
             <p style="padding-top: 20px; color: white;">¿Ya tienes una cuenta?</p>
-            <a href="#" class="lgn-link">Iniciar Sesión</a>
+            <a href="../mobile/login-m.html" class="lgn-link">Iniciar Sesión</a>
         </div>
     </section>
 
@@ -71,4 +73,31 @@
         </div>
     </footer>
 
-    
+    <!-- SCRIPT para abrir/cerrar menú móvil -->
+    <script>
+        const hamburger = document.getElementById("hamburger-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        hamburger.addEventListener("click", () => {
+            mobileMenu.classList.toggle("open");
+            hamburger.classList.toggle("active");
+        });
+    </script>
+
+    <!-- SCRIPT DE CONFIRMACIÓN -->
+    <script>
+        document.getElementById('form-registro').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevenir el envío del formulario
+
+            // Mensaje de confirmación
+            alert('¡Registro exitoso!\n\nHemos recibido tu solicitud de registro. Te enviaremos un correo de confirmación en breve.');
+
+            // Resetear el formulario
+            this.reset();
+        });
+    </script>
+
+</div>
+
+</body>
+</html>

@@ -10,8 +10,8 @@
 
     <!-- METANAVEGACIÓN -->
     <div class="meta-nav">
-        <a href="#">Iniciar sesión</a>
-        <a href="#">Registrarse</a>
+        <a href="../desktop/login.html">Iniciar sesión</a>
+        <a href="../desktop/registro.html">Registrarse</a>
     </div>
 
     <!-- HEADER -->
@@ -22,13 +22,15 @@
         </div>
 
         <nav class="main-nav">
-            <a href="#">Inicio</a>
+            <a href="../desktop/index.html">Inicio</a>
             <a href="#">Blog / Noticias</a>
-            <a href="#">Servicios</a>
-            <a href="#">Sobre Nosotros</a>
-            <a href="#">Preguntas Frecuentes</a>
+            <a href="../desktop/servicios.html">Servicios</a>
+            <a href="../desktop/nosotros.html">Sobre Nosotros</a>
+            <a href="../desktop/preguntas-frecuentes.html">Preguntas Frecuentes</a>
 
-            <button class="btn-registrarse">Regístrate</button>
+            <a href="../desktop/registro.html" class="btn-registrarse">
+                Regístrate
+            </a>
         </nav>
     </header>
 
@@ -37,7 +39,7 @@
         <div class="lgn-box">
             <h2 class="lgn-title">Iniciar Sesión</h2>
 
-            <form class="lgn-form">
+            <form class="lgn-form" id="form-login">
                 <input type="email" placeholder="Correo electrónico" required>
                 <input type="password" placeholder="Contraseña" required>
 
@@ -56,3 +58,19 @@
             <a href="#">Preguntas frecuentes</a>
         </div>
     </footer>
+
+    <!-- SCRIPT DE CONFIRMACIÓN -->
+    <script>
+        document.getElementById('form-login').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevenir el envío del formulario
+
+            // Mensaje de confirmación
+            alert('¡Inicio de sesión exitoso!\n\nTe has logueado correctamente. Redirigiendo...');
+
+            // Aquí puedes redirigir a otra página si es necesario, por ejemplo:
+            // window.location.href = 'dashboard.html';
+        });
+    </script>
+
+</body>
+</html>

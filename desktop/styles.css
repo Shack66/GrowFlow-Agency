@@ -135,6 +135,30 @@ header {
     background: var(--azul-oscuro);
 }
 
+a.btn-registrarse {
+    text-decoration: none;
+}
+
+a.btn-registrarse::after {
+    content: none !important;
+    display: none !important;
+}
+
+a.btn-registrarse {
+    margin-left: 18px;
+    padding: 8px 16px;
+    background: var(--azul);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+a.btn-registrarse:hover {
+    background: var(--azul-oscuro);
+}
+
 /* HERO SECTION (Para index.html) */
 .hero {
     flex: 1;

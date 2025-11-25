@@ -12,8 +12,8 @@
 
     <!-- METANAVEGACIÓN MÓVIL -->
     <div class="meta-nav">
-        <a href="#">Iniciar sesión</a>
-        <a href="#">Registrarse</a>
+        <a href="../mobile/login-m.html">Iniciar sesión</a>
+        <a href="../mobile/registro-m.html">Registrarse</a>
     </div>
 
     <!-- HEADER MÓVIL -->
@@ -35,28 +35,30 @@
     <nav class="mobile-nav" id="mobile-menu">
         <a href="../mobile/index-m.html">Inicio</a>
         <a href="#">Blog / Noticias</a>
-        <a href="#">Servicios</a>
-        <a href="#">Sobre Nosotros</a>
-        <a href="#">Preguntas Frecuentes</a>
+        <a href="../mobile/servicios-m.html">Servicios</a>
+        <a href="../mobile/nosotros-m.html">Sobre Nosotros</a>
+        <a href="../mobile/preguntas-frecuentes-m.html">Preguntas Frecuentes</a>
 
-        <button class="btn-registrarse">Regístrate</button>
+        <a href="../mobile/registro-m.html" class="btn-registrarse">
+            Regístrate
+        </a>
     </nav>
 
-        <!-- CONTENEDOR LOGIN -->
-        <section class="lgn-container">
-            <div class="lgn-box">
-                <h2 class="lgn-title">Iniciar Sesión</h2>
+    <!-- CONTENEDOR LOGIN -->
+    <section class="lgn-container">
+        <div class="lgn-box">
+            <h2 class="lgn-title">Iniciar Sesión</h2>
     
-                <form class="lgn-form">
-                    <input type="email" placeholder="Correo electrónico" required>
-                    <input type="password" placeholder="Contraseña" required>
+            <form id="form-login" class="lgn-form">
+                <input type="email" placeholder="Correo electrónico" required>
+                <input type="password" placeholder="Contraseña" required>
     
-                    <button type="submit" class="lgn-btn">Ingresar</button>
-                </form>
+                <button type="submit" class="lgn-btn">Ingresar</button>
+            </form>
     
-                <a href="#" class="lgn-link">¿Olvidaste tu contraseña?</a>
-            </div>
-        </section>
+            <a href="#" class="lgn-link">¿Olvidaste tu contraseña?</a>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -68,4 +70,30 @@
         </div>
     </footer>
 
-    
+    <!-- SCRIPT para abrir/cerrar menú móvil -->
+    <script>
+        const hamburger = document.getElementById("hamburger-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        hamburger.addEventListener("click", () => {
+            mobileMenu.classList.toggle("open");
+            hamburger.classList.toggle("active");
+        });
+    </script>
+
+    <!-- SCRIPT DE CONFIRMACIÓN -->
+    <script>
+        document.getElementById('form-login').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevenir el envío del formulario
+
+            // Mensaje de confirmación
+            alert('¡Inicio de sesión exitoso!\n\nTe has logueado correctamente. Redirigiendo...');
+
+            // Aquí puedes redirigir a otra página si es necesario, por ejemplo:
+            // window.location.href = 'dashboard.html';
+        });
+    </script>
+
+</div>
+</body>
+</html>

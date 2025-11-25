@@ -31,7 +31,8 @@ body {
 }
 
 .mobile-wrapper {
-    max-width: 480px;
+    max-width: 412px;
+    width: 100%;
     margin: 0 auto;
     background: #fff;
     min-height: 100vh;
@@ -39,6 +40,7 @@ body {
     flex-direction: column;
     border: none;
     outline: none;
+    box-sizing: border-box;
 }
 
 /* METANAVEGACIÓN */
@@ -79,6 +81,16 @@ body {
 .meta-nav a:hover::after {
     width: 100%;
     transform-origin: left;
+}
+
+.mobile-nav a.btn-registrarse::after {
+    display: none !important;
+    content: none !important;
+}
+
+.mobile-nav a.btn-registrarse:hover::after {
+    display: none !important;
+    content: none !important;
 }
 
 /* HEADER MÓVIL */
@@ -125,7 +137,7 @@ body {
     transition: 0.3s;
 }
 
-/* Animación al abrir */
+/* Animación "X" al abrir */
 .hamburger.active span:nth-child(1) {
     transform: translateY(10px) rotate(45deg);
 }
@@ -139,8 +151,10 @@ body {
 /* NAVBAR MÓVIL OCULTO */
 .mobile-nav {
     position: fixed;
-    top: 73px;
-    left: 0;
+    top: 0;
+    margin-top: 20px; /* Ajusta este valor */
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
     max-width: 480px;
     background: #1F1F1F;
@@ -185,13 +199,39 @@ body {
 
 .btn-registrarse {
     margin-top: 15px;
-    padding: 10px;
+    padding: 0; /* Eliminar padding para controlar mejor con height */
+    height: 50px; /* Altura fija del botón */
     background: var(--azul);
     border: none;
     color: white;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-registrarse:hover {
+    background: var(--azul-oscuro);
+}
+
+/* NAVBAR MÓVIL OCULTO */
+.mobile-nav {
+    position: fixed;
+    top: 73px;
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 100%;
+    max-width: 480px;
+    background: #1F1F1F;
+    display: none;
+    flex-direction: column;
+    padding: 15px 20px;
+    z-index: 999;
 }
 
 .btn-registrarse:hover {
@@ -201,7 +241,6 @@ body {
 /* HERO MÓVIL */
 .hero {
     height: 60vh;
-    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -210,6 +249,7 @@ body {
         linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
     background-size: 8px 8px, 100% 100%;
     color: white;
+    flex: 1;
 }
 
 .hero-text {
@@ -237,6 +277,7 @@ body {
         linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
     background-size: 8px 8px, 100% 100%;
     padding: 40px 20px;
+    flex: 1;
 }
 
 .servicios-titulo {
@@ -281,8 +322,8 @@ body {
 }
 
 .icono-img {
-    width: 30px;
-    height: 30px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     filter: brightness(0) invert(1);
     position: relative;
@@ -317,6 +358,7 @@ body {
 /* DETALLES EXPANDIBLES */
 .servicio-detalles {
     background: white;
+    /* border: 2px solid #F5F5F5; */  /* Línea blanca comentada */
     border-radius: 12px;
     padding: 0;
     margin-bottom: 20px;
@@ -596,7 +638,6 @@ body {
 
 /* FOOTER */
 footer {
-    margin-top: auto;
     background: #1F1F1F;
     color: var(--gris);
     text-align: center;
@@ -624,23 +665,29 @@ footer {
 /* LOGIN */
 .lgn-container {
     flex: 1;
+    width: 100%;
+    max-width: 100%; /* Limita el ancho máximo */
     background: white;
     display: flex;
     justify-content: center;
-    padding: 120px 20px;
+    align-items: center;
+    padding: 40px 20px;
     background-image:
         radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
         linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
+    background-size: 8px 8px, 100% 100%;
+    box-sizing: border-box; /* Asegura que el padding no expanda el contenedor */
 }
 
 .lgn-box {
     background: #4B4B4B;
     width: 100%;
-    max-width: 300px;
-    padding: 40px 35px;
+    max-width: 280px; /* Reducido de 300px para mejor ajuste */
+    padding: 35px 30px; /* Reducido ligeramente */
     border-radius: 22px;
     text-align: center;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    box-sizing: border-box;
 }
 
 .lgn-title {
@@ -653,11 +700,12 @@ footer {
 .lgn-form input {
     width: 100%;
     padding: 12px;
-    margin-bottom: 18px;
+    margin-bottom: 15px; /* Reducido de 18px */
     border: none;
     border-radius: 6px;
     font-size: 15px;
     background: #E8E8E8;
+    box-sizing: border-box; /* Importante para que respete el ancho */
 }
 
 .lgn-btn {
@@ -844,5 +892,88 @@ footer {
     color: #666;
     font-size: 14px;
     line-height: 1.5;
+    margin: 0;
+}
+
+.preguntas-frecuentes-mobile {
+    background-image:
+        radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
+    background-size: 8px 8px, 100% 100%;
+    padding: 25px 20px;
+    color: white;
+    flex: 1;
+    min-height: auto;
+}
+
+.preguntas-titulo-mobile {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.preguntas-descripcion-mobile {
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 25px;
+    opacity: 0.9;
+    color: var(--gris);
+}
+
+.pregunta-card-mobile {
+    background: #F5F5F5;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pregunta-card-mobile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 119, 255, 0.15);
+}
+
+.pregunta-header-mobile {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pregunta-header-mobile h3 {
+    color: var(--negro);
+    font-size: 13px;
+    margin: 0;
+    flex: 1;
+    line-height: 1.3;
+}
+
+.pregunta-arrow-mobile {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.pregunta-card-mobile:hover .pregunta-arrow-mobile {
+    transform: translateY(2px);
+}
+
+.pregunta-detalles-mobile {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    background: white;
+}
+
+.pregunta-detalles-mobile.active {
+    max-height: 200px;
+    padding: 0 15px 15px 15px;
+}
+
+.pregunta-detalles-mobile p {
+    color: #666;
+    font-size: 12px;
+    line-height: 1.4;
     margin: 0;
 }
