@@ -1348,3 +1348,210 @@ input:checked + .slider:before {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* ESTILOS BLOG / NOTICIAS */
+
+.blog-contenedor {
+    flex: 1;
+    background-image:
+        radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
+    background-size: 8px 8px, 100% 100%;
+    padding: 60px 80px;
+}
+
+.blog-titulo {
+    font-size: 42px;
+    color: #ffffff;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* GRID */
+.blog-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+/* COLUMNAS */
+.blog-col-izq,
+.blog-col-der {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* TARJETAS */
+.blog-card-horizontal {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 15px;
+    gap: 15px;
+    border-radius: 10px;
+}
+
+.blog-card-vertical {
+    display: flex;
+    align-items: flex-start;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    gap: 15px;
+}
+
+/* IMÁGENES */
+.blog-img-peq {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.blog-img-grande {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* TEXTO */
+.blog-card-horizontal p,
+.blog-card-vertical p {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.blog-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* TITULOS DE NOTICIAS */
+.blog-texto h3 {
+    font-size: 20px;
+    margin-bottom: 6px;
+    color: var(--negro);
+    font-weight: 600;
+}
+
+/* PÁRRAFOS */
+.blog-texto p {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.blog-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--azul);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.blog-link:hover {
+    text-decoration: underline;
+    color: var(--azul-oscuro);
+}
+
+/* FOOTER BLOG */
+footer.footer {
+    background: #1F1F1F;
+    color: var(--gris);
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+}
+
+
+/* FORMULARIO DE CONTACTO */
+
+.contacto-contenedor {
+    flex: 1;
+    background-image:
+        radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
+    background-size: 8px 8px, 100% 100%;
+    padding: 60px 80px;
+}
+
+.contacto-titulo {
+    font-size: 34px;
+    margin-bottom: 10px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.contacto-descripcion {
+    font-size: 16px;
+    color: #d2d2d2;
+    margin: 0 auto 35px auto;
+    max-width: 650px;
+    text-align: center;
+}
+
+.contacto-formulario {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    padding: 35px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.contacto-grupo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+}
+
+.contacto-grupo label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.contacto-grupo input,
+.contacto-grupo textarea {
+    padding: 12px 14px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.contacto-grupo input:focus,
+.contacto-grupo textarea:focus {
+    border-color: #0077FF;
+    box-shadow: 0 0 0 2px rgba(0,119,255,0.08);
+}
+
+.contacto-grupo textarea {
+    resize: none;
+}
+
+/* Botón enviar */
+.btn-enviar-contacto {
+    margin-top: 10px;
+    background: #0077FF;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-enviar-contacto:hover {
+    background: #005FCC;
+}
