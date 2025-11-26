@@ -977,3 +977,435 @@ footer {
     line-height: 1.4;
     margin: 0;
 }
+
+
+/* BLOG / NOTICIAS - MOBILE */
+
+.blog-mobile-contenedor {
+    background-image:
+        radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
+    background-size: 8px 8px, 100% 100%;
+    padding: 40px 20px;
+    flex: 1;
+}
+
+.blog-mobile-titulo {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.blog-mobile-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.blog-mobile-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 15px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.blog-mobile-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.blog-mobile-card h3 {
+    font-size: 16px;
+    color: #111;
+}
+
+.blog-mobile-card p {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.4;
+}
+
+.blog-mobile-card a {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #0077FF;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.blog-mobile-card a:hover {
+    text-decoration: underline;
+}
+
+
+/* CONTACTO - MOBILE */
+
+.contacto-mobile-contenedor {
+    background-image:
+        radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
+    background-size: 8px 8px, 100% 100%;
+    padding: 40px 20px;
+}
+
+.contacto-mobile-titulo {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.contacto-mobile-descripcion {
+    font-size: 14px;
+    color: #d2d2d2;
+    text-align: center;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+/* FORMULARIO */
+
+.contacto-mobile-formulario {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.contacto-mobile-grupo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.contacto-mobile-grupo label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.contacto-mobile-grupo input,
+.contacto-mobile-grupo textarea {
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.contacto-mobile-grupo input:focus,
+.contacto-mobile-grupo textarea:focus {
+    border-color: #0077FF;
+    box-shadow: 0 0 0 2px rgba(0,119,255,0.08);
+}
+
+.contacto-mobile-grupo textarea {
+    resize: none;
+}
+
+/* BOTÓN */
+
+.btn-enviar-contacto-mobile {
+    margin-top: 10px;
+    background: #0077FF;
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-enviar-contacto-mobile:active {
+    background: #005FCC;
+}
+
+
+
+
+
+
+
+
+
+
+/* PERFIL - MOBILE */
+.perfil-mobile-contenedor {
+    padding: 20px;
+    background-image:
+        radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
+    background-size: 8px 8px, 100% 100%;
+    flex: 1;
+}
+
+/* PERFIL HEADER CARD */
+.perfil-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    margin-bottom: 18px;
+}
+
+.perfil-header-mobile {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 12px;
+    align-items: center;
+}
+
+.perfil-avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--azul);
+    display: block;
+}
+
+.perfil-basic {
+    display: flex;
+    flex-direction: column;
+}
+
+.perfil-nombre {
+    font-size: 18px;
+    color: var(--negro);
+    margin-bottom: 4px;
+}
+
+.perfil-cargo {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.perfil-email {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Boton cambiar foto */
+.btn-cambiar-foto {
+    background: rgba(0,0,0,0.06);
+    border: 1px solid #eee;
+    padding: 6px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    color: var(--negro);
+}
+
+/* STATS */
+.perfil-stats-mobile {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 8px 0 8px;
+    gap: 10px;
+}
+
+.perfil-stats-mobile .stat {
+    text-align: center;
+    flex: 1;
+}
+
+.stat-num {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--negro);
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+/* TABS MOBILE */
+.perfil-tabs-mobile {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 10px 8px;
+    background: #F3F4F6;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #444;
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    background: var(--azul);
+    color: white;
+    font-weight: 600;
+}
+
+/* TAB PANES */
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* FORMULARIO MOBILE */
+.formulario-perfil-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.formulario-perfil-mobile label {
+    font-size: 13px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.formulario-perfil-mobile input,
+.formulario-perfil-mobile textarea {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #E8E8E8;
+    font-size: 14px;
+    outline: none;
+}
+
+.formulario-perfil-mobile textarea {
+    min-height: 90px;
+}
+
+/* Tags habilidades mobile */
+.habilidades-tags-mobile {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.habilidades-tags-mobile .tag {
+    background: var(--azul);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* Form buttons mobile */
+.form-buttons-mobile {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.btn-guardar {
+    flex: 1;
+    background: #053871;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+}
+
+.btn-cancelar {
+    flex: 1;
+    background: #ffffff;
+    border: none;
+    color: #484848;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* PROYECTOS MOBILE */
+.proyectos-grid-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.proyecto-card-mobile {
+    background: #F8F9FA;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.proyecto-header-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.proyecto-status {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.proyecto-status.completado { background: #E8F5E9; color: #00C853; }
+.proyecto-status.en-progreso { background: #E3F2FD; color: var(--azul); }
+.proyecto-status.planeado { background: #FFF3E0; color: #FF9800; }
+
+.proyecto-desc { color: #666; font-size: 13px; margin-bottom: 8px; }
+
+.proyecto-metrics-mobile {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.metric { text-align: center; flex: 1; }
+.metric-value { font-weight: 700; color: var(--negro); }
+.metric-label { font-size: 11px; color: #666; text-transform: uppercase; }
+
+/* CONFIG MOBILE */
+.configuracion-grid-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.config-card-mobile {
+    background: #F8F9FA;
+    padding: 12px;
+    border-radius: 12px;
+}
+
+/* Switch (reuse) */
+.switch { position: relative; display: inline-block; width: 50px; height: 24px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
+.slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+input:checked + .slider { background-color: var(--azul); }
+input:checked + .slider:before { transform: translateX(26px); }
+
+/* Danger zone mobile */
+.danger-zone-mobile { border: 2px solid #FF5252; padding: 12px; border-radius: 12px; }
+.btn-eliminar { width: 100%; padding: 12px; background: #FF5252; color: white; border: none; border-radius: 8px; }
+
+
+
+
+
+

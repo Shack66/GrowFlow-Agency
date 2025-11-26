@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - GrowFlow Agency (Móvil)</title>
+    <link rel="stylesheet" href="styles-m.css">
+</head>
+<body>
+
+<div class="mobile-wrapper">
+
+    <!-- METANAVEGACIÓN MÓVIL -->
+    <div class="meta-nav">
+        <a href="login-m.html">Iniciar sesión</a>
+        <a href="index-m.html">Cerrar sesión</a>
+    </div>
+
+    <!-- HEADER MÓVIL -->
+    <header class="mobile-header">
+        <div class="logo">
+            <div class="logo-img" aria-hidden="true"></div>
+            <h1 class="mobile-brand">GrowFlow</h1>
+        </div>
+
+        <!-- Botón menú hamburguesa -->
+        <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- MENÚ DESPLEGABLE MÓVIL -->
+    <nav class="mobile-nav" id="mobile-menu" aria-hidden="true">
+        <a href="index-m.html">Inicio</a>
+        <a href="blog_news-m.html">Blog / Noticias</a>
+        <a href="servicios-m.html">Servicios</a>
+        <a href="nosotros-m.html">Sobre Nosotros</a>
+        <a href="preguntas-frecuentes-m.html">Preguntas Frecuentes</a>
+
+        <a href="registro-m.html" class="btn-registrarse clean-link">
+            Regístrate
+        </a>
+    </nav>
+
+    <!-- CONTENIDO PERFIL -->
+    <main class="perfil-mobile-contenedor" id="main">
+
+        <!-- PERFIL CARD -->
+        <section class="perfil-card">
+            <div class="perfil-header-mobile">
+                <div class="perfil-avatar">
+                    <img src="../imags/nosotros/samuel.jpg" alt="Samuel Arosemena">
+                </div>
+
+                <div class="perfil-basic">
+                    <h2 class="perfil-nombre">Samuel Arosemena</h2>
+                    <p class="perfil-cargo">Gerente de Marketing y Analytics</p>
+                    <p class="perfil-email">samuel.arosemena@growflow.com</p>
+                </div>
+
+                <button class="btn-cambiar-foto" id="btn-cambiar-foto">Cambiar foto</button>
+            </div>
+
+            <div class="perfil-stats-mobile">
+                <div class="stat">
+                    <span class="stat-num">12</span>
+                    <span class="stat-label">Proyectos</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">3</span>
+                    <span class="stat-label">Años</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">98%</span>
+                    <span class="stat-label">Satisfacción</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- TABS -->
+        <div class="perfil-tabs-mobile" role="tablist" aria-label="Secciones de perfil">
+            <button class="tab-btn active" role="tab" aria-selected="true" data-target="informacion">Información</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-target="proyectos">Proyectos</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-target="configuracion">Configuración</button>
+        </div>
+
+        <!-- TAB PANE: INFORMACIÓN -->
+        <section id="informacion" class="tab-pane active" role="tabpanel">
+            <form class="formulario-perfil-mobile" id="perfil-form">
+                <label for="nombre">Nombre completo</label>
+                <input id="nombre" name="nombre" type="text" value="Samuel Arosemena" required>
+
+                <label for="cargo">Cargo</label>
+                <input id="cargo" name="cargo" type="text" value="Gerente de Marketing y Analytics" required>
+
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" value="samuel.arosemena@growflow.com" required>
+
+                <label for="telefono">Teléfono</label>
+                <input id="telefono" name="telefono" type="tel" value="+507 1234-5678">
+
+                <label for="bio">Biografía</label>
+                <textarea id="bio" name="bio" rows="4">Especialista en marketing digital con más de 5 años de experiencia en estrategias de crecimiento y análisis de datos. Apasionado por ayudar a empresas a alcanzar sus objetivos mediante soluciones innovadoras y medibles.</textarea>
+
+                <label>Habilidades</label>
+                <div class="habilidades-tags-mobile">
+                    <span class="tag">Marketing Digital</span>
+                    <span class="tag">Google Analytics</span>
+                    <span class="tag">SEO</span>
+                    <span class="tag">Redes Sociales</span>
+                </div>
+
+                <div class="form-buttons-mobile">
+                    <button type="button" class="btn-guardar" id="guardar-cambios">Guardar cambios</button>
+                    <button type="button" class="btn-cancelar" id="cancelar-cambios">Cancelar</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- TAB PANE: PROYECTOS -->
+        <section id="proyectos" class="tab-pane" role="tabpanel" aria-hidden="true">
+            <div class="proyectos-grid-mobile">
+
+                <article class="proyecto-card-mobile">
+                    <div class="proyecto-header-mobile">
+                        <h3>Ecommerce Fashion</h3>
+                        <span class="proyecto-status completado">Completado</span>
+                    </div>
+                    <p class="proyecto-desc">Estrategia de marketing completa para tienda online de moda.</p>
+                    <div class="proyecto-metrics-mobile">
+                        <div class="metric">
+                            <span class="metric-value">+45%</span>
+                            <span class="metric-label">Ventas</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">+120%</span>
+                            <span class="metric-label">Tráfico</span>
+                        </div>
+                    </div>
+                    <button class="btn-ver">Ver Detalles</button>
+                </article>
+
+                <article class="proyecto-card-mobile">
+                    <div class="proyecto-header-mobile">
+                        <h3>Tech Startup</h3>
+                        <span class="proyecto-status en-progreso">En Progreso</span>
+                    </div>
+                    <p class="proyecto-desc">Campaña de lanzamiento para aplicación móvil innovadora.</p>
+                    <div class="proyecto-metrics-mobile">
+                        <div class="metric">
+                            <span class="metric-value">+80%</span>
+                            <span class="metric-label">Leads</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">+200%</span>
+                            <span class="metric-label">Engagement</span>
+                        </div>
+                    </div>
+                    <button class="btn-ver">Ver Detalles</button>
+                </article>
+
+                <article class="proyecto-card-mobile">
+                    <div class="proyecto-header-mobile">
+                        <h3>Restaurant Gourmet</h3>
+                        <span class="proyecto-status planeado">Planeado</span>
+                    </div>
+                    <p class="proyecto-desc">Estrategia de redes sociales y posicionamiento local.</p>
+                    <div class="proyecto-metrics-mobile">
+                        <div class="metric">
+                            <span class="metric-value">--</span>
+                            <span class="metric-label">Por iniciar</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">--</span>
+                            <span class="metric-label">Por iniciar</span>
+                        </div>
+                    </div>
+                    <button class="btn-ver">Ver Detalles</button>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- TAB PANE: CONFIGURACIÓN -->
+        <section id="configuracion" class="tab-pane" role="tabpanel" aria-hidden="true">
+            <div class="configuracion-grid-mobile">
+                <div class="config-card-mobile">
+                    <h3>Preferencias de Notificaciones</h3>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <span class="config-label">Notificaciones por email</span>
+                </div>
+
+                <div class="config-card-mobile">
+                    <h3>Privacidad</h3>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <span class="config-label">Perfil público</span>
+                    <button class="btn-descargar">Descargar mis datos</button>
+                </div>
+
+                <div class="config-card-mobile danger-zone-mobile">
+                    <h3>Zona de Peligro</h3>
+                    <p>Estas acciones no se pueden deshacer</p>
+                    <button class="btn-eliminar">Eliminar Cuenta</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER MÓVIL -->
+    <footer>
+        <p>© 2025 - GrowFlow Agency</p>
+        <div class="footer-links">
+            <a href="form_contacto-m.html">Formulario de contacto</a>
+            <a href="preguntas-frecuentes-m.html">Preguntas frecuentes</a>
+        </div>
+    </footer>
+
+</div>
+
+<!-- SCRIPTS: menú y pestañas -->
+<script>
+    // Menú hamburguesa
+    (function() {
+        const hamburger = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburger.addEventListener('click', () => {
+            const opened = mobileMenu.classList.toggle('open');
+            hamburger.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', opened ? 'true' : 'false');
+            mobileMenu.setAttribute('aria-hidden', opened ? 'false' : 'true');
+        });
+    })();
+
+    // Tabs (delegación)
+    (function() {
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const panes = document.querySelectorAll('.tab-pane');
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const target = btn.getAttribute('data-target');
+
+                // Desactivar botones
+                tabButtons.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+
+                // Ocultar panes
+                panes.forEach(p => {
+                    p.classList.remove('active');
+                    p.setAttribute('aria-hidden', 'true');
+                });
+
+                // Activar seleccionado
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+                const pane = document.getElementById(target);
+                if (pane) {
+                    pane.classList.add('active');
+                    pane.setAttribute('aria-hidden', 'false');
+                    // scroll to pane top on mobile
+                    pane.scrollIntoView({behavior: 'smooth', block: 'start'});
+                }
+            });
+        });
+    })();
+
+    // Acciones de botones (simulación)
+    document.getElementById('guardar-cambios')?.addEventListener('click', () => {
+        alert('Cambios guardados correctamente');
+    });
+    document.getElementById('cancelar-cambios')?.addEventListener('click', () => {
+        alert('Cambios cancelados');
+    });
+    document.getElementById('btn-cambiar-foto')?.addEventListener('click', () => {
+        alert('Funcionalidad de cambiar foto en desarrollo');
+    });
+</script>
+
+</body>
+</html>

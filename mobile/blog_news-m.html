@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowFlow Agency - Blog / Noticias</title>
+    <link rel="stylesheet" href="styles-m.css">
+</head>
+<body>
+
+<div class="mobile-wrapper">
+
+    <!-- METANAVEGACIÓN MÓVIL -->
+    <div class="meta-nav">
+        <a href="../mobile/login-m.html">Iniciar sesión</a>
+        <a href="../mobile/registro-m.html">Registrarse</a>
+    </div>
+
+    <!-- HEADER MÓVIL -->
+    <header class="mobile-header">
+        <div class="logo">
+            <div class="logo-img"></div>
+            <h1>GrowFlow</h1>
+        </div>
+
+        <!-- Botón menú hamburguesa -->
+        <div class="hamburger" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- MENÚ DESPLEGABLE MÓVIL -->
+    <nav class="mobile-nav" id="mobile-menu">
+        <a href="../mobile/index-m.html">Inicio</a>
+        <a href="../mobile/blog_news-m.html">Blog / Noticias</a>
+        <a href="../mobile/servicios-m.html">Servicios</a>
+        <a href="../mobile/nosotros-m.html">Sobre Nosotros</a>
+        <a href="../mobile/preguntas-frecuentes-m.html">Preguntas Frecuentes</a>
+
+        <a href="../mobile/registro-m.html" class="btn-registrarse clean-link">
+            Regístrate
+        </a>
+    </nav>
+
+    <!-- SCRIPT para abrir/cerrar menú móvil -->
+    <script>
+        const hamburger = document.getElementById("hamburger-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        hamburger.addEventListener("click", () => {
+            mobileMenu.classList.toggle("open");
+            hamburger.classList.toggle("active");
+        });
+    </script>
+
+    <!-- CONTENIDO NOTICIAS -->
+    <main class="blog-mobile-contenedor">
+        <h2 class="blog-mobile-titulo">Noticias</h2>
+
+        <div class="blog-mobile-lista">
+
+            <div class="blog-mobile-card">
+                <img src="../imags/noticias/noticia1.jpg" class="blog-mobile-img">
+                <h3>Teléfonos convertidos en magos publicitarios</h3>
+                <p>
+                    Tabletas, smartphones y relojes inteligentes redefinen la publicidad gracias a la IA.
+                    <a href="https://elpais.com/extra/publicidad/2024-01-25/telefonos-convertidos-en-magos-publicitarios.html" target="_blank">
+                        Leer más...
+                    </a>
+                </p>
+            </div>
+
+            <div class="blog-mobile-card">
+                <img src="../imags/noticias/noticia2.webp" class="blog-mobile-img">
+                <h3>Tendencias del Marketing para 2026</h3>
+                <p>
+                    Emocionar a las personas y convencer a los algoritmos.
+                    <a href="https://www.puromarketing.com/88/216417/emocionar-personas-convencer-algoritmos-tendencias-marketing-negocios-para-2026" target="_blank">
+                        Leer más...
+                    </a>
+                </p>
+            </div>
+
+            <div class="blog-mobile-card">
+                <img src="../imags/noticias/noticia3.png" class="blog-mobile-img">
+                <h3>Meta recurrirá sentencia en España</h3>
+                <p>
+                    Meta apelará la condena de 479 millones de euros impuesta por la prensa española.
+                    <a href="https://dircomfidencial.com/medios/meta-recurrira-la-sentencia-que-le-condena-a-pagar-479-me-a-la-prensa-espanola-20251120-1059/" target="_blank">
+                        Leer más...
+                    </a>
+                </p>
+            </div>
+
+            <div class="blog-mobile-card">
+                <img src="../imags/noticias/noticia4.webp" class="blog-mobile-img">
+                <h3>Coca-Cola y su nueva estrategia con IA</h3>
+                <p>
+                    Coca-Cola adopta nuevas estrategias de marketing con inteligencia artificial.
+                    <a href="https://www.marketingdirecto.com/anunciantes-general/coca-cola-revoluciona-marketing-inteligencia-artificial" target="_blank">
+                        Leer más...
+                    </a>
+                </p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 - GrowFlow Agency</p>
+
+        <div class="footer-links">
+            <a href="form_contacto-m.html">Formulario de contacto</a>
+            <a href="preguntas-frecuentes-m.html">Preguntas frecuentes</a>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>
