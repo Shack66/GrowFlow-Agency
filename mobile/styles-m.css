@@ -700,12 +700,12 @@ footer {
 .lgn-form input {
     width: 100%;
     padding: 12px;
-    margin-bottom: 15px; /* Reducido de 18px */
+    margin-bottom: 15px;
     border: none;
     border-radius: 6px;
     font-size: 15px;
     background: #E8E8E8;
-    box-sizing: border-box; /* Importante para que respete el ancho */
+    box-sizing: border-box;
 }
 
 .lgn-btn {
