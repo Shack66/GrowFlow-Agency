@@ -2,7 +2,7 @@ name: Deploy to InfinityFree
 
 on:
   push:
-    branches: [ "main" ]   # deploy cuando alguien hace push a main
+    branches: [ "master" ]   # deploy cuando alguien hace push a master
 
 jobs:
   ftp-deploy:
