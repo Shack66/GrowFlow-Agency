@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - GrowFlow Agency</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- METANAVEGACIÓN -->
+    <div class="meta-nav">
+        <a href="perfil.html" class="user-welcome">¡Hola, Samuel!</a>
+        <a href="index.html">Cerrar Sesión</a>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <div class="logo-img"></div>
+            <h1>GrowFlow Agency</h1>
+        </div>
+
+        <nav class="main-nav">
+            <a href="index.html">Inicio</a>
+            <a href="blog_news.html">Blog / Noticias</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="nosotros.html">Sobre Nosotros</a>
+            <a href="preguntas-frecuentes.html">Preguntas Frecuentes</a>
+            <a href="perfil.html">Perfil</a>
+
+            <div class="user-avatar">
+                <img src="../imags/nosotros/samuel.jpg" alt="Mi Perfil">
+            </div>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN PERFIL -->
+    <section class="perfil">
+        <div class="perfil-contenido">
+            <!-- Header del Perfil -->
+            <div class="perfil-header">
+                <div class="perfil-avatar">
+                    <img src="../imags/nosotros/samuel.jpg" alt="Samuel Arosemena">
+                    <button class="btn-cambiar-foto">Cambiar Foto</button>
+                </div>
+                <div class="perfil-info">
+                    <h2>Samuel Arosemena</h2>
+                    <p class="perfil-cargo">Gerente de Marketing y Analytics</p>
+                    <p class="perfil-email">samuel.arosemena@growflow.com</p>
+                    <div class="perfil-stats">
+                        <div class="stat">
+                            <span class="stat-num">12</span>
+                            <span class="stat-label">Proyectos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">3</span>
+                            <span class="stat-label">Años</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">98%</span>
+                            <span class="stat-label">Satisfacción</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pestañas de Navegación -->
+            <div class="perfil-tabs">
+                <button class="tab-btn active" onclick="openTab('informacion')">Información Personal</button>
+                <button class="tab-btn" onclick="openTab('proyectos')">Mis Proyectos</button>
+                <button class="tab-btn" onclick="openTab('configuracion')">Configuración</button>
+            </div>
+
+            <!-- Contenido de las Pestañas -->
+            <div class="tab-content">
+                <!-- Pestaña Información Personal -->
+                <div id="informacion" class="tab-pane active">
+                    <div class="formulario-perfil">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">Nombre Completo</label>
+                                <input type="text" id="nombre" value="Samuel Arosemena">
+                            </div>
+                            <div class="form-group">
+                                <label for="cargo">Cargo</label>
+                                <input type="text" id="cargo" value="Gerente de Marketing y Analytics">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" value="samuel.arosemena@growflow.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" value="+507 1234-5678">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bio">Biografía</label>
+                            <textarea id="bio" rows="4">Especialista en marketing digital con más de 5 años de experiencia en estrategias de crecimiento y análisis de datos. Apasionado por ayudar a empresas a alcanzar sus objetivos mediante soluciones innovadoras y medibles.</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="habilidades">Habilidades</label>
+                            <div class="habilidades-tags">
+                                <span class="tag">Marketing Digital</span>
+                                <span class="tag">Google Analytics</span>
+                                <span class="tag">SEO</span>
+                                <span class="tag">Redes Sociales</span>
+                                <span class="tag">Análisis de Datos</span>
+                                <span class="tag">Estrategia de Contenido</span>
+                            </div>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button class="btn-guardar">Guardar Cambios</button>
+                            <button class="btn-cancelar">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pestaña Mis Proyectos -->
+                <div id="proyectos" class="tab-pane">
+                    <div class="proyectos-grid">
+                        <div class="proyecto-card">
+                            <div class="proyecto-header">
+                                <h3>Ecommerce Fashion</h3>
+                                <span class="proyecto-status completado">Completado</span>
+                            </div>
+                            <p class="proyecto-desc">Estrategia de marketing completa para tienda online de moda.</p>
+                            <div class="proyecto-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">+45%</span>
+                                    <span class="metric-label">Ventas</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">+120%</span>
+                                    <span class="metric-label">Tráfico</span>
+                                </div>
+                            </div>
+                            <div class="proyecto-actions">
+                                <button class="btn-ver">Ver Detalles</button>
+                            </div>
+                        </div>
+
+                        <div class="proyecto-card">
+                            <div class="proyecto-header">
+                                <h3>Tech Startup</h3>
+                                <span class="proyecto-status en-progreso">En Progreso</span>
+                            </div>
+                            <p class="proyecto-desc">Campaña de lanzamiento para aplicación móvil innovadora.</p>
+                            <div class="proyecto-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">+80%</span>
+                                    <span class="metric-label">Leads</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">+200%</span>
+                                    <span class="metric-label">Engagement</span>
+                                </div>
+                            </div>
+                            <div class="proyecto-actions">
+                                <button class="btn-ver">Ver Detalles</button>
+                            </div>
+                        </div>
+
+                        <div class="proyecto-card">
+                            <div class="proyecto-header">
+                                <h3>Restaurant Gourmet</h3>
+                                <span class="proyecto-status planeado">Planeado</span>
+                            </div>
+                            <p class="proyecto-desc">Estrategia de redes sociales y posicionamiento local.</p>
+                            <div class="proyecto-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">-</span>
+                                    <span class="metric-label">Por iniciar</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">-</span>
+                                    <span class="metric-label">Por iniciar</span>
+                                </div>
+                            </div>
+                            <div class="proyecto-actions">
+                                <button class="btn-ver">Ver Detalles</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pestaña Configuración -->
+                <div id="configuracion" class="tab-pane">
+                    <div class="configuracion-grid">
+                        <div class="config-card">
+                            <h3>Preferencias de Notificaciones</h3>
+                            <div class="config-option">
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                                <span>Notificaciones por email</span>
+                            </div>
+                            <div class="config-option">
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                                <span>Recordatorios de proyectos</span>
+                            </div>
+                            <div class="config-option">
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                                <span>Noticias y actualizaciones</span>
+                            </div>
+                        </div>
+
+                        <div class="config-card">
+                            <h3>Privacidad</h3>
+                            <div class="config-option">
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                                <span>Perfil público</span>
+                            </div>
+                            <div class="config-option">
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                                <span>Mostrar email</span>
+                            </div>
+                            <button class="btn-descargar">Descargar mis datos</button>
+                        </div>
+
+                        <div class="config-card danger-zone">
+                            <h3>Zona de Peligro</h3>
+                            <p>Estas acciones no se pueden deshacer</p>
+                            <button class="btn-eliminar">Eliminar Cuenta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 - GrowFlow Agency. Todos los derechos reservados.</p>
+        <div class="footer-links">
+            <a href="form_contacto.html">Formulario de contacto</a>
+            <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
+        </div>
+    </footer>
+
+    <script>
+        // Sistema de pestañas
+        function openTab(tabName) {
+            // Ocultar todos los paneles
+            const paneles = document.querySelectorAll('.tab-pane');
+            paneles.forEach(panel => panel.classList.remove('active'));
+            
+            // Remover active de todos los botones
+            const botones = document.querySelectorAll('.tab-btn');
+            botones.forEach(btn => btn.classList.remove('active'));
+            
+            // Mostrar el panel seleccionado
+            document.getElementById(tabName).classList.add('active');
+            
+            // Activar el botón clickeado
+            event.currentTarget.classList.add('active');
+        }
+
+        // Guardar cambios del perfil
+        document.querySelector('.btn-guardar').addEventListener('click', function() {
+            alert('Cambios guardados exitosamente');
+        });
+
+        // Cambiar foto de perfil (simulado)
+        document.querySelector('.btn-cambiar-foto').addEventListener('click', function() {
+            alert('Funcionalidad de cambiar foto en desarrollo');
+        });
+    </script>
+
+</body>
+</html>
