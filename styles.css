@@ -123,8 +123,8 @@ header {
 .btn-registrarse {
     margin-left: 18px;
     padding: 8px 16px;
-    background: var(--azul);
-    color: white;
+    background: #005BCC;
+    color: #E8E8E8;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -132,7 +132,7 @@ header {
 }
 
 .btn-registrarse:hover {
-    background: var(--azul-oscuro);
+    background: #0048A0;
 }
 
 a.btn-registrarse {
@@ -147,8 +147,8 @@ a.btn-registrarse::after {
 a.btn-registrarse {
     margin-left: 18px;
     padding: 8px 16px;
-    background: var(--azul);
-    color: white;
+    background: #005BCC;
+    color: #E8E8E8;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -156,10 +156,10 @@ a.btn-registrarse {
 }
 
 a.btn-registrarse:hover {
-    background: var(--azul-oscuro);
+    background: #0048A0;
 }
 
-/* HERO SECTION (Para index.html) */
+/* HERO SECTION */
 .hero {
     flex: 1;
     min-height: 70vh;

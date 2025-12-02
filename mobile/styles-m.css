@@ -201,9 +201,9 @@ body {
     margin-top: 15px;
     padding: 0; /* Eliminar padding para controlar mejor con height */
     height: 50px; /* Altura fija del botón */
-    background: var(--azul);
+    background: #005BCC;
     border: none;
-    color: white;
+    color: #E8E8E8;
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
@@ -216,7 +216,7 @@ body {
 }
 
 .btn-registrarse:hover {
-    background: var(--azul-oscuro);
+    background: #0048A0;
 }
 
 /* NAVBAR MÓVIL OCULTO */
@@ -235,7 +235,7 @@ body {
 }
 
 .btn-registrarse:hover {
-    background: var(--azul-oscuro);
+    background:  #0048A0;
 }
 
 /* HERO MÓVIL */
@@ -382,7 +382,7 @@ body {
 .btn-contratar {
     width: 100%;
     padding: 12px;
-    background: var(--azul);
+    background: #005BCC;
     color: white;
     border: none;
     border-radius: 8px;
@@ -393,7 +393,7 @@ body {
 }
 
 .btn-contratar:hover {
-    background: var(--azul-oscuro);
+    background: #0048A0;
     transform: translateY(-2px);
 }
 
@@ -524,13 +524,13 @@ body {
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    background: var(--azul);
-    color: white;
+    background: #005BCC;
+    color: #E8E8E8;
     transition: all 0.3s ease;
 }
 
 .btn-enviar:hover {
-    background: var(--azul-oscuro);
+    background: #0048A0;
     transform: translateY(-2px);
 }
 
@@ -711,8 +711,8 @@ footer {
 .lgn-btn {
     width: 100%;
     padding: 12px;
-    background: var(--azul);
-    color: white;
+    background: #005BCC;
+    color: #E8E8E8;
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -722,7 +722,7 @@ footer {
 }
 
 .lgn-btn:hover {
-    background: var(--azul-oscuro);
+    background: #0048A0;
 }
 
 .lgn-link {
