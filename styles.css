@@ -82,7 +82,7 @@ header {
 .logo-img {
     width: 55px;
     height: 55px;
-    background: var(--azul);
+    background: transparent;
     border-radius: 8px;
     margin-right: 12px;
 }
