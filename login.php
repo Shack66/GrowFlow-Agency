@@ -20,7 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     if (!empty($email) && !empty($password)) {
-        $stmt = $conn->prepare("SELECT user_id, email, password, name, apellido, role FROM usuarios WHERE email = ?");
+        // CONSULTA ACTUALIZADA para coincidir con tu tabla
+        $stmt = $conn->prepare("SELECT user_id, email, password, name, apellido, role FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -30,15 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Verificar la contraseña
             if (password_verify($password, $user['password'])) {
-                // Iniciar sesión
-                $_SESSION['user_id'] = $user['user_id'];
+                // Iniciar sesión - VARIABLES ACTUALIZADAS
+                $_SESSION['user_id'] = $user['user_id'];  // Cambiado de 'id' a 'user_id'
                 $_SESSION['email'] = $user['email'];
-                $_SESSION['nombre'] = $user['name'];
+                $_SESSION['nombre'] = $user['name'];      // Cambiado de 'nombre' a 'name'
                 $_SESSION['apellido'] = $user['apellido'];
-                $_SESSION['rol'] = $user['role'];
+                $_SESSION['rol'] = $user['role'];         // Cambiado de 'rol' a 'role'
 
                 // Redirigir según el rol
-                if ($user['rol'] == 'admin') {
+                if ($user['role'] == 'admin') {           // Cambiado de 'rol' a 'role'
                     header("Location: admin-index.php");
                 } else {
                     header("Location: client-index.php");
@@ -55,8 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = "Por favor, completa todos los campos.";
     }
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
