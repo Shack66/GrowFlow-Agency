@@ -21,12 +21,6 @@ if (!esAdmin()) {
 
 <body>
 
-    <!-- METANAVEGACIÓN -->
-    <div class="meta-nav">
-        <a href="login.html">Iniciar sesión</a>
-        <a href="registro.html">Registrarse</a>
-    </div>
-
     <!-- Metanavegación -->
     <div class="meta-nav">
         <a href="logout.php">Cerrar Sesión</a>
