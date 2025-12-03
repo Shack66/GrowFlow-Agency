@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     if (!empty($email) && !empty($password)) {
-        $stmt = $conn->prepare("SELECT id, email, password, nombre, apellido, rol FROM usuarios WHERE email = ?");
+        $stmt = $conn->prepare("SELECT user_id, email, password, name, apellido, role FROM usuarios WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -31,11 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Verificar la contraseña
             if (password_verify($password, $user['password'])) {
                 // Iniciar sesión
-                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['email'] = $user['email'];
-                $_SESSION['nombre'] = $user['nombre'];
+                $_SESSION['nombre'] = $user['name'];
                 $_SESSION['apellido'] = $user['apellido'];
-                $_SESSION['rol'] = $user['rol'];
+                $_SESSION['rol'] = $user['role'];
 
                 // Redirigir según el rol
                 if ($user['rol'] == 'admin') {
@@ -55,6 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = "Por favor, completa todos los campos.";
     }
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

@@ -25,3 +25,4 @@ function requiereRol($rol) {
         exit();
     }
 }
+?>

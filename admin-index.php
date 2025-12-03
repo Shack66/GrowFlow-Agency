@@ -1,15 +1,28 @@
+<?php
+require_once 'auth.php';
+require_once 'db.php';
+
+// Verificar que sea admin
+if (!esAdmin()) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agencia de Marketing Digital</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<!-- test deploy 3 -->
 
-        <!-- Metanavegación -->
+<body>
+    <!-- test deploy 3 -->
+
+    <!-- Metanavegación -->
     <div class="meta-nav">
         <a href="logout.php">Cerrar Sesión</a>
     </div>
@@ -54,4 +67,5 @@
     </footer>
 
 </body>
+
 </html>
