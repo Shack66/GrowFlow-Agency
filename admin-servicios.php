@@ -10,8 +10,7 @@
 
     <!-- METANAVEGACIÓN -->
     <div class="meta-nav">
-        <a href="login.html">Iniciar sesión</a>
-        <a href="registro.html">Registrarse</a>
+        <a href="logout.php">Cerrar Sesión</a>
     </div>
 
     <!-- HEADER -->
@@ -20,17 +19,15 @@
             <img src="../imags/logo.png" alt="Logo" class="logo-img">
             <h1>GrowFlow Agency</h1>
         </div>
-        
+
+
         <nav class="main-nav">
-            <a href="index.html">Inicio</a>
-            <a href="blog.html">Blog</a>
-            <a href="servicios.html">Servicios</a>
-            <a href="nosotros.html">Sobre Nosotros</a>
-            <a href="preguntas-frecuentes.html">Preguntas Frecuentes</a>
-            <a href="perfil.html">Perfil</a>
-            <a href="registro.html" class="btn-registrarse">
-                Regístrate
-            </a>
+            <a href="admin-index.php">Inicio</a>
+            <a href="admin-blog.php">Blog</a>
+            <a href="admin-servicios.php">Servicios</a>
+            <a href="admin-nosotros.php">Sobre Nosotros</a>
+            <a href="admin-preguntas-frecuentes.php">Preguntas Frecuentes</a>
+            <a href="admin-perfil.php">Perfil</a>
         </nav>
     </header>
 
@@ -49,9 +46,6 @@
                 <div class="servicio-contenido">
                     <h3>Planes de Marketing</h3>
                     <p>Estrategias personalizadas para impulsar tu marca y alcanzar tus metas comerciales.</p>
-                    <button class="btn-ver-mas" onclick="window.location.href='login.php'">
-                        Contratar Servicio
-                    </button>
                 </div>
             </div>
 
@@ -65,9 +59,6 @@
                 <div class="servicio-contenido">
                     <h3>Publicidad en Redes</h3>
                     <p>Campañas efectivas en redes sociales para conectar con tu audiencia ideal.</p>
-                    <button class="btn-ver-mas" onclick="window.location.href='login.php'">
-                        Contratar Servicio
-                    </button>
                 </div>
             </div>
 
@@ -81,9 +72,6 @@
                 <div class="servicio-contenido">
                     <h3>Diseño Gráfico</h3>
                     <p>Diseños creativos que comunican la identidad visual de tu marca.</p>
-                    <button class="btn-ver-mas" onclick="window.location.href='login.php'">
-                        Contratar Servicio
-                    </button>
                 </div>
             </div>
 
@@ -97,9 +85,6 @@
                 <div class="servicio-contenido">
                     <h3>Estrategia Digital</h3>
                     <p>Consultoría especializada para optimizar tu presencia digital completa.</p>
-                    <button class="btn-ver-mas" onclick="window.location.href='login.php'">
-                        Contratar Servicio
-                    </button>
                 </div>
             </div>
         </div>
@@ -109,8 +94,8 @@
     <footer>
         <p>© 2025 - GrowFlow Agency. Todos los derechos reservados.</p>
         <div class="footer-links">
-            <a href="form_contacto.html">Formulario de contacto</a>
-            <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
+            <a href="admin-form-contacto.php">Formulario de contacto</a>
+            <a href="admin-preguntas-frecuentes.php">Preguntas frecuentes</a>
         </div>
     </footer>
 

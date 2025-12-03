@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Growflow Agency - Blog</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Metanavegación -->
+    <div class="meta-nav">
+        <a href="logout.php">Cerrar Sesión</a>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <img src="../imags/logo.png" alt="Logo" class="logo-img">
+            <h1>GrowFlow Agency</h1>
+        </div>
+
+
+        <nav class="main-nav">
+            <a href="client-index.php">Inicio</a>
+            <a href="client-blog.php">Blog</a>
+            <a href="client-servicios.php">Servicios</a>
+            <a href="client-nosotros.php">Sobre Nosotros</a>
+            <a href="client-preguntas-frecuentes.php">Preguntas Frecuentes</a>
+            <a href="client-perfil.php">Perfil</a>
+        </nav>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="blog-contenedor">
+        <h2 class="blog-titulo">Blog</h2>
+
+        <div class="blog-grid">
+
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="blog-col-izq">
+
+                <div class="blog-card-horizontal">
+                    <img src="../imags/noticias/noticia1.jpg" alt="Noticia 1" class="blog-img-peq">
+                    <div class="blog-texto">
+                        <h3>Teléfonos convertidos en magos publicitarios</h3>
+                        <p>
+                            Tabletas, smartphones y relojes inteligentes redefinen la publicidad gracias a la IA. Avanzan las preferencias de los usuarios y mejoran la efectividad del impacto.
+                            <br>
+                            <a href="https://elpais.com/extra/publicidad/2024-01-25/telefonos-convertidos-en-magos-publicitarios.html" target="_blank" class="blog-link">
+                                Leer más...
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="blog-card-horizontal">
+                    <img src="../imags/noticias/noticia2.webp" alt="Noticia 2" class="blog-img-grande">
+                    <div class="blog-texto">
+                        <h3>Emocionar a las personas y convencer a los algoritmos: Tendencias del Marketing y los negocios para el 2026</h3>
+                        <a href="https://www.puromarketing.com/88/216417/emocionar-personas-convencer-algoritmos-tendencias-marketing-negocios-para-2026" target="_blank" class="blog-link">
+                            Leer más...
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COLUMNA DERECHA -->
+            <div class="blog-col-der">
+
+                <div class="blog-card-vertical">
+                    <img src="../imags/noticias/noticia3.png" alt="Noticia 3" class="blog-img-peq">
+                    <div class="blog-texto">
+                        <h3>Meta recurrirá la sentencia que le condena a pagar 479 M€ a la prensa española</h3>
+                        <p>
+                            Meta no esta de acuerdo con la sentencia dictada por el Juzgado de lo Mercantil número 15 de Madrid, que condena a la tecnológica a pagar 479 millones de euros a 87 editoras de prensa digital española.
+                            <br>
+                            <a href="https://dircomfidencial.com/medios/meta-recurrira-la-sentencia-que-le-condena-a-pagar-479-me-a-la-prensa-espanola-20251120-1059/" target="_blank" class="blog-link">
+                                Leer más...
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="blog-card-vertical">
+                    <img src="../imags/noticias/noticia4.webp" alt="Noticia 4" class="blog-img-peq">
+                    <div class="blog-texto">
+                        <h3>Coca-Cola revoluciona su marketing en la era de la IA</h3>
+                        <p>
+                            El vicepresidente global de estrategia creativa y contenido de Coca-Cola, Islam ElDessouky, explica el nuevo rumbo publicitario que está adoptando compañía.
+                            <br>
+                            <a href="https://www.marketingdirecto.com/anunciantes-general/coca-cola-revoluciona-marketing-inteligencia-artificial" target="_blank" class="blog-link">
+                                Leer más...
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 - GrowFlow Agency. Todos los derechos reservados.</p>
+        <div class="footer-links">
+            <a href="client-form-contacto.php">Formulario de contacto</a>
+            <a href="client-preguntas-frecuentes.php">Preguntas frecuentes</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
