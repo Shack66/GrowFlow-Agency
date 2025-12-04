@@ -171,16 +171,7 @@ requiereRol('client');
                                 <span class="proyecto-status completado">Completado</span>
                             </div>
                             <p class="proyecto-desc">Estrategia de marketing completa para tienda online de moda.</p>
-                            <div class="proyecto-metrics">
-                                <div class="metric">
-                                    <span class="metric-value">+45%</span>
-                                    <span class="metric-label">Ventas</span>
-                                </div>
-                                <div class="metric">
-                                    <span class="metric-value">+120%</span>
-                                    <span class="metric-label">Tráfico</span>
-                                </div>
-                            </div>
+                            
                             <div class="proyecto-actions">
                                 <button class="btn-ver">Ver Detalles</button>
                             </div>
@@ -192,16 +183,7 @@ requiereRol('client');
                                 <span class="proyecto-status en-progreso">En Progreso</span>
                             </div>
                             <p class="proyecto-desc">Campaña de lanzamiento para aplicación móvil innovadora.</p>
-                            <div class="proyecto-metrics">
-                                <div class="metric">
-                                    <span class="metric-value">+80%</span>
-                                    <span class="metric-label">Leads</span>
-                                </div>
-                                <div class="metric">
-                                    <span class="metric-value">+200%</span>
-                                    <span class="metric-label">Engagement</span>
-                                </div>
-                            </div>
+                            
                             <div class="proyecto-actions">
                                 <button class="btn-ver">Ver Detalles</button>
                             </div>
@@ -213,16 +195,7 @@ requiereRol('client');
                                 <span class="proyecto-status planeado">Planeado</span>
                             </div>
                             <p class="proyecto-desc">Estrategia de redes sociales y posicionamiento local.</p>
-                            <div class="proyecto-metrics">
-                                <div class="metric">
-                                    <span class="metric-value">-</span>
-                                    <span class="metric-label">Por iniciar</span>
-                                </div>
-                                <div class="metric">
-                                    <span class="metric-value">-</span>
-                                    <span class="metric-label">Por iniciar</span>
-                                </div>
-                            </div>
+                           
                             <div class="proyecto-actions">
                                 <button class="btn-ver">Ver Detalles</button>
                             </div>
