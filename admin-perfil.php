@@ -111,7 +111,7 @@ requiereRol('admin');
             <div class="perfil-header">
                 <div class="perfil-avatar">
                     <!-- Aquí puedes usar una imagen dinámica si la tienes en la base de datos -->
-                    <img src="../imags/nosotros/samuel.jpg" alt="<?php echo htmlspecialchars($_SESSION['name']); ?>">
+                    <img src="../imags/perfil-generico.jpeg" alt="<?php echo htmlspecialchars($_SESSION['name']); ?>">
                 </div>
                 <div class="perfil-info">
                     <h2><?php echo htmlspecialchars($_SESSION['name'] . ' ' . $_SESSION['apellido']); ?></h2>
@@ -165,20 +165,11 @@ requiereRol('admin');
                     <div class="proyectos-grid">
                         <div class="proyecto-card">
                             <div class="proyecto-header">
-                                <h3>Ecommerce Fashion</h3>
-                                <span class="proyecto-status completado">Completado</span>
+                                <h3>Publicidad en Redes</h3>
+                                <span class="proyecto-status aprobado">Aprobado</span>
                             </div>
-                            <p class="proyecto-desc">Estrategia de marketing completa para tienda online de moda.</p>
-                            <div class="proyecto-metrics">
-                                <div class="metric">
-                                    <span class="metric-value">+45%</span>
-                                    <span class="metric-label">Ventas</span>
-                                </div>
-                                <div class="metric">
-                                    <span class="metric-value">+120%</span>
-                                    <span class="metric-label">Tráfico</span>
-                                </div>
-                            </div>
+                            <p class="proyecto-desc">Campañas efectivas en redes sociales para conectar con tu audiencia ideal.</p>
+                            
                             <div class="proyecto-actions">
                                 <button class="btn-ver">Ver Detalles</button>
                             </div>
@@ -186,20 +177,11 @@ requiereRol('admin');
 
                         <div class="proyecto-card">
                             <div class="proyecto-header">
-                                <h3>Tech Startup</h3>
-                                <span class="proyecto-status en-progreso">En Progreso</span>
+                                <h3>Planes de Marketing</h3>
+                                <span class="proyecto-status pendiente">Pendiente</span>
                             </div>
-                            <p class="proyecto-desc">Campaña de lanzamiento para aplicación móvil innovadora.</p>
-                            <div class="proyecto-metrics">
-                                <div class="metric">
-                                    <span class="metric-value">+80%</span>
-                                    <span class="metric-label">Leads</span>
-                                </div>
-                                <div class="metric">
-                                    <span class="metric-value">+200%</span>
-                                    <span class="metric-label">Engagement</span>
-                                </div>
-                            </div>
+                            <p class="proyecto-desc">Estrategias personalizadas para impulsar tu marca y alcanzar tus metas comerciales.</p>
+                            
                             <div class="proyecto-actions">
                                 <button class="btn-ver">Ver Detalles</button>
                             </div>
@@ -207,20 +189,11 @@ requiereRol('admin');
 
                         <div class="proyecto-card">
                             <div class="proyecto-header">
-                                <h3>Restaurant Gourmet</h3>
-                                <span class="proyecto-status planeado">Planeado</span>
+                                <h3>Estrategia Digital</h3>
+                                <span class="proyecto-status rechazado">Rechazado</span>
                             </div>
-                            <p class="proyecto-desc">Estrategia de redes sociales y posicionamiento local.</p>
-                            <div class="proyecto-metrics">
-                                <div class="metric">
-                                    <span class="metric-value">-</span>
-                                    <span class="metric-label">Por iniciar</span>
-                                </div>
-                                <div class="metric">
-                                    <span class="metric-value">-</span>
-                                    <span class="metric-label">Por iniciar</span>
-                                </div>
-                            </div>
+                            <p class="proyecto-desc">Consultoría especializada para optimizar tu prescencia digital completa.</p>
+                            
                             <div class="proyecto-actions">
                                 <button class="btn-ver">Ver Detalles</button>
                             </div>
