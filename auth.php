@@ -1,5 +1,4 @@
 <?php
-// Archivo para verificar autenticación en páginas protegidas
 session_start();
 
 // Verificar si el usuario está logueado
