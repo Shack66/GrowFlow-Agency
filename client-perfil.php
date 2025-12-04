@@ -24,7 +24,7 @@ requiereRol('client');
     <!-- HEADER -->
     <header>
         <div class="logo">
-            <img src="../imags/logo.png" alt="Logo" class="logo-img">
+            <img src="imags/logo.png" alt="Logo" class="logo-img">
             <h1>GrowFlow Agency</h1>
         </div>
 
@@ -43,7 +43,6 @@ requiereRol('client');
             <a href="admin-nosotros.php">Sobre Nosotros</a>
             <a href="admin-preguntas-frecuentes.php">Preguntas Frecuentes</a>
             <a href="admin-perfil.php">Perfil</a>
-            <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
         </nav>
     </header>
 
@@ -114,7 +113,7 @@ requiereRol('client');
             <div class="perfil-header">
                 <div class="perfil-avatar">
                     <!-- Aquí puedes usar una imagen dinámica si la tienes en la base de datos -->
-                    <img src="../imags/nosotros/samuel.jpg" alt="<?php echo htmlspecialchars($_SESSION['name']); ?>">
+                    <img src="imags/nosotros/paola.jpg" alt="<?php echo htmlspecialchars($_SESSION['name']); ?>">
                 </div>
                 <div class="perfil-info">
                     <h2><?php echo htmlspecialchars($_SESSION['name'] . ' ' . $_SESSION['apellido']); ?></h2>

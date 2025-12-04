@@ -1854,22 +1854,6 @@ footer.footer {
             color: #0077FF;
         }
         
-        /* Botón cerrar sesión */
-        .client-btn-logout {
-            margin-left: 18px;
-            padding: 8px 16px;
-            background: #FF5252;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-        
-        .client-btn-logout:hover {
-            background: #D32F2F;
-        }
         
         /* Overlay para móvil */
         .client-menu-overlay {

@@ -37,7 +37,6 @@
             <a href="client-nosotros.php">Sobre Nosotros</a>
             <a href="client-preguntas-frecuentes.php">Preguntas Frecuentes</a>
             <a href="client-perfil.php">Perfil</a>
-            <a href="logout.php" class="client-btn-logout">Cerrar Sesión</a>
         </nav>
     </header>
 
