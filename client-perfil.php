@@ -1,13 +1,4 @@
-<?php
-require_once 'auth.php';
-require_once 'db.php';
 
-// Verificar que sea cliente
-if (!esCliente()) {
-    header("Location: login.php");
-    exit();
-}
-?>
 
 <!DOCTYPE html>
 <html lang="es">
