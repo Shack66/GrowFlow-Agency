@@ -15,7 +15,7 @@ function esAdmin() {
 
 // Función para verificar si es cliente
 function esCliente() {
-    return isset($_SESSION['role']) && $_SESSION['role'] == 'cliente';
+    return isset($_SESSION['role']) && $_SESSION['role'] == 'client';
 }
 
 // Función para requerir rol específico

@@ -31,12 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Verificar la contraseña
             if (password_verify($password, $user['password'])) {
-                // Iniciar sesión - VARIABLES ACTUALIZADAS
+                // Iniciar sesión 
                 $_SESSION['user_id'] = $user['user_id'];  
                 $_SESSION['email'] = $user['email'];
-                $_SESSION['nombre'] = $user['name'];     
+                $_SESSION['name'] = $user['name'];     
                 $_SESSION['apellido'] = $user['apellido'];
-                $_SESSION['rol'] = $user['role'];    
+                $_SESSION['role'] = $user['role'];    
 
                 // Redirigir según el rol
                 if ($user['role'] == 'admin') {    
