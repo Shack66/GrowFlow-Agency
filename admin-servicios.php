@@ -23,10 +23,8 @@
 
         <nav class="main-nav">
             <a href="admin-index.php">Inicio</a>
-            <a href="admin-blog.php">Blog</a>
             <a href="admin-servicios.php">Servicios</a>
-            <a href="admin-nosotros.php">Sobre Nosotros</a>
-            <a href="admin-preguntas-frecuentes.php">Preguntas Frecuentes</a>
+            <a href="admin-mensajes.php">Mensajes</a>
             <a href="admin-perfil.php">Perfil</a>
         </nav>
     </header>
@@ -94,8 +92,7 @@
     <footer>
         <p>© 2025 - GrowFlow Agency. Todos los derechos reservados.</p>
         <div class="footer-links">
-            <a href="admin-form-contacto.php">Formulario de contacto</a>
-            <a href="admin-preguntas-frecuentes.php">Preguntas frecuentes</a>
+             <a href="admin-mensajes.php">Mensajes</a>
         </div>
     </footer>
 
