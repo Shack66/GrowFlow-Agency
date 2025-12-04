@@ -6,7 +6,7 @@ $error = '';
 
 // Si ya está logueado, redirigir según su rol
 if (isset($_SESSION['user_id'])) {
-    if ($_SESSION['rol'] == 'admin') {
+    if ($_SESSION['role'] == 'admin') {
         header("Location: admin-index.php");
     } else {
         header("Location: client-index.php");
