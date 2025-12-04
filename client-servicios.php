@@ -9,9 +9,9 @@
 <body>
 
     <!-- Metanavegación -->
-        <div class="meta-nav">
-            <a href="logout.php">Cerrar Sesión</a>
-        </div>
+    <div class="meta-nav">
+        <a href="logout.php">Cerrar Sesión</a>
+    </div>
 
     <!-- HEADER -->
     <header class="client-header">
@@ -39,19 +39,15 @@
     </header>
 
     <!-- Overlay para móvil (se crea dinámicamente) -->
-
     <script>
-        // Script para menú hamburguesa cliente
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.getElementById('clientHamburger');
             const mainNav = document.getElementById('clientMainNav');
             const menuOverlay = document.createElement('div');
-            
-            // Crear overlay
+
             menuOverlay.className = 'client-menu-overlay';
             document.body.appendChild(menuOverlay);
-            
-            // Toggle menú
+
             hamburger.addEventListener('click', function(e) {
                 e.stopPropagation();
                 hamburger.classList.toggle('active');
@@ -59,16 +55,14 @@
                 menuOverlay.classList.toggle('active');
                 document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
             });
-            
-            // Cerrar menú al hacer clic en overlay
+
             menuOverlay.addEventListener('click', function() {
                 hamburger.classList.remove('active');
                 mainNav.classList.remove('active');
                 menuOverlay.classList.remove('active');
                 document.body.style.overflow = '';
             });
-            
-            // Cerrar menú al hacer clic en enlaces
+
             document.querySelectorAll('.client-main-nav a').forEach(link => {
                 link.addEventListener('click', function() {
                     hamburger.classList.remove('active');
@@ -77,8 +71,7 @@
                     document.body.style.overflow = '';
                 });
             });
-            
-            // Cerrar menú al redimensionar a pantalla grande
+
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 768) {
                     hamburger.classList.remove('active');
@@ -87,8 +80,7 @@
                     document.body.style.overflow = '';
                 }
             });
-            
-            // Cerrar menú con tecla Escape
+
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && mainNav.classList.contains('active')) {
                     hamburger.classList.remove('active');
@@ -180,6 +172,9 @@
             </div>
             
             <form class="formulario-contratacion" id="form-contratacion">
+                <!-- Campo oculto para enviar el nombre del servicio -->
+                <input type="hidden" name="service_name" id="input-service-name">
+
                 <!-- Las preguntas se cargarán dinámicamente aquí -->
                 <div id="preguntas-dinamicas"></div>
 
@@ -191,12 +186,12 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="fecha-reunion">Fecha de la reunión</label>
-                            <input type="date" id="fecha-reunion" name="fecha-reunion" min="">
+                            <input type="date" id="fecha-reunion" name="fecha_reunion" min="">
                         </div>
 
                         <div class="form-group">
                             <label for="hora-reunion">Hora de la reunión</label>
-                            <select id="hora-reunion" name="hora-reunion">
+                            <select id="hora-reunion" name="hora_reunion">
                                 <option value="">Selecciona una hora</option>
                                 <option value="09:00">09:00 AM</option>
                                 <option value="10:00">10:00 AM</option>
@@ -236,14 +231,13 @@
     </footer>
 
     <script>
-        // Preguntas específicas por servicio
         const preguntasBase = [
             { label: "¿Cuál es tu objetivo principal?", type: "select", options: ["Aumentar ventas", "Generar leads", "Mejorar reconocimiento de marca", "Lanzar nuevo producto", "Otro"] },
             { label: "¿Cuál es tu presupuesto mensual aproximado?", type: "select", options: ["Menos de $500", "$500 - $1,500", "$1,500 - $3,000", "$3,000 - $5,000", "Más de $5,000"] },
             { label: "¿Cuánto tiempo llevas en el mercado?", type: "select", options: ["Menos de 6 meses", "6 meses - 1 año", "1 - 3 años", "3 - 5 años", "Más de 5 años"] },
             { label: "Describe tu necesidad específica para este servicio", type: "textarea" }
         ];
-        
+
         const preguntasServicios = {
             marketing: preguntasBase,
             redes: preguntasBase,
@@ -254,48 +248,46 @@
         let reunionAgendada = false;
         let servicioActual = '';
 
-        // Establecer fecha mínima (hoy)
         document.addEventListener('DOMContentLoaded', function() {
             const hoy = new Date().toISOString().split('T')[0];
             document.getElementById('fecha-reunion').setAttribute('min', hoy);
         });
 
-        // Mostrar formulario con preguntas dinámicas
         function mostrarFormulario(nombreServicio, tipoServicio) {
             servicioActual = tipoServicio;
             document.getElementById('servicio-nombre').textContent = nombreServicio;
-            
-            // Cargar preguntas específicas
+            document.getElementById('input-service-name').value = nombreServicio;
+
             const contenedor = document.getElementById('preguntas-dinamicas');
             contenedor.innerHTML = '';
-            
+
             preguntasServicios[tipoServicio].forEach((pregunta, index) => {
                 const formGroup = document.createElement('div');
                 formGroup.className = 'form-group';
-                
+
                 const label = document.createElement('label');
                 label.textContent = pregunta.label;
                 label.setAttribute('for', `pregunta-${index}`);
                 formGroup.appendChild(label);
-                
+
                 if (pregunta.type === 'select') {
                     const select = document.createElement('select');
                     select.id = `pregunta-${index}`;
                     select.name = `pregunta-${index}`;
                     select.required = true;
-                    
+
                     const defaultOption = document.createElement('option');
                     defaultOption.value = '';
                     defaultOption.textContent = 'Selecciona una opción';
                     select.appendChild(defaultOption);
-                    
+
                     pregunta.options.forEach(opt => {
                         const option = document.createElement('option');
                         option.value = opt;
                         option.textContent = opt;
                         select.appendChild(option);
                     });
-                    
+
                     formGroup.appendChild(select);
                 } else if (pregunta.type === 'textarea') {
                     const textarea = document.createElement('textarea');
@@ -306,29 +298,27 @@
                     textarea.placeholder = 'Escribe tu respuesta aquí...';
                     formGroup.appendChild(textarea);
                 }
-                
+
                 contenedor.appendChild(formGroup);
             });
-            
-            // Resetear estado de reunión
+
             reunionAgendada = false;
             document.getElementById('reunion-confirmada').style.display = 'none';
             document.getElementById('btn-enviar').disabled = false;
             document.getElementById('fecha-reunion').value = '';
             document.getElementById('hora-reunion').value = '';
-            
+
             document.getElementById('modal-formulario').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        // Detectar cuando se agenda la reunión
         document.getElementById('fecha-reunion').addEventListener('change', verificarReunion);
         document.getElementById('hora-reunion').addEventListener('change', verificarReunion);
 
         function verificarReunion() {
             const fecha = document.getElementById('fecha-reunion').value;
             const hora = document.getElementById('hora-reunion').value;
-            
+
             if (fecha && hora) {
                 reunionAgendada = true;
                 document.getElementById('reunion-confirmada').style.display = 'flex';
@@ -338,7 +328,6 @@
             }
         }
 
-        // Cerrar formulario
         function cerrarFormulario(event) {
             if (!event || event.target.classList.contains('modal-overlay') || event.target.classList.contains('modal-cerrar')) {
                 document.getElementById('modal-formulario').classList.remove('active');
@@ -346,17 +335,24 @@
             }
         }
 
-        // Envío del formulario
         document.getElementById('form-contratacion').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const mensaje = reunionAgendada 
-                ? '¡Solicitud enviada exitosamente!\n\nHemos recibido tu información y tu reunión ha sido agendada.\nNos pondremos en contacto contigo pronto.'
-                : '¡Solicitud enviada exitosamente!\n\nHemos recibido tu información.\nNos pondremos en contacto contigo pronto.';
-            
-            alert(mensaje);
-            cerrarFormulario();
-            this.reset();
+            const formData = new FormData(this);
+
+            fetch('request_service.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                cerrarFormulario();
+                this.reset();
+            })
+            .catch(error => {
+                console.error(error);
+                alert('Error al enviar la solicitud');
+            });
         });
 
         function toggleServicio(id) {
