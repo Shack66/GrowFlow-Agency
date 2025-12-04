@@ -113,7 +113,7 @@ requiereRol('client');
             <div class="perfil-header">
                 <div class="perfil-avatar">
                     <!-- Aquí puedes usar una imagen dinámica si la tienes en la base de datos -->
-                    <img src="imags/nosotros/paola.jpg" alt="<?php echo htmlspecialchars($_SESSION['name']); ?>">
+                    <img src="imags/perfil-generico.jpeg" alt="<?php echo htmlspecialchars($_SESSION['name']); ?>">
                 </div>
                 <div class="perfil-info">
                     <h2><?php echo htmlspecialchars($_SESSION['name'] . ' ' . $_SESSION['apellido']); ?></h2>
