@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Perfil - GrowFlow Agency</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
     <!-- Metanavegación -->
@@ -38,11 +40,9 @@
             <div class="perfil-header">
                 <div class="perfil-avatar">
                     <img src="../imags/nosotros/samuel.jpg" alt="Samuel Arosemena">
-                    <button class="btn-cambiar-foto">Cambiar Foto</button>
                 </div>
                 <div class="perfil-info">
                     <h2>Samuel Arosemena</h2>
-                    <p class="perfil-cargo">Gerente de Marketing y Analytics</p>
                     <p class="perfil-email">samuel.arosemena@growflow.com</p>
                     <div class="perfil-stats">
                         <div class="stat">
@@ -53,10 +53,6 @@
                             <span class="stat-num">3</span>
                             <span class="stat-label">Años</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-num">98%</span>
-                            <span class="stat-label">Satisfacción</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -64,7 +60,7 @@
             <!-- Pestañas de Navegación -->
             <div class="perfil-tabs">
                 <button class="tab-btn active" onclick="openTab('informacion')">Información Personal</button>
-                <button class="tab-btn" onclick="openTab('proyectos')">Mis Proyectos</button>
+                <button class="tab-btn" onclick="openTab('servicios')">Servicios</button>
                 <button class="tab-btn" onclick="openTab('configuracion')">Configuración</button>
             </div>
 
@@ -75,40 +71,19 @@
                     <div class="formulario-perfil">
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="nombre">Nombre Completo</label>
+                                <label for="nombre">Nombre</label>
                                 <input type="text" id="nombre" value="Samuel Arosemena">
                             </div>
                             <div class="form-group">
-                                <label for="cargo">Cargo</label>
-                                <input type="text" id="cargo" value="Gerente de Marketing y Analytics">
+                                <label for="nombre">Apellido</label>
+                                <input type="text" id="nombre" value="Samuel Arosemena">
                             </div>
                         </div>
-                        
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" value="samuel.arosemena@growflow.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="telefono">Teléfono</label>
-                                <input type="tel" id="telefono" value="+507 1234-5678">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="bio">Biografía</label>
-                            <textarea id="bio" rows="4">Especialista en marketing digital con más de 5 años de experiencia en estrategias de crecimiento y análisis de datos. Apasionado por ayudar a empresas a alcanzar sus objetivos mediante soluciones innovadoras y medibles.</textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="habilidades">Habilidades</label>
-                            <div class="habilidades-tags">
-                                <span class="tag">Marketing Digital</span>
-                                <span class="tag">Google Analytics</span>
-                                <span class="tag">SEO</span>
-                                <span class="tag">Redes Sociales</span>
-                                <span class="tag">Análisis de Datos</span>
-                                <span class="tag">Estrategia de Contenido</span>
                             </div>
                         </div>
 
@@ -119,8 +94,8 @@
                     </div>
                 </div>
 
-                <!-- Pestaña Mis Proyectos -->
-                <div id="proyectos" class="tab-pane">
+                <!-- Pestaña Proyecto -->
+                <div id="servicios" class="tab-pane">
                     <div class="proyectos-grid">
                         <div class="proyecto-card">
                             <div class="proyecto-header">
@@ -189,59 +164,15 @@
 
                 <!-- Pestaña Configuración -->
                 <div id="configuracion" class="tab-pane">
-                    <div class="configuracion-grid">
-                        <div class="config-card">
-                            <h3>Preferencias de Notificaciones</h3>
-                            <div class="config-option">
-                                <label class="switch">
-                                    <input type="checkbox" checked>
-                                    <span class="slider"></span>
-                                </label>
-                                <span>Notificaciones por email</span>
-                            </div>
-                            <div class="config-option">
-                                <label class="switch">
-                                    <input type="checkbox" checked>
-                                    <span class="slider"></span>
-                                </label>
-                                <span>Recordatorios de proyectos</span>
-                            </div>
-                            <div class="config-option">
-                                <label class="switch">
-                                    <input type="checkbox">
-                                    <span class="slider"></span>
-                                </label>
-                                <span>Noticias y actualizaciones</span>
-                            </div>
-                        </div>
 
-                        <div class="config-card">
-                            <h3>Privacidad</h3>
-                            <div class="config-option">
-                                <label class="switch">
-                                    <input type="checkbox" checked>
-                                    <span class="slider"></span>
-                                </label>
-                                <span>Perfil público</span>
-                            </div>
-                            <div class="config-option">
-                                <label class="switch">
-                                    <input type="checkbox">
-                                    <span class="slider"></span>
-                                </label>
-                                <span>Mostrar email</span>
-                            </div>
-                            <button class="btn-descargar">Descargar mis datos</button>
-                        </div>
-
-                        <div class="config-card danger-zone">
-                            <h3>Zona de Peligro</h3>
-                            <p>Estas acciones no se pueden deshacer</p>
-                            <button class="btn-eliminar">Eliminar Cuenta</button>
-                        </div>
+                    <div class="config-card danger-zone">
+                        <h3>Zona de Peligro</h3>
+                        <p>Estas acciones no se pueden deshacer</p>
+                        <button class="btn-eliminar">Eliminar Cuenta</button>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -260,14 +191,14 @@
             // Ocultar todos los paneles
             const paneles = document.querySelectorAll('.tab-pane');
             paneles.forEach(panel => panel.classList.remove('active'));
-            
+
             // Remover active de todos los botones
             const botones = document.querySelectorAll('.tab-btn');
             botones.forEach(btn => btn.classList.remove('active'));
-            
+
             // Mostrar el panel seleccionado
             document.getElementById(tabName).classList.add('active');
-            
+
             // Activar el botón clickeado
             event.currentTarget.classList.add('active');
         }
@@ -284,4 +215,5 @@
     </script>
 
 </body>
+
 </html>
