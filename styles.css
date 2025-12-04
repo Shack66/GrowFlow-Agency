@@ -68,9 +68,11 @@ header {
     background: #1F1F1F;
     padding: 15px 30px;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
+
 
 /* Logo */
 .logo {
@@ -770,7 +772,7 @@ footer {
     }
     
     header {
-        flex-direction: column;
+        flex-direction: row;
         gap: 15px;
     }
     
@@ -1330,7 +1332,7 @@ input:checked + .slider:before {
     }
     
     .perfil-header {
-        flex-direction: column;
+        flex-direction: row;
         text-align: center;
         padding: 30px 20px;
     }
@@ -1554,4 +1556,207 @@ footer.footer {
 
 .btn-enviar-contacto:hover {
     background: #005FCC;
+}
+/* Añade esto a tus media queries existentes */
+@media (max-width: 768px) {
+    /* Ajusta también otras páginas para consistencia */
+    .servicios, .nosotros, .preguntas-frecuentes, .contacto-contenedor {
+        padding: 30px 20px !important;
+    }
+    
+    .servicios-titulo, .nosotros-intro h2, .preguntas-header h2 {
+        font-size: 32px !important;
+    }
+    
+    .hero {
+        padding: 0 20px !important;
+    }
+    
+    .hero-text h2 {
+        font-size: 28px !important;
+    }
+}
+/* ========== HAMBURGUESA ========== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 100;
+}
+
+.bar {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* ========== MEDIA QUERIES PARA BLOG ========== */
+
+/* Tablet (768px) */
+@media (max-width: 1024px) {
+    .blog-contenedor {
+        padding: 40px 40px;
+    }
+    
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .blog-card-horizontal {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .blog-img-peq {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .blog-img-grande {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+/* Móvil (768px) */
+@media (max-width: 768px) {
+    .blog-contenedor {
+        padding: 30px 20px;
+    }
+    
+    .blog-titulo {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+    
+    .blog-card-horizontal,
+    .blog-card-vertical {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .blog-texto h3 {
+        font-size: 18px;
+    }
+    
+    .blog-texto p {
+        font-size: 14px;
+    }
+    
+    /* HEADER RESPONSIVE */
+    .hamburger {
+        display: flex;
+    }
+    
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: #1F1F1F;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        transition: 0.4s ease;
+        z-index: 99;
+        padding-top: 80px;
+    }
+    
+    .main-nav.active {
+        right: 0;
+    }
+    
+    .main-nav a {
+        margin: 0;
+        font-size: 18px;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+    
+    .btn-registrarse {
+        margin: 20px 0 0 0;
+        width: 80%;
+        text-align: center;
+    }
+    
+    /* Ajustar meta-nav y header */
+    .meta-nav {
+        text-align: center;
+        padding: 8px 10px;
+    }
+    
+    header {
+        padding: 15px 20px;
+    }
+    
+    .logo h1 {
+        font-size: 20px;
+    }
+}
+
+/* Móvil pequeño (480px) */
+@media (max-width: 480px) {
+    .blog-titulo {
+        font-size: 28px;
+    }
+    
+    .blog-card-horizontal,
+    .blog-card-vertical {
+        padding: 15px;
+    }
+    
+    .blog-img-peq {
+        width: 100%;
+        height: 150px;
+    }
+    
+    .logo h1 {
+        font-size: 18px;
+    }
+    
+    .logo-img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* ========== OVERLAY PARA MENÚ MÓVIL ========== */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 98;
+}
+
+.menu-overlay.active {
+    display: block;
 }
