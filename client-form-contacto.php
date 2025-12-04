@@ -1,0 +1,80 @@
+<html lang="es"><head>
+    <meta charset="UTF-8">
+    <title>Growflow Agency - Contacto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- META NAV -->
+<div class="meta-nav">
+    <a href="login.php">Iniciar Sesión</a>
+    <a href="registro.php">Registrarse</a>
+</div>
+
+<!-- HEADER -->
+    <header>
+        <div class="logo">
+            <img src="../imags/logo.png" alt="Logo" class="logo-img">
+            <h1>GrowFlow Agency</h1>
+        </div>
+
+    <nav class="main-nav">
+        <a href="index.html">Inicio</a>
+        <a href="blog.html">Blog</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="nosotros.html">Sobre Nosotros</a>
+        <a href="preguntas-frecuentes.html">Preguntas Frecuentes</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="registro.html" class="btn-registrarse">
+            Regístrate
+        </a>
+    </nav>
+</header>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="contacto-contenedor">
+
+    <h2 class="contacto-titulo">Formulario de Contacto</h2>
+    <p class="contacto-descripcion">
+        ¿Tienes alguna duda o quieres trabajar con nosotros? Déjanos un mensaje y te responderemos lo antes posible.
+    </p>
+
+    <form class="contacto-formulario" action="send_contact.php" method="POST">
+
+        <div class="contacto-grupo">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="name" placeholder="Tu nombre" required="">
+        </div>
+
+        <div class="contacto-grupo">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="email" placeholder="tucorreo@email.com" required="">
+        </div>
+
+        <div class="contacto-grupo">
+            <label for="asunto">Asunto</label>
+            <input type="text" id="asunto" name="subject" placeholder="Motivo de tu mensaje" required="">
+        </div>
+
+        <div class="contacto-grupo">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="message" rows="5" placeholder="Escribe tu mensaje aquí..." required=""></textarea>
+        </div>
+
+        <button type="submit" class="btn-enviar-contacto">Enviar mensaje</button>
+
+    </form>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    © 2025 – Growflow Agency. Todos los derechos reservados.
+    <div class="footer-links">
+            <a href="form_contacto.html">Formulario de contacto</a>
+            <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
+    </div>
+</footer>
+
+</body>
+</html>
