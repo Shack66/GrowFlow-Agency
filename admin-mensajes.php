@@ -1,20 +1,4 @@
-<?php
-require_once 'auth.php';
-requiereRol('admin');
 
-// Conexión a la base de datos
-require_once 'db.php';
-
-// Obtener todos los mensajes
-$sql = "SELECT * FROM contact_forms ORDER BY created_at DESC";
-$result = $conn->query($sql);
-
-// Contar mensajes no leídos (si tienes campo 'read_status')
-$sql_unread = "SELECT COUNT(*) as unread_count FROM contact_forms WHERE read_status = 0";
-$result_unread = $conn->query($sql_unread);
-$unread_data = $result_unread->fetch_assoc();
-$unread_count = $unread_data['unread_count'] ?? 0;
-?>
 
 <!DOCTYPE html>
 <html lang="es">
