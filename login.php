@@ -20,8 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     if (!empty($email) && !empty($password)) {
-        // CONSULTA ACTUALIZADA
-        $stmt = $conn->prepare("SELECT user_id, email, name, password, apellido, role FROM users WHERE email = ?");
+        // CONSULTA 
+        $sql = "SELECT * FROM users WHERE email=?";
+        $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -32,11 +33,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Verificar la contraseña
             if (password_verify($password, $user['password'])) {
                 // Iniciar sesión 
-                $_SESSION['user_id'] = $user['user_id'];  
-                $_SESSION['email'] = $user['email'];
-                $_SESSION['name'] = $user['name'];     
-                $_SESSION['apellido'] = $user['apellido'];
-                $_SESSION['role'] = $user['role'];    
+                $_SESSION['user'] = [
+                    'user_id' => $user['user_id'],
+                    'name' => $user['name'],
+                    'apellido' => $user['apellido'],
+                    'email' => $user['email'],
+                    'role' => $user['role']
+                ];
 
                 // Redirigir según el rol
                 if ($user['role'] == 'admin') {    
