@@ -221,6 +221,32 @@
         </div>
     </div>
 
+        <!-- SECCIÓN DE SERVICIOS SOLICITADOS -->
+    <section class="mis-servicios">
+        <h2 class="mis-servicios-titulo">Mis Servicios Solicitados</h2>
+        
+        <div class="servicios-solicitados-container" id="servicios-solicitados">
+            <!-- Los servicios se cargarán dinámicamente aquí -->
+            <div class="cargando-servicios">
+                <p>Cargando tus servicios...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para ver detalles del servicio -->
+    <div class="modal-overlay modal-detalles" id="modal-detalles" onclick="cerrarModalDetalles(event)">
+        <div class="modal-contenido modal-detalles-contenido" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>Detalles del Servicio</h2>
+                <button class="modal-cerrar" onclick="cerrarModalDetalles()">&times;</button>
+            </div>
+            
+            <div class="detalles-servicio" id="detalles-contenido">
+                <!-- Los detalles se cargarán aquí -->
+            </div>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer>
         <p>© 2025 - GrowFlow Agency. Todos los derechos reservados.</p>
@@ -358,6 +384,301 @@
         function toggleServicio(id) {
             // Función vacía para compatibilidad
         }
+
+        
     </script>
+
+<script>
+// Función para cargar los servicios solicitados
+function cargarServiciosSolicitados() {
+    const contenedor = document.getElementById('servicios-solicitados');
+    
+    fetch('obtener_servicios.php')
+        .then(response => response.json())
+        .then(data => {
+            // Verificar si hay error en la respuesta
+            if (data.error) {
+                contenedor.innerHTML = `<div class="error-carga"><p>${data.mensaje || 'Error al cargar servicios'}</p></div>`;
+                return;
+            }
+            
+            // Asegurar que data.data existe
+            const servicios = data.data || [];
+            
+            if (servicios.length === 0) {
+                contenedor.innerHTML = `
+                    <div class="sin-servicios">
+                        <p>No has solicitado ningún servicio aún.</p>
+                        <p>¡Explora nuestros servicios y comienza tu proyecto!</p>
+                        <button class="btn-solicitar-primero" onclick="document.querySelector('.servicios').scrollIntoView({behavior: 'smooth'})">
+                            Ver Servicios Disponibles
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            servicios.forEach(servicio => {
+                // Determinar clase del estado
+                let estadoClase = 'estado-pendiente';
+                let estadoTexto = servicio.estado_texto || 'Pendiente';
+                
+                // Asignar clase CSS según estado
+                const estado = servicio.estado?.toLowerCase();
+                if (estado === 'in_progress' || estado === 'review') {
+                    estadoClase = 'estado-proceso';
+                } else if (estado === 'completed' || estado === 'approved') {
+                    estadoClase = 'estado-completado';
+                } else if (estado === 'rejected' || estado === 'cancelled') {
+                    estadoClase = 'estado-rechazado';
+                }
+                
+                // Generar HTML para respuestas
+                let respuestasHTML = '';
+                if (servicio.respuestas && servicio.respuestas.length > 0) {
+                    respuestasHTML = '<div class="detalles-respuestas"><h4>Información proporcionada:</h4>';
+                    servicio.respuestas.forEach((respuesta, index) => {
+                        // Manejar diferentes formatos de respuestas
+                        let pregunta = respuesta.pregunta || `Pregunta ${index + 1}`;
+                        let respuestaTexto = respuesta.respuesta || respuesta || 'Sin respuesta';
+                        
+                        respuestasHTML += `
+                            <div class="respuesta-item">
+                                <div class="respuesta-pregunta">${pregunta}</div>
+                                <div class="respuesta-respuesta">${respuestaTexto}</div>
+                            </div>
+                        `;
+                    });
+                    respuestasHTML += '</div>';
+                }
+                
+                // Generar HTML para reunión - MANEJO DE VALORES VÁLIDOS/INVÁLIDOS
+                let reunionHTML = '';
+                if (servicio.tiene_reunion && servicio.reunion_completa) {
+                    // Caso: Tiene reunión válida agendada
+                    reunionHTML = `
+                        <div class="reunion-info con-reunion">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="#2E7D32">
+                                <circle cx="10" cy="10" r="9" stroke="#2E7D32" stroke-width="1" fill="none"/>
+                                <path d="M10 5V10L13 13" stroke="#2E7D32" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <div>
+                                <strong>Reunión agendada:</strong>
+                                <span class="reunion-fecha">${servicio.reunion_completa}</span>
+                            </div>
+                        </div>
+                    `;
+                } else if (servicio.tiene_reunion && servicio.fecha_reunion_formateada && servicio.hora_reunion_formateada) {
+                    // Caso: Tiene reunión pero sin formato completo
+                    reunionHTML = `
+                        <div class="reunion-info con-reunion">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="#2E7D32">
+                                <circle cx="10" cy="10" r="9" stroke="#2E7D32" stroke-width="1" fill="none"/>
+                                <path d="M10 5V10L13 13" stroke="#2E7D32" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <div>
+                                <strong>Reunión agendada:</strong>
+                                <span class="reunion-fecha">${servicio.fecha_reunion_formateada} a las ${servicio.hora_reunion_formateada}</span>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Caso: NO tiene reunión agendada (valores null, vacíos o 0000-00-00/00:00:00)
+                    reunionHTML = `
+                        <div class="reunion-info sin-reunion">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="#666">
+                                <circle cx="10" cy="10" r="9" stroke="#666" stroke-width="1" fill="none"/>
+                                <path d="M6 6L14 14M14 6L6 14" stroke="#666" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <div>
+                                <strong>Reunión:</strong>
+                                <span class="reunion-estado">No se agendó reunión para este servicio</span>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                html += `
+                    <div class="servicio-solicitado-card" onclick="mostrarDetallesServicio(${JSON.stringify(servicio).replace(/"/g, '&quot;')})">
+                        <div class="servicio-solicitado-header">
+                            <div class="servicio-solicitado-info">
+                                <h3>${servicio.nombre_servicio}</h3>
+                                <div class="servicio-fecha">Solicitado: ${servicio.fecha_formateada}</div>
+                            </div>
+                            <div class="estado-servicio ${estadoClase}">${estadoTexto}</div>
+                        </div>
+                        <div class="servicio-detalles">
+                            <p>${servicio.descripcion}</p>
+                            ${respuestasHTML}
+                            ${reunionHTML}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            contenedor.innerHTML = html;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            contenedor.innerHTML = '<div class="error-carga"><p>Error al cargar los servicios. Intenta más tarde.</p></div>';
+        });
+}
+
+// Función para mostrar detalles en modal (actualizada para manejar valores null/ceros)
+function mostrarDetallesServicio(servicio) {
+    const modal = document.getElementById('modal-detalles');
+    const contenido = document.getElementById('detalles-contenido');
+    
+    // Formatear fecha de solicitud
+    let fechaFormateada = servicio.fecha_formateada;
+    if (servicio.fecha_solicitud && servicio.fecha_solicitud !== '0000-00-00 00:00:00') {
+        try {
+            const fecha = new Date(servicio.fecha_solicitud);
+            fechaFormateada = fecha.toLocaleDateString('es-ES', {
+                weekday: 'long',
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        } catch (e) {
+            // Usar la fecha formateada del backend si hay error
+            console.log("Error al formatear fecha:", e);
+        }
+    }
+    
+    // Determinar estado y color
+    let estadoColor = '#856404';
+    let estadoBg = '#FFF3CD';
+    
+    const estado = servicio.estado?.toLowerCase();
+    if (estado === 'in_progress' || estado === 'review') {
+        estadoColor = '#0C5460';
+        estadoBg = '#D1ECF1';
+    } else if (estado === 'completed' || estado === 'approved') {
+        estadoColor = '#155724';
+        estadoBg = '#D4EDDA';
+    } else if (estado === 'rejected' || estado === 'cancelled') {
+        estadoColor = '#721C24';
+        estadoBg = '#F8D7DA';
+    }
+    
+    let html = `
+        <div class="detalle-item">
+            <strong>Servicio:</strong> ${servicio.nombre_servicio}
+        </div>
+        <div class="detalle-item">
+            <strong>ID de solicitud:</strong> ${servicio.id}
+        </div>
+        <div class="detalle-item">
+            <strong>Fecha de solicitud:</strong> ${fechaFormateada}
+        </div>
+        <div class="detalle-item">
+            <strong>Estado:</strong> 
+            <span style="background: ${estadoBg}; color: ${estadoColor}; padding: 4px 12px; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">
+                ${servicio.estado_texto}
+            </span>
+        </div>
+    `;
+    
+    if (servicio.descripcion && servicio.descripcion !== 'Sin descripción disponible') {
+        html += `
+            <div class="detalle-item">
+                <strong>Descripción:</strong> ${servicio.descripcion}
+            </div>
+        `;
+    }
+    
+    if (servicio.respuestas && servicio.respuestas.length > 0) {
+        html += '<div class="detalle-item"><strong>Información proporcionada:</strong></div>';
+        servicio.respuestas.forEach((respuesta, index) => {
+            let pregunta = respuesta.pregunta || `Pregunta ${index + 1}`;
+            let respuestaTexto = respuesta.respuesta || respuesta || 'Sin respuesta';
+            
+            html += `
+                <div class="detalle-respuesta">
+                    <div class="detalle-pregunta">${pregunta}</div>
+                    <div class="detalle-respuesta-texto">${respuestaTexto}</div>
+                </div>
+            `;
+        });
+    }
+    
+    // MOSTRAR INFORMACIÓN DE REUNIÓN - MANEJO DE VALORES VACÍOS/CEROS/NULL
+    if (servicio.tiene_reunion && servicio.reunion_completa) {
+        // Tiene reunión válida agendada
+        html += `
+            <div class="detalle-item">
+                <strong>Reunión agendada:</strong> 
+                <span style="color: #2E7D32; font-weight: 500;">
+                    ${servicio.reunion_completa}
+                </span>
+            </div>
+        `;
+    } else if (servicio.tiene_reunion && servicio.fecha_reunion_formateada && servicio.hora_reunion_formateada) {
+        // Tiene reunión pero sin formato completo
+        html += `
+            <div class="detalle-item">
+                <strong>Reunión agendada:</strong> 
+                <span style="color: #2E7D32; font-weight: 500;">
+                    ${servicio.fecha_reunion_formateada} a las ${servicio.hora_reunion_formateada}
+                </span>
+            </div>
+        `;
+    } else {
+        // NO tiene reunión válida agendada
+        let motivo = '';
+        
+        // Verificar valores específicos para dar mensaje más específico
+        if (servicio.fecha_reunion_raw) {
+            if (servicio.fecha_reunion_raw === '0000-00-00' || 
+                servicio.fecha_reunion_raw === '0000-00-00 00:00:00' ||
+                servicio.fecha_reunion_raw.includes('0000-00-00')) {
+                motivo = ' (fecha no seleccionada)';
+            } else if (servicio.fecha_reunion_raw === '00:00:00') {
+                motivo = ' (formato incorrecto)';
+            }
+        } else if (servicio.hora_reunion_raw) {
+            if (servicio.hora_reunion_raw === '00:00:00' || 
+                servicio.hora_reunion_raw === '00:00') {
+                motivo = ' (hora no seleccionada)';
+            }
+        } else if (!servicio.fecha_reunion_raw && !servicio.hora_reunion_raw) {
+            motivo = ' (no se solicitó reunión)';
+        }
+        
+        html += `
+            <div class="detalle-item">
+                <strong>Reunión:</strong> 
+                <span style="color: #666; font-style: italic;">
+                    No se agendó reunión${motivo}
+                </span>
+            </div>
+        `;
+    }
+        
+    contenido.innerHTML = html;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Función para cerrar modal de detalles
+function cerrarModalDetalles(event) {
+    if (!event || event.target.classList.contains('modal-overlay') || event.target.classList.contains('modal-cerrar')) {
+        document.getElementById('modal-detalles').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Cargar servicios cuando la página se carga
+document.addEventListener('DOMContentLoaded', function() {
+    cargarServiciosSolicitados();
+    
+    // Recargar servicios cada 30 segundos para actualizar estados
+    setInterval(cargarServiciosSolicitados, 30000);
+});
+</script>
 </body>
 </html>

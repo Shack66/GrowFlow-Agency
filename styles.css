@@ -1915,3 +1915,244 @@ footer.footer {
                 height: 40px;
             }
         }
+
+
+/* SECCIÓN MIS SERVICIOS */
+.mis-servicios {
+    padding: 60px 5%;
+    background-color: #f8f9fa;
+}
+
+.mis-servicios-titulo {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    color: #333;
+    position: relative;
+}
+
+.mis-servicios-titulo::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #4CAF50;
+    margin: 10px auto;
+    border-radius: 2px;
+}
+
+.servicios-solicitados-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cargando-servicios {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Tarjetas de servicios solicitados */
+.servicio-solicitado-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-left: 5px solid #4CAF50;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.servicio-solicitado-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.servicio-solicitado-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.servicio-solicitado-info h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.3rem;
+}
+
+.servicio-fecha {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.estado-servicio {
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.estado-pendiente { background: #FFF3CD; color: #856404; border: 1px solid #FFEAA7; }
+.estado-proceso { background: #D1ECF1; color: #0C5460; border: 1px solid #BEE5EB; }
+.estado-completado { background: #D4EDDA; color: #155724; border: 1px solid #C3E6CB; }
+.estado-rechazado { background: #F8D7DA; color: #721C24; border: 1px solid #F5C6CB; }
+
+.servicio-detalles {
+    margin-top: 15px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.detalles-respuestas {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    border-left: 3px solid #4CAF50;
+}
+
+.detalles-respuestas h4 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1rem;
+}
+
+.respuesta-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.respuesta-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.respuesta-pregunta {
+    font-weight: 600;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+.respuesta-respuesta {
+    color: #666;
+    margin-top: 3px;
+    font-size: 0.95rem;
+}
+
+.reunion-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 12px;
+    background: #E8F5E9;
+    border-radius: 8px;
+    color: #2E7D32;
+    font-size: 0.9rem;
+}
+
+.sin-reunion {
+    color: #666;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+.sin-servicios {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.sin-servicios p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.btn-solicitar-primero {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-solicitar-primero:hover {
+    background: #3d8b40;
+}
+
+/* Modal detalles */
+.modal-detalles-contenido {
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.detalles-servicio {
+    padding: 20px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mis-servicios {
+        padding: 40px 20px;
+    }
+    
+    .servicio-solicitado-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .estado-servicio {
+        align-self: flex-start;
+    }
+    
+    .modal-detalles-contenido {
+        width: 95%;
+        margin: 10px;
+    }
+}
+
+/* Estilos específicos para reuniones no agendadas */
+.reunion-info.sin-reunion {
+    background: #F8F9FA;
+    border-left: 3px solid #6C757D;
+    color: #6C757D;
+}
+
+.reunion-info.sin-reunion svg {
+    stroke: #6C757D;
+}
+
+.reunion-estado {
+    font-style: italic;
+    color: #666;
+}
+
+/* Para el modal */
+.detalle-item strong {
+    color: #495057;
+    min-width: 150px;
+    display: inline-block;
+}
+
+.detalle-item span[style*="color: #666"] {
+    background: #F8F9FA;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 4px;
+}
