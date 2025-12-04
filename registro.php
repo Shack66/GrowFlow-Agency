@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </form>
 
             <p style="padding-top: 20px; color: white;">¿Ya tienes una cuenta?</p>
-            <a href="#" class="lgn-link">Iniciar Sesión</a>
+            <a href="login.php" class="lgn-link">Iniciar Sesión</a>
         </div>
     </section>
 
