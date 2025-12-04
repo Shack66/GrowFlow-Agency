@@ -10,10 +10,9 @@
 </head>
 <body>
 
-    <!-- METANAVEGACIÓN -->
+    <!-- Metanavegación -->
     <div class="meta-nav">
-        <a href="perfil.html" class="user-welcome">¡Hola, Samuel!</a>
-        <a href="index.html">Cerrar Sesión</a>
+        <a href="logout.php">Cerrar Sesión</a>
     </div>
 
     <!-- HEADER -->
@@ -23,17 +22,14 @@
             <h1>GrowFlow Agency</h1>
         </div>
 
-        <nav class="main-nav">
-            <a href="index.html">Inicio</a>
-            <a href="blog.html">Blog</a>
-            <a href="servicios.html">Servicios</a>
-            <a href="nosotros.html">Sobre Nosotros</a>
-            <a href="preguntas-frecuentes.html">Preguntas Frecuentes</a>
-            <a href="perfil.html">Perfil</a>
 
-            <div class="user-avatar">
-                <img src="../imags/nosotros/samuel.jpg" alt="Mi Perfil">
-            </div>
+        <nav class="main-nav">
+            <a href="client-index.php">Inicio</a>
+            <a href="client-blog.php">Blog</a>
+            <a href="client-servicios.php">Servicios</a>
+            <a href="client-nosotros.php">Sobre Nosotros</a>
+            <a href="client-preguntas-frecuentes.php">Preguntas Frecuentes</a>
+            <a href="client-perfil.php">Perfil</a>
         </nav>
     </header>
 
@@ -255,8 +251,8 @@
     <footer>
         <p>© 2025 - GrowFlow Agency. Todos los derechos reservados.</p>
         <div class="footer-links">
-            <a href="form_contacto.html">Formulario de contacto</a>
-            <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
+            <a href="client-form-contacto.php">Formulario de contacto</a>
+            <a href="client-preguntas-frecuentes.php">Preguntas frecuentes</a>
         </div>
     </footer>
 

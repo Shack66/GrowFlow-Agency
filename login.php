@@ -105,7 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="password" name="password" placeholder="Contraseña" required>
                 <button type="submit" class="lgn-btn">Ingresar</button>
             </form>
-            <a href="#" class="lgn-link">¿Olvidaste tu contraseña?</a>
         </div>
     </section>
     <!-- FOOTER -->
