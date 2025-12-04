@@ -13,6 +13,12 @@ require_once 'db.php';
     <title>Mensajes de Contacto - Panel Admin</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        body {
+            background-image:
+                radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
+        }
+
         .mensajes-container {
             max-width: 1200px;
             margin: 40px auto;
@@ -30,7 +36,7 @@ require_once 'db.php';
 
         .mensajes-title {
             font-size: 28px;
-            color: #333;
+            color: white;
         }
 
         .filtros {
@@ -66,7 +72,7 @@ require_once 'db.php';
             width: 100%;
             border-collapse: collapse;
             background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
         }
@@ -79,7 +85,7 @@ require_once 'db.php';
         }
 
         .mensajes-table th {
-            background: #4a90e2;
+            background: var(--azul);
             color: white;
             font-weight: 600;
         }
@@ -182,11 +188,11 @@ require_once 'db.php';
                 display: block;
                 overflow-x: auto;
             }
-            
+
             .acciones {
                 flex-direction: column;
             }
-            
+
             .mensajes-header {
                 flex-direction: column;
                 align-items: flex-start;
@@ -224,7 +230,7 @@ require_once 'db.php';
             <div class="filtros">
                 <button class="btn-filtro active" data-estado="todos">Todos</button>
                 <button class="btn-filtro" data-estado="pending">Pendientes</button>
-                <button class="btn-filtro" data-estado="complete">Leídos</button>
+                <button class="btn-filtro" data-estado="completed">Leídos</button>
             </div>
         </div>
 
@@ -233,11 +239,11 @@ require_once 'db.php';
         if (isset($_GET['cambiar_estado'])) {
             $contact_id = intval($_GET['contact_id']);
             $nuevo_estado = $_GET['nuevo_estado'];
-            
-            if (in_array($nuevo_estado, ['pending', 'complete'])) {
+
+            if (in_array($nuevo_estado, ['pending', 'completed'])) {
                 $stmt = $conn->prepare("UPDATE contact_forms SET status = ? WHERE contact_id = ?");
                 $stmt->bind_param("si", $nuevo_estado, $contact_id);
-                
+
                 if ($stmt->execute()) {
                     echo "<script>alert('Estado actualizado correctamente');</script>";
                 }
@@ -281,13 +287,13 @@ require_once 'db.php';
                                     Ver
                                 </button>
                                 <?php if ($row['status'] == 'pending'): ?>
-                                    <a href="?cambiar_estado=true&contact_id=<?php echo $row['contact_id']; ?>&nuevo_estado=complete" 
-                                       class="btn-accion btn-leido">
+                                    <a href="?cambiar_estado=true&contact_id=<?php echo $row['contact_id']; ?>&nuevo_estado=completed"
+                                        class="btn-accion btn-leido">
                                         Marcar como leído
                                     </a>
                                 <?php else: ?>
-                                    <a href="?cambiar_estado=true&contact_id=<?php echo $row['contact_id']; ?>&nuevo_estado=pending" 
-                                       class="btn-accion btn-pendiente">
+                                    <a href="?cambiar_estado=true&contact_id=<?php echo $row['contact_id']; ?>&nuevo_estado=pending"
+                                        class="btn-accion btn-pendiente">
                                         Marcar como pendiente
                                     </a>
                                 <?php endif; ?>
@@ -330,10 +336,10 @@ require_once 'db.php';
                 document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('active'));
                 // Agregar a este
                 this.classList.add('active');
-                
+
                 const estado = this.dataset.estado;
                 const filas = document.querySelectorAll('.mensaje-fila');
-                
+
                 filas.forEach(fila => {
                     if (estado === 'todos' || fila.dataset.estado === estado) {
                         fila.style.display = '';
@@ -354,7 +360,7 @@ require_once 'db.php';
                 hour: '2-digit',
                 minute: '2-digit'
             });
-            
+
             const contenido = `
                 <div class="mensaje-detalle">
                     <div class="info-item">
@@ -389,7 +395,7 @@ require_once 'db.php';
                     ${mensaje.message.replace(/\n/g, '<br>')}
                 </div>
             `;
-            
+
             document.getElementById('detalleContenido').innerHTML = contenido;
             document.getElementById('modalDetalle').style.display = 'flex';
         }
@@ -415,6 +421,7 @@ require_once 'db.php';
     </script>
 
 </body>
+
 </html>
 
 <?php $conn->close(); ?>

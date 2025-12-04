@@ -37,12 +37,12 @@ requiereRol('client');
 
         <!-- Navegación -->
         <nav class="main-nav" id="mainNav">
-            <a href="admin-index.php">Inicio</a>
-            <a href="admin-blog.php">Blog</a>
-            <a href="admin-servicios.php">Servicios</a>
-            <a href="admin-nosotros.php">Sobre Nosotros</a>
-            <a href="admin-preguntas-frecuentes.php">Preguntas Frecuentes</a>
-            <a href="admin-perfil.php">Perfil</a>
+            <a href="client-index.php">Inicio</a>
+            <a href="client-blog.php">Blog</a>
+            <a href="client-servicios.php">Servicios</a>
+            <a href="client-nosotros.php">Sobre Nosotros</a>
+            <a href="client-preguntas-frecuentes.php">Preguntas Frecuentes</a>
+            <a href="client-perfil.php">Perfil</a>
         </nav>
     </header>
 
