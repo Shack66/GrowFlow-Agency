@@ -1,3 +1,9 @@
+<?php
+require_once 'auth.php';
+requiereRol('admin');
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -22,16 +28,84 @@
             <h1>GrowFlow Agency</h1>
         </div>
 
+        <!-- Botón hamburguesa (agregado para consistencia) -->
+        <button class="hamburger" id="hamburger" aria-label="Menú">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
 
-        <nav class="main-nav">
-            <a href="client-index.php">Inicio</a>
-            <a href="client-blog.php">Blog</a>
-            <a href="client-servicios.php">Servicios</a>
-            <a href="client-nosotros.php">Sobre Nosotros</a>
-            <a href="client-preguntas-frecuentes.php">Preguntas Frecuentes</a>
-            <a href="client-perfil.php">Perfil</a>
+        <!-- Navegación -->
+        <nav class="main-nav" id="mainNav">
+            <a href="admin-index.php">Inicio</a>
+            <a href="admin-blog.php">Blog</a>
+            <a href="admin-servicios.php">Servicios</a>
+            <a href="admin-nosotros.php">Sobre Nosotros</a>
+            <a href="admin-preguntas-frecuentes.php">Preguntas Frecuentes</a>
+            <a href="admin-perfil.php">Perfil</a>
+            <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
         </nav>
     </header>
+
+    <!-- Script para menú hamburguesa (agregado) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const mainNav = document.getElementById('mainNav');
+            const menuOverlay = document.createElement('div');
+            
+            // Crear overlay
+            menuOverlay.className = 'menu-overlay';
+            document.body.appendChild(menuOverlay);
+            
+            // Toggle menú
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                hamburger.classList.toggle('active');
+                mainNav.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+                document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+            });
+            
+            // Cerrar menú al hacer clic en overlay
+            menuOverlay.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                mainNav.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Cerrar menú al hacer clic en enlaces
+            document.querySelectorAll('.main-nav a').forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    mainNav.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // Cerrar menú al redimensionar a pantalla grande
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    hamburger.classList.remove('active');
+                    mainNav.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Cerrar menú con tecla Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mainNav.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    mainNav.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
 
     <!-- SECCIÓN PERFIL -->
     <section class="perfil">
@@ -39,20 +113,13 @@
             <!-- Header del Perfil -->
             <div class="perfil-header">
                 <div class="perfil-avatar">
-                    <img src="../imags/nosotros/samuel.jpg" alt="Samuel Arosemena">
+                    <!-- Aquí puedes usar una imagen dinámica si la tienes en la base de datos -->
+                    <img src="../imags/nosotros/samuel.jpg" alt="<?php echo htmlspecialchars($_SESSION['name']); ?>">
                 </div>
                 <div class="perfil-info">
-                    <h2>Samuel Arosemena</h2>
-                    <p class="perfil-email">samuel.arosemena@growflow.com</p>
+                    <h2><?php echo htmlspecialchars($_SESSION['name'] . ' ' . $_SESSION['apellido']); ?></h2>
+                    <p class="perfil-email"><?php echo htmlspecialchars($_SESSION['email']); ?></p>
                     <div class="perfil-stats">
-                        <div class="stat">
-                            <span class="stat-num">12</span>
-                            <span class="stat-label">Proyectos</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-num">3</span>
-                            <span class="stat-label">Años</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -69,28 +136,30 @@
                 <!-- Pestaña Información Personal -->
                 <div id="informacion" class="tab-pane active">
                     <div class="formulario-perfil">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="nombre">Nombre</label>
-                                <input type="text" id="nombre" value="Samuel Arosemena">
+                        <form id="formPerfil" method="POST" action="actualizar-perfil.php">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($_SESSION['name']); ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellido">Apellido</label>
+                                    <input type="text" id="apellido" name="apellido" value="<?php echo htmlspecialchars($_SESSION['apellido']); ?>">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="nombre">Apellido</label>
-                                <input type="text" id="nombre" value="Samuel Arosemena">
-                            </div>
-                        </div>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" value="samuel.arosemena@growflow.com">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($_SESSION['email']); ?>">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-buttons">
-                            <button class="btn-guardar">Guardar Cambios</button>
-                            <button class="btn-cancelar">Cancelar</button>
-                        </div>
+                            <div class="form-buttons">
+                                <button type="submit" class="btn-guardar">Guardar Cambios</button>
+                                <button type="button" class="btn-cancelar" onclick="resetForm()">Cancelar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -164,15 +233,13 @@
 
                 <!-- Pestaña Configuración -->
                 <div id="configuracion" class="tab-pane">
-
                     <div class="config-card danger-zone">
                         <h3>Zona de Peligro</h3>
                         <p>Estas acciones no se pueden deshacer</p>
-                        <button class="btn-eliminar">Eliminar Cuenta</button>
+                        <button class="btn-eliminar" onclick="confirmarEliminar()">Eliminar Cuenta</button>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 
@@ -204,13 +271,80 @@
         }
 
         // Guardar cambios del perfil
-        document.querySelector('.btn-guardar').addEventListener('click', function() {
-            alert('Cambios guardados exitosamente');
+        document.getElementById('formPerfil').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Aquí puedes agregar la lógica para enviar los datos al servidor
+            const formData = new FormData(this);
+            
+            fetch('actualizar-perfil.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Cambios guardados exitosamente');
+                    // Actualizar datos en la sesión si es necesario
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al guardar cambios');
+            });
         });
 
-        // Cambiar foto de perfil (simulado)
-        document.querySelector('.btn-cambiar-foto').addEventListener('click', function() {
-            alert('Funcionalidad de cambiar foto en desarrollo');
+        // Función para resetear el formulario
+        function resetForm() {
+            document.getElementById('formPerfil').reset();
+        }
+
+        // Cambiar contraseña
+        document.getElementById('formPassword').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newPassword = document.getElementById('new_password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            
+            if (newPassword !== confirmPassword) {
+                alert('Las contraseñas no coinciden');
+                return;
+            }
+            
+            alert('Funcionalidad de cambiar contraseña en desarrollo');
+        });
+
+        // Confirmar eliminación de cuenta
+        function confirmarEliminar() {
+            if (confirm('¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.')) {
+                alert('Funcionalidad de eliminar cuenta en desarrollo');
+                // Aquí iría la lógica para eliminar la cuenta
+            }
+        }
+
+        // Cambiar foto de perfil
+        document.addEventListener('DOMContentLoaded', function() {
+            const avatarImg = document.querySelector('.perfil-avatar img');
+            avatarImg.addEventListener('click', function() {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*';
+                input.onchange = function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        // Aquí puedes subir la imagen al servidor
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            avatarImg.src = event.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                        alert('Foto de perfil actualizada (funcionalidad completa en desarrollo)');
+                    }
+                };
+                input.click();
+            });
         });
     </script>
 

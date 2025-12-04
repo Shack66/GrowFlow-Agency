@@ -33,13 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Verificar la contraseña
             if (password_verify($password, $user['password'])) {
                 // Iniciar sesión 
-                $_SESSION['user'] = [
-                    'user_id' => $user['user_id'],
-                    'name' => $user['name'],
-                    'apellido' => $user['apellido'],
-                    'email' => $user['email'],
-                    'role' => $user['role']
-                ];
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['name'] = $user['name'];
+                $_SESSION['apellido'] = $user['apellido'];
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['role'] = $user['role'];
 
                 // Redirigir según el rol
                 if ($user['role'] == 'admin') {    
