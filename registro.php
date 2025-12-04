@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <!-- HEADER -->
     <header class="header">
         <div class="logo">
-            <img src="../imags/logo.png" alt="Logo" class="logo-img">
+            <img src="imags/logo.png" alt="Logo" class="logo-img">
             <h1>GrowFlow Agency</h1>
         </div>
 

@@ -77,12 +77,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <a href="registro.php">Registrarse</a>
     </div>
     <!-- HEADER -->
-    <header>
+    <header class="header">
         <div class="logo">
-            <img src="../imags/logo.png" alt="Logo" class="logo-img">
+            <img src="imags/logo.png" alt="Logo" class="logo-img">
             <h1>GrowFlow Agency</h1>
         </div>
-        <nav class="main-nav">
+
+        <!-- Botón hamburguesa -->
+        <button class="hamburger" id="hamburger" aria-label="Menú">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <!-- Navegación -->
+        <nav class="main-nav" id="mainNav">
             <a href="index.html">Inicio</a>
             <a href="blog.html">Blog</a>
             <a href="servicios.html">Servicios</a>
@@ -115,6 +124,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
         </div>
     </footer>
+    <script>
+    // Menú hamburguesa
+    const hamburger = document.getElementById('hamburger');
+    const mainNav = document.getElementById('mainNav');
+    const menuOverlay = document.createElement('div');
+    
+    // Crear overlay
+    menuOverlay.className = 'menu-overlay';
+    document.body.appendChild(menuOverlay);
+    
+    // Toggle menú
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mainNav.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+    });
+    
+    // Cerrar menú al hacer clic en overlay o enlaces
+    menuOverlay.addEventListener('click', closeMenu);
+    
+    // Cerrar menú al hacer clic en enlaces (opcional)
+    document.querySelectorAll('.main-nav a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+    
+    function closeMenu() {
+        hamburger.classList.remove('active');
+        mainNav.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    // Cerrar menú al redimensionar a pantalla grande
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            closeMenu();
+        }
+    });
+</script>
 </body>
 
 </html>

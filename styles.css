@@ -1760,3 +1760,197 @@ footer.footer {
 .menu-overlay.active {
     display: block;
 }
+
+/* ESTILOS ESPECÍFICOS PARA HEADER CLIENTE */
+        .client-header {
+            background: #1F1F1F;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        /* Logo */
+        .client-logo {
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        
+        .client-logo-img {
+            width: 55px;
+            height: 55px;
+            background: transparent;
+            border-radius: 8px;
+            margin-right: 12px;
+        }
+        
+        /* Botón hamburguesa */
+        .client-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 100;
+        }
+        
+        .client-bar {
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+        
+        .client-hamburger.active .client-bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        
+        .client-hamburger.active .client-bar:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .client-hamburger.active .client-bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        
+        /* Navegación cliente */
+        .client-main-nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .client-main-nav a {
+            margin: 0 12px;
+            color: #E8E8E8;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        
+        .client-main-nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 0%;
+            background: #0077FF;
+            transition: width 0.3s ease-out;
+        }
+        
+        .client-main-nav a:hover::after {
+            width: 100%;
+        }
+        
+        .client-main-nav a:hover {
+            color: #0077FF;
+        }
+        
+        /* Botón cerrar sesión */
+        .client-btn-logout {
+            margin-left: 18px;
+            padding: 8px 16px;
+            background: #FF5252;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        
+        .client-btn-logout:hover {
+            background: #D32F2F;
+        }
+        
+        /* Overlay para móvil */
+        .client-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 98;
+        }
+        
+        .client-menu-overlay.active {
+            display: block;
+        }
+        
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .client-hamburger {
+                display: flex;
+            }
+            
+            .client-main-nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: #1F1F1F;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 25px;
+                transition: 0.4s ease;
+                z-index: 99;
+                padding-top: 100px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+            }
+            
+            .client-main-nav.active {
+                right: 0;
+            }
+            
+            .client-main-nav a {
+                margin: 0;
+                font-size: 18px;
+                width: 80%;
+                text-align: center;
+                padding: 12px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .client-main-nav a:last-child {
+                border-bottom: none;
+            }
+            
+            .client-btn-logout {
+                margin: 30px 0 0 0;
+                width: 80%;
+                text-align: center;
+                order: 10;
+            }
+            
+            .client-header {
+                padding: 15px 20px;
+            }
+            
+            .client-logo h1 {
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .client-logo h1 {
+                font-size: 18px;
+            }
+            
+            .client-logo-img {
+                width: 40px;
+                height: 40px;
+            }
+        }
