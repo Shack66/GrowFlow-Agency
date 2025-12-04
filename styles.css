@@ -1119,33 +1119,7 @@ footer {
     background: var(--azul-oscuro);
 }
 
-/* Configuración */
-.configuracion-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-}
 
-.config-card {
-    background: #F8F9FA;
-    border: 1px solid #E8E8E8;
-    border-radius: 12px;
-    padding: 25px;
-}
-
-.config-card h3 {
-    color: var(--negro);
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.config-option {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-    padding: 10px 0;
-}
 
 /* Switch Toggle */
 .switch {
@@ -1211,36 +1185,7 @@ input:checked + .slider:before {
     color: white;
 }
 
-/* Zona de Peligro */
-.danger-zone {
-    border: 2px solid #FF5252;
-}
 
-.danger-zone h3 {
-    color: #FF5252;
-}
-
-.danger-zone p {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 15px;
-}
-
-.btn-eliminar {
-    width: 100%;
-    padding: 12px;
-    background: #FF5252;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.btn-eliminar:hover {
-    background: #D32F2F;
-}
 
 /* Botones del Formulario */
 .form-buttons {

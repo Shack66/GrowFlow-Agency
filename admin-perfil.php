@@ -125,7 +125,7 @@ requiereRol('admin');
             <div class="perfil-tabs">
                 <button class="tab-btn active" onclick="openTab('informacion')">Información Personal</button>
                 <button class="tab-btn" onclick="openTab('servicios')">Servicios</button>
-                <button class="tab-btn" onclick="openTab('configuracion')">Configuración</button>
+
             </div>
 
             <!-- Contenido de las Pestañas -->
@@ -201,14 +201,7 @@ requiereRol('admin');
                     </div>
                 </div>
 
-                <!-- Pestaña Configuración -->
-                <div id="configuracion" class="tab-pane">
-                    <div class="config-card danger-zone">
-                        <h3>Zona de Peligro</h3>
-                        <p>Estas acciones no se pueden deshacer</p>
-                        <button class="btn-eliminar" onclick="confirmarEliminar()">Eliminar Cuenta</button>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>

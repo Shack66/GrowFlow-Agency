@@ -229,7 +229,7 @@ $_SESSION['email'] = $user['email'];
             <!-- Pestañas de Navegación -->
             <div class="perfil-tabs">
                 <button class="tab-btn active" onclick="openTab('informacion')">Información Personal</button>
-                <button class="tab-btn" onclick="openTab('configuracion')">Configuración</button>
+                <button class="tab-btn" onclick="openTab('servicios')">Servicios</button>
             </div>
 
             <!-- Contenido de las Pestañas -->
@@ -264,14 +264,48 @@ $_SESSION['email'] = $user['email'];
                     </div>
                 </div>
 
-                <!-- Pestaña Configuración -->
-                <div id="configuracion" class="tab-pane">
-                    <div class="config-card danger-zone">
-                        <h3>Zona de Peligro</h3>
-                        <p>Estas acciones no se pueden deshacer</p>
-                        <button class="btn-eliminar" onclick="confirmarEliminar()">Eliminar Cuenta</button>
+                <!-- Pestaña Proyecto -->
+                <div id="servicios" class="tab-pane">
+                    <div class="proyectos-grid">
+                        <div class="proyecto-card">
+                            <div class="proyecto-header">
+                                <h3>Publicidad en Redes</h3>
+                                <span class="proyecto-status aprobado">Aprobado</span>
+                            </div>
+                            <p class="proyecto-desc">Campañas efectivas en redes sociales para conectar con tu audiencia ideal.</p>
+                            
+                            <div class="proyecto-actions">
+                                <button class="btn-ver">Ver Detalles</button>
+                            </div>
+                        </div>
+
+                        <div class="proyecto-card">
+                            <div class="proyecto-header">
+                                <h3>Planes de Marketing</h3>
+                                <span class="proyecto-status pendiente">Pendiente</span>
+                            </div>
+                            <p class="proyecto-desc">Estrategias personalizadas para impulsar tu marca y alcanzar tus metas comerciales.</p>
+                            
+                            <div class="proyecto-actions">
+                                <button class="btn-ver">Ver Detalles</button>
+                            </div>
+                        </div>
+
+                        <div class="proyecto-card">
+                            <div class="proyecto-header">
+                                <h3>Estrategia Digital</h3>
+                                <span class="proyecto-status rechazado">Rechazado</span>
+                            </div>
+                            <p class="proyecto-desc">Consultoría especializada para optimizar tu prescencia digital completa.</p>
+                            
+                            <div class="proyecto-actions">
+                                <button class="btn-ver">Ver Detalles</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                
             </div>
         </div>
     </section>
