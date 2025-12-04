@@ -32,14 +32,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Verificar la contraseña
             if (password_verify($password, $user['password'])) {
                 // Iniciar sesión - VARIABLES ACTUALIZADAS
-                $_SESSION['user_id'] = $user['user_id'];  // Cambiado de 'id' a 'user_id'
+                $_SESSION['user_id'] = $user['user_id'];  
                 $_SESSION['email'] = $user['email'];
-                $_SESSION['nombre'] = $user['name'];      // Cambiado de 'nombre' a 'name'
+                $_SESSION['nombre'] = $user['name'];     
                 $_SESSION['apellido'] = $user['apellido'];
-                $_SESSION['rol'] = $user['role'];         // Cambiado de 'rol' a 'role'
+                $_SESSION['rol'] = $user['role'];    
 
                 // Redirigir según el rol
-                if ($user['role'] == 'admin') {           // Cambiado de 'rol' a 'role'
+                if ($user['role'] == 'admin') {    
                     header("Location: admin-index.php");
                 } else {
                     header("Location: client-index.php");

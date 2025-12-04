@@ -10,17 +10,17 @@ if (!isset($_SESSION['user_id'])) {
 
 // Función para verificar si es admin
 function esAdmin() {
-    return isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin';
+    return isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
 }
 
 // Función para verificar si es cliente
 function esCliente() {
-    return isset($_SESSION['rol']) && $_SESSION['rol'] == 'cliente';
+    return isset($_SESSION['role']) && $_SESSION['role'] == 'cliente';
 }
 
 // Función para requerir rol específico
 function requiereRol($rol) {
-    if (!isset($_SESSION['rol']) || $_SESSION['rol'] != $rol) {
+    if (!isset($_SESSION['role']) || $_SESSION['role'] != $rol) {
         header("Location: login.php");
         exit();
     }
