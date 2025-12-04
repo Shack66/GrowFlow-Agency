@@ -13,12 +13,6 @@ if (isset($_SESSION['user_id'])) {
     }
     exit();
 }
-if ($email === "test@test.com" && $password === "123456") {
-    $_SESSION['user_id'] = 1;
-    $_SESSION['role'] = 'admin';
-    header("Location: admin-index.php");
-    exit();
-}
 
 // Procesar el formulario
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
