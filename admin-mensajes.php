@@ -212,10 +212,7 @@ $unread_count = $unread_data['unread_count'] ?? 0;
         <!-- Navegación -->
         <nav class="main-nav" id="mainNav">
             <a href="admin-index.php">Inicio</a>
-            <a href="admin-blog.php">Blog</a>
             <a href="admin-servicios.php">Servicios</a>
-            <a href="admin-nosotros.php">Sobre Nosotros</a>
-            <a href="admin-preguntas-frecuentes.php">Preguntas Frecuentes</a>
             <a href="admin-mensajes.php" class="active">Mensajes</a>
             <a href="admin-perfil.php">Perfil</a>
             <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
