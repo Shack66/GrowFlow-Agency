@@ -1,197 +1,204 @@
 <?php
 require_once 'auth.php';
 requiereRol('admin');
-
-// Conexión a la base de datos
 require_once 'db.php';
-
-// Obtener todos los mensajes
-$sql = "SELECT * FROM contact_forms ORDER BY created_at DESC";
-$result = $conn->query($sql);
-
-// Contar mensajes no leídos (si tienes campo 'read_status')
-$sql_unread = "SELECT COUNT(*) as unread_count FROM contact_forms WHERE read_status = 0";
-$result_unread = $conn->query($sql_unread);
-$unread_data = $result_unread->fetch_assoc();
-$unread_count = $unread_data['unread_count'] ?? 0;
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensajes de Contacto - GrowFlow Agency</title>
+    <title>Mensajes de Contacto - Panel Admin</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         .mensajes-container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 40px auto;
             padding: 20px;
         }
-        
+
         .mensajes-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
+            border-bottom: 2px solid #4a90e2;
         }
-        
-        .mensajes-stats {
+
+        .mensajes-title {
+            font-size: 28px;
+            color: #333;
+        }
+
+        .filtros {
             display: flex;
-            gap: 20px;
-        }
-        
-        .stat-box {
-            background: #f8f9fa;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
-        }
-        
-        .mensajes-grid {
-            display: grid;
-            grid-template-columns: 1fr;
             gap: 15px;
+            margin-bottom: 20px;
         }
-        
-        .mensaje-card {
+
+        .btn-filtro {
+            padding: 8px 16px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-filtro.active {
+            background: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+        }
+
+        .btn-filtro:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-filtro.active:hover {
+            background: #3a80d2;
+        }
+
+        .mensajes-table {
+            width: 100%;
+            border-collapse: collapse;
             background: white;
-            border-radius: 10px;
-            padding: 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-left: 5px solid #3498db;
-            transition: transform 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
         }
-        
-        .mensaje-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-        }
-        
-        .mensaje-card.unread {
-            border-left-color: #e74c3c;
-            background: #fff5f5;
-        }
-        
-        .mensaje-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 15px;
-        }
-        
-        .mensaje-info h3 {
-            margin: 0;
-            color: #2c3e50;
-        }
-        
-        .mensaje-meta {
-            color: #7f8c8d;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        
-        .mensaje-subject {
-            color: #3498db;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        
-        .mensaje-body {
-            background: #f8f9fa;
+
+        .mensajes-table th,
+        .mensajes-table td {
             padding: 15px;
-            border-radius: 5px;
-            margin: 15px 0;
-            white-space: pre-wrap;
+            text-align: left;
+            border-bottom: 1px solid #eee;
         }
-        
-        .mensaje-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .btn-marcar {
-            background: #3498db;
+
+        .mensajes-table th {
+            background: #4a90e2;
             color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
+            font-weight: 600;
         }
-        
-        .btn-marcar:hover {
-            background: #2980b9;
+
+        .mensajes-table tr:hover {
+            background: #f9f9f9;
         }
-        
-        .btn-eliminar {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        
-        .btn-eliminar:hover {
-            background: #c0392b;
-        }
-        
-        .status-badge {
+
+        .estado-badge {
             padding: 5px 10px;
             border-radius: 20px;
             font-size: 12px;
-            font-weight: bold;
+            font-weight: 600;
+            display: inline-block;
         }
-        
-        .status-leido {
-            background: #d4edda;
-            color: #155724;
+
+        .estado-pendiente {
+            background: #ffeaa7;
+            color: #d35400;
         }
-        
-        .status-noleido {
-            background: #f8d7da;
-            color: #721c24;
+
+        .estado-leido {
+            background: #55efc4;
+            color: #00b894;
         }
-        
-        .no-mensajes {
-            text-align: center;
-            padding: 40px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            color: #7f8c8d;
-        }
-        
-        .filtros {
+
+        .acciones {
             display: flex;
             gap: 10px;
-            margin-bottom: 20px;
         }
-        
-        .btn-filtro {
-            padding: 8px 15px;
-            background: #ecf0f1;
+
+        .btn-accion {
+            padding: 6px 12px;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
         }
-        
-        .btn-filtro.active {
-            background: #3498db;
+
+        .btn-leido {
+            background: #4a90e2;
             color: white;
+        }
+
+        .btn-leido:hover {
+            background: #3a80d2;
+        }
+
+        .btn-pendiente {
+            background: #fdcb6e;
+            color: #333;
+        }
+
+        .btn-pendiente:hover {
+            background: #fdc14a;
+        }
+
+        .sin-mensajes {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .mensaje-detalle {
+            background: #f8f9fa;
+            border-left: 4px solid #4a90e2;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .info-item {
+            margin-bottom: 8px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #555;
+            display: inline-block;
+            width: 120px;
+        }
+
+        .info-value {
+            color: #333;
+        }
+
+        .mensaje-texto {
+            white-space: pre-wrap;
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .mensajes-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .acciones {
+                flex-direction: column;
+            }
+            
+            .mensajes-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
         }
     </style>
 </head>
-<body>
 
+<body>
     <!-- Metanavegación -->
     <div class="meta-nav">
-        <a href="admin-perfil.php">Mi Perfil</a>
         <a href="logout.php">Cerrar Sesión</a>
     </div>
 
@@ -202,277 +209,212 @@ $unread_count = $unread_data['unread_count'] ?? 0;
             <h1>GrowFlow Agency</h1>
         </div>
 
-        <!-- Botón hamburguesa -->
-        <button class="hamburger" id="hamburger" aria-label="Menú">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-
-        <!-- Navegación -->
-        <nav class="main-nav" id="mainNav">
+        <nav class="main-nav">
             <a href="admin-index.php">Inicio</a>
             <a href="admin-servicios.php">Servicios</a>
-            <a href="admin-mensajes.php" class="active">Mensajes</a>
+            <a href="admin-mensajes.php">Mensajes</a>
             <a href="admin-perfil.php">Perfil</a>
         </nav>
     </header>
 
-    <script>
-        // Script para menú hamburguesa
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.getElementById('hamburger');
-            const mainNav = document.getElementById('mainNav');
-            const menuOverlay = document.createElement('div');
-            
-            // Crear overlay
-            menuOverlay.className = 'menu-overlay';
-            document.body.appendChild(menuOverlay);
-            
-            // Toggle menú
-            hamburger.addEventListener('click', function(e) {
-                e.stopPropagation();
-                hamburger.classList.toggle('active');
-                mainNav.classList.toggle('active');
-                menuOverlay.classList.toggle('active');
-                document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
-            });
-            
-            // Cerrar menú al hacer clic en overlay
-            menuOverlay.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                mainNav.classList.remove('active');
-                menuOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-            
-            // Cerrar menú al hacer clic en enlaces
-            document.querySelectorAll('.main-nav a').forEach(link => {
-                link.addEventListener('click', function() {
-                    hamburger.classList.remove('active');
-                    mainNav.classList.remove('active');
-                    menuOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
-            
-            // Cerrar menú al redimensionar a pantalla grande
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) {
-                    hamburger.classList.remove('active');
-                    mainNav.classList.remove('active');
-                    menuOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-        });
-    </script>
-
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="mensajes-container">
+    <section class="mensajes-container">
         <div class="mensajes-header">
-            <h1>Mensajes de Contacto</h1>
-            <div class="mensajes-stats">
-                <div class="stat-box">
-                    <strong>Total: </strong><?php echo $result->num_rows; ?>
-                </div>
-                <?php if ($unread_count > 0): ?>
-                <div class="stat-box" style="border-left-color: #e74c3c;">
-                    <strong>No leídos: </strong><?php echo $unread_count; ?>
-                </div>
-                <?php endif; ?>
+            <h2 class="mensajes-title">Mensajes de Contacto</h2>
+            <div class="filtros">
+                <button class="btn-filtro active" data-estado="todos">Todos</button>
+                <button class="btn-filtro" data-estado="pending">Pendientes</button>
+                <button class="btn-filtro" data-estado="complete">Leídos</button>
             </div>
         </div>
+
+        <?php
+        // Procesar cambio de estado
+        if (isset($_GET['cambiar_estado'])) {
+            $contact_id = intval($_GET['contact_id']);
+            $nuevo_estado = $_GET['nuevo_estado'];
+            
+            if (in_array($nuevo_estado, ['pending', 'complete'])) {
+                $stmt = $conn->prepare("UPDATE contact_forms SET status = ? WHERE contact_id = ?");
+                $stmt->bind_param("si", $nuevo_estado, $contact_id);
+                
+                if ($stmt->execute()) {
+                    echo "<script>alert('Estado actualizado correctamente');</script>";
+                }
+                $stmt->close();
+            }
+        }
+
+        // Obtener mensajes
+        $sql = "SELECT * FROM contact_forms ORDER BY sent_date DESC";
+        $result = $conn->query($sql);
+        ?>
 
         <?php if ($result->num_rows > 0): ?>
-        
-        <div class="mensajes-grid">
-            <?php while($mensaje = $result->fetch_assoc()): 
-                $is_unread = isset($mensaje['read_status']) && $mensaje['read_status'] == 0;
-            ?>
-            <div class="mensaje-card <?php echo $is_unread ? 'unread' : ''; ?>" id="mensaje-<?php echo $mensaje['id']; ?>">
-                <div class="mensaje-header">
-                    <div class="mensaje-info">
-                        <h3><?php echo htmlspecialchars($mensaje['name']); ?></h3>
-                        <div class="mensaje-meta">
-                            <strong>Email:</strong> <?php echo htmlspecialchars($mensaje['email']); ?>
-                            <span style="margin: 0 10px">•</span>
-                            <strong>Fecha:</strong> <?php echo date('d/m/Y H:i', strtotime($mensaje['created_at'])); ?>
-                        </div>
-                    </div>
-                    <div class="mensaje-status">
-                        <?php if (isset($mensaje['read_status'])): ?>
-                            <span class="status-badge <?php echo $mensaje['read_status'] == 0 ? 'status-noleido' : 'status-leido'; ?>">
-                                <?php echo $mensaje['read_status'] == 0 ? 'No leído' : 'Leído'; ?>
-                            </span>
-                        <?php endif; ?>
-                    </div>
-                </div>
-                
-                <div class="mensaje-subject">
-                    Asunto: <?php echo htmlspecialchars($mensaje['subject']); ?>
-                </div>
-                
-                <div class="mensaje-body">
-                    <?php echo nl2br(htmlspecialchars($mensaje['message'])); ?>
-                </div>
-                
-                <div class="mensaje-actions">
-                    <?php if (isset($mensaje['read_status']) && $mensaje['read_status'] == 0): ?>
-                    <button class="btn-marcar" onclick="marcarComoLeido(<?php echo $mensaje['id']; ?>)">
-                        Marcar como leído
-                    </button>
-                    <?php endif; ?>
-                    <button class="btn-eliminar" onclick="eliminarMensaje(<?php echo $mensaje['id']; ?>)">
-                        Eliminar
-                    </button>
-                </div>
-            </div>
-            <?php endwhile; ?>
-        </div>
-        
+            <table class="mensajes-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Asunto</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                        <tr class="mensaje-fila" data-estado="<?php echo $row['status']; ?>">
+                            <td><?php echo $row['contact_id']; ?></td>
+                            <td><?php echo date('d/m/Y H:i', strtotime($row['sent_date'])); ?></td>
+                            <td><?php echo htmlspecialchars($row['name']); ?></td>
+                            <td><?php echo htmlspecialchars($row['email']); ?></td>
+                            <td><?php echo htmlspecialchars($row['subject']); ?></td>
+                            <td>
+                                <span class="estado-badge estado-<?php echo $row['status']; ?>">
+                                    <?php echo $row['status'] == 'pending' ? 'Pendiente' : 'Leído'; ?>
+                                </span>
+                            </td>
+                            <td class="acciones">
+                                <button class="btn-accion btn-ver" onclick="verDetalle(<?php echo htmlspecialchars(json_encode($row)); ?>)">
+                                    Ver
+                                </button>
+                                <?php if ($row['status'] == 'pending'): ?>
+                                    <a href="?cambiar_estado=true&contact_id=<?php echo $row['contact_id']; ?>&nuevo_estado=complete" 
+                                       class="btn-accion btn-leido">
+                                        Marcar como leído
+                                    </a>
+                                <?php else: ?>
+                                    <a href="?cambiar_estado=true&contact_id=<?php echo $row['contact_id']; ?>&nuevo_estado=pending" 
+                                       class="btn-accion btn-pendiente">
+                                        Marcar como pendiente
+                                    </a>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
         <?php else: ?>
-        <div class="no-mensajes">
-            <h3>No hay mensajes recibidos</h3>
-            <p>Todavía no has recibido mensajes a través del formulario de contacto.</p>
-        </div>
+            <div class="sin-mensajes">
+                <p>No hay mensajes de contacto aún.</p>
+            </div>
         <?php endif; ?>
-    </main>
+    </section>
+
+    <!-- Modal para ver detalle -->
+    <div id="modalDetalle" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 30px; border-radius: 8px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 style="margin: 0;">Detalle del Mensaje</h3>
+                <button onclick="cerrarDetalle()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">×</button>
+            </div>
+            <div id="detalleContenido"></div>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer>
         <p>© 2025 - GrowFlow Agency. Todos los derechos reservados.</p>
         <div class="footer-links">
-            <a href="admin-form-contacto.php">Formulario de contacto</a>
-            <a href="admin-preguntas-frecuentes.php">Preguntas frecuentes</a>
+            <a href="admin-mensajes.php">Mensajes</a>
         </div>
     </footer>
 
     <script>
-        // Función para marcar mensaje como leído
-        function marcarComoLeido(id) {
-            fetch('marcar_leido.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'id=' + id
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    const mensajeCard = document.getElementById('mensaje-' + id);
-                    mensajeCard.classList.remove('unread');
-                    
-                    // Actualizar el badge de estado
-                    const statusBadge = mensajeCard.querySelector('.status-badge');
-                    if (statusBadge) {
-                        statusBadge.textContent = 'Leído';
-                        statusBadge.className = 'status-badge status-leido';
+        // Filtros
+        document.querySelectorAll('.btn-filtro').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Quitar clase active a todos
+                document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('active'));
+                // Agregar a este
+                this.classList.add('active');
+                
+                const estado = this.dataset.estado;
+                const filas = document.querySelectorAll('.mensaje-fila');
+                
+                filas.forEach(fila => {
+                    if (estado === 'todos' || fila.dataset.estado === estado) {
+                        fila.style.display = '';
+                    } else {
+                        fila.style.display = 'none';
                     }
-                    
-                    // Ocultar el botón de marcar como leído
-                    const btnMarcar = mensajeCard.querySelector('.btn-marcar');
-                    if (btnMarcar) {
-                        btnMarcar.style.display = 'none';
-                    }
-                    
-                    // Actualizar contador de no leídos si existe
-                    const unreadCounter = document.querySelector('.unread-counter');
-                    if (unreadCounter) {
-                        let current = parseInt(unreadCounter.textContent);
-                        if (current > 0) {
-                            unreadCounter.textContent = current - 1;
-                        }
-                    }
-                } else {
-                    alert('Error al marcar como leído: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error al marcar como leído');
+                });
             });
+        });
+
+        // Función para ver detalle
+        function verDetalle(mensaje) {
+            const fecha = new Date(mensaje.sent_date);
+            const fechaFormateada = fecha.toLocaleDateString('es-ES', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            const contenido = `
+                <div class="mensaje-detalle">
+                    <div class="info-item">
+                        <span class="info-label">ID:</span>
+                        <span class="info-value">${mensaje.contact_id}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Fecha:</span>
+                        <span class="info-value">${fechaFormateada}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Nombre:</span>
+                        <span class="info-value">${mensaje.name}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Email:</span>
+                        <span class="info-value">${mensaje.email}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Asunto:</span>
+                        <span class="info-value">${mensaje.subject}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Estado:</span>
+                        <span class="info-value estado-badge estado-${mensaje.status}">
+                            ${mensaje.status === 'pending' ? 'Pendiente' : 'Leído'}
+                        </span>
+                    </div>
+                </div>
+                <div class="mensaje-texto">
+                    <strong>Mensaje:</strong><br>
+                    ${mensaje.message.replace(/\n/g, '<br>')}
+                </div>
+            `;
+            
+            document.getElementById('detalleContenido').innerHTML = contenido;
+            document.getElementById('modalDetalle').style.display = 'flex';
         }
 
-        // Función para eliminar mensaje
-        function eliminarMensaje(id) {
-            if (!confirm('¿Estás seguro de que quieres eliminar este mensaje? Esta acción no se puede deshacer.')) {
-                return;
+        // Función para cerrar detalle
+        function cerrarDetalle() {
+            document.getElementById('modalDetalle').style.display = 'none';
+        }
+
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('modalDetalle').addEventListener('click', function(e) {
+            if (e.target === this) {
+                cerrarDetalle();
             }
-            
-            fetch('eliminar_mensaje.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'id=' + id
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    const mensajeCard = document.getElementById('mensaje-' + id);
-                    mensajeCard.style.opacity = '0.5';
-                    setTimeout(() => {
-                        mensajeCard.remove();
-                        
-                        // Si no quedan mensajes, mostrar mensaje de "no hay mensajes"
-                        const mensajesGrid = document.querySelector('.mensajes-grid');
-                        if (mensajesGrid && mensajesGrid.children.length === 0) {
-                            mensajesGrid.innerHTML = `
-                                <div class="no-mensajes">
-                                    <h3>No hay mensajes recibidos</h3>
-                                    <p>Todavía no has recibido mensajes a través del formulario de contacto.</p>
-                                </div>
-                            `;
-                        }
-                    }, 300);
-                } else {
-                    alert('Error al eliminar mensaje: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error al eliminar mensaje');
-            });
-        }
+        });
 
-        // Función para filtrar mensajes
-        function filtrarMensajes(filtro) {
-            const mensajes = document.querySelectorAll('.mensaje-card');
-            mensajes.forEach(mensaje => {
-                switch(filtro) {
-                    case 'todos':
-                        mensaje.style.display = 'block';
-                        break;
-                    case 'noleidos':
-                        if (mensaje.classList.contains('unread')) {
-                            mensaje.style.display = 'block';
-                        } else {
-                            mensaje.style.display = 'none';
-                        }
-                        break;
-                    case 'leidos':
-                        if (!mensaje.classList.contains('unread')) {
-                            mensaje.style.display = 'block';
-                        } else {
-                            mensaje.style.display = 'none';
-                        }
-                        break;
-                }
-            });
-            
-            // Actualizar botones de filtro activos
-            document.querySelectorAll('.btn-filtro').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
+        // Cerrar con tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                cerrarDetalle();
+            }
+        });
     </script>
 
 </body>
 </html>
 
-<?php
-$conn->close();
-?>
+<?php $conn->close(); ?>
