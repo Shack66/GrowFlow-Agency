@@ -1078,19 +1078,19 @@ footer {
     text-transform: uppercase;
 }
 
-.proyecto-status.completado {
-    background: #E8F5E9;
+.proyecto-status.aprobado {
+    background: #e8f9ea;
     color: #00C853;
 }
 
-.proyecto-status.en-progreso {
-    background: #E3F2FD;
-    color: var(--azul);
+.proyecto-status.pendiente {
+    background: #fbeeda;
+    color: #FF9800;
 }
 
-.proyecto-status.planeado {
-    background: #FFF3E0;
-    color: #FF9800;
+.proyecto-status.rechazado {
+    background: #ffdddd;
+    color: #ff0000;
 }
 
 .proyecto-desc {

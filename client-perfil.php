@@ -99,10 +99,10 @@
                     <div class="proyectos-grid">
                         <div class="proyecto-card">
                             <div class="proyecto-header">
-                                <h3>Ecommerce Fashion</h3>
-                                <span class="proyecto-status completado">Completado</span>
+                                <h3>Publicidad en Redes</h3>
+                                <span class="proyecto-status aprobado">Aprobado</span>
                             </div>
-                            <p class="proyecto-desc">Estrategia de marketing completa para tienda online de moda.</p>
+                            <p class="proyecto-desc">Campañas efectivas en redes sociales para conectar con tu audiencia ideal.</p>
                             <div class="proyecto-metrics">
                                 <div class="metric">
                                     <span class="metric-value">+45%</span>
@@ -120,10 +120,10 @@
 
                         <div class="proyecto-card">
                             <div class="proyecto-header">
-                                <h3>Tech Startup</h3>
-                                <span class="proyecto-status en-progreso">En Progreso</span>
+                                <h3>Diseño Gráfico</h3>
+                                <span class="proyecto-status pendiente">Pendiente</span>
                             </div>
-                            <p class="proyecto-desc">Campaña de lanzamiento para aplicación móvil innovadora.</p>
+                            <p class="proyecto-desc">Diseños creativos que comunican la identidad visual de tu marca.</p>
                             <div class="proyecto-metrics">
                                 <div class="metric">
                                     <span class="metric-value">+80%</span>
@@ -141,10 +141,10 @@
 
                         <div class="proyecto-card">
                             <div class="proyecto-header">
-                                <h3>Restaurant Gourmet</h3>
-                                <span class="proyecto-status planeado">Planeado</span>
+                                <h3>Planes de Marketing</h3>
+                                <span class="proyecto-status rechazado">Rechazado</span>
                             </div>
-                            <p class="proyecto-desc">Estrategia de redes sociales y posicionamiento local.</p>
+                            <p class="proyecto-desc">Estrategias personalizadas para impulsar tu marca y alcanzar tus metas comerciales.</p>
                             <div class="proyecto-metrics">
                                 <div class="metric">
                                     <span class="metric-value">-</span>
