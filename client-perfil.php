@@ -318,82 +318,138 @@ $_SESSION['email'] = $user['email'];
             <a href="client-preguntas-frecuentes.php">Preguntas frecuentes</a>
         </div>
     </footer>
+<script>
+    // Sistema de pestañas
+    function openTab(tabName) {
+        // Ocultar todos los paneles
+        const paneles = document.querySelectorAll('.tab-pane');
+        paneles.forEach(panel => panel.classList.remove('active'));
 
-    <script>
-        // Sistema de pestañas
-        function openTab(tabName) {
-            // Ocultar todos los paneles
-            const paneles = document.querySelectorAll('.tab-pane');
-            paneles.forEach(panel => panel.classList.remove('active'));
+        // Remover active de todos los botones
+        const botones = document.querySelectorAll('.tab-btn');
+        botones.forEach(btn => btn.classList.remove('active'));
 
-            // Remover active de todos los botones
-            const botones = document.querySelectorAll('.tab-btn');
-            botones.forEach(btn => btn.classList.remove('active'));
+        // Mostrar el panel seleccionado
+        document.getElementById(tabName).classList.add('active');
 
-            // Mostrar el panel seleccionado
-            document.getElementById(tabName).classList.add('active');
+        // Activar el botón clickeado
+        event.currentTarget.classList.add('active');
+    }
 
-            // Activar el botón clickeado
-            event.currentTarget.classList.add('active');
+    // Guardar cambios del perfil CON MEJOR MANEJO DE ERRORES
+    document.getElementById('formPerfil').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Mostrar confirmación
+        if (!confirm('¿Guardar cambios en tu perfil?')) {
+            return;
         }
-
-        // Guardar cambios del perfil
-        document.getElementById('formPerfil').addEventListener('submit', function(e) {
-            e.preventDefault();
+        
+        // Mostrar mensaje de carga
+        const btnGuardar = this.querySelector('.btn-guardar');
+        const originalText = btnGuardar.textContent;
+        btnGuardar.textContent = 'Guardando...';
+        btnGuardar.disabled = true;
+        
+        // Enviar datos
+        const formData = new FormData(this);
+        
+        // Agregar el campo 'action' si no existe
+        if (!formData.has('action')) {
+            formData.append('action', 'update_profile');
+        }
+        
+        console.log('Enviando datos:', Object.fromEntries(formData));
+        
+        fetch('actualizar-perfil.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            console.log('Respuesta recibida. Status:', response.status);
             
-            // Aquí puedes agregar la lógica para enviar los datos al servidor
-            const formData = new FormData(this);
-            
-            fetch('actualizar-perfil.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Cambios guardados exitosamente');
-                    // Actualizar datos en la sesión si es necesario
-                } else {
-                    alert('Error: ' + data.message);
+            // Primero obtener el texto para ver qué devuelve
+            return response.text().then(text => {
+                console.log('Texto de respuesta:', text);
+                
+                try {
+                    // Intentar parsear como JSON
+                    const data = JSON.parse(text);
+                    return { ok: response.ok, data: data };
+                } catch (error) {
+                    console.error('No es JSON válido:', text);
+                    // Si no es JSON, puede ser un error PHP
+                    return { 
+                        ok: false, 
+                        data: { 
+                            success: false, 
+                            message: 'El servidor devolvió una respuesta inesperada' 
+                        } 
+                    };
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error al guardar cambios');
             });
-        });
-
-        // Función para resetear el formulario
-        function resetForm() {
-            document.getElementById('formPerfil').reset();
-        }
-
-        // Cambiar contraseña
-        document.getElementById('formPassword').addEventListener('submit', function(e) {
-            e.preventDefault();
+        })
+        .then(result => {
+            console.log('Resultado procesado:', result);
             
-            const newPassword = document.getElementById('new_password').value;
-            const confirmPassword = document.getElementById('confirm_password').value;
-            
-            if (newPassword !== confirmPassword) {
-                alert('Las contraseñas no coinciden');
-                return;
+            if (result.data.success) {
+                alert('✅ ' + result.data.message);
+                // Actualizar la información en la página
+                if (result.data.data) {
+                    document.querySelector('.perfil-info h2').textContent = 
+                        result.data.data.nombre + ' ' + result.data.data.apellido;
+                    document.querySelector('.perfil-email').textContent = result.data.data.email;
+                    
+                    // También actualizar valores en los campos
+                    document.getElementById('nombre').value = result.data.data.nombre;
+                    document.getElementById('apellido').value = result.data.data.apellido;
+                    document.getElementById('email').value = result.data.data.email;
+                }
+            } else {
+                alert('❌ ' + (result.data.message || 'Error al guardar cambios'));
             }
+        })
+        .catch(error => {
+            console.error('Error en la petición:', error);
             
-            alert('Funcionalidad de cambiar contraseña en desarrollo');
+            // Verificar si el archivo existe
+            fetch('actualizar-perfil.php')
+                .then(res => {
+                    if (res.ok) {
+                        alert('🔌 Error de conexión con el servidor. Intenta recargar la página.');
+                    } else {
+                        alert('❌ El archivo "actualizar-perfil.php" no existe o tiene errores.');
+                    }
+                })
+                .catch(() => {
+                    alert('❌ No se puede acceder al servidor. Verifica tu conexión.');
+                });
+        })
+        .finally(() => {
+            // Restaurar botón
+            btnGuardar.textContent = originalText;
+            btnGuardar.disabled = false;
         });
+    });
 
-        // Confirmar eliminación de cuenta
-        function confirmarEliminar() {
-            if (confirm('¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.')) {
-                alert('Funcionalidad de eliminar cuenta en desarrollo');
-                // Aquí iría la lógica para eliminar la cuenta
-            }
-        }
+    // Función para resetear el formulario
+    function resetForm() {
+        // Cargar valores actuales desde la página (no desde PHP directamente)
+        const nombreActual = document.querySelector('.perfil-info h2').textContent.split(' ')[0];
+        const apellidoActual = document.querySelector('.perfil-info h2').textContent.split(' ')[1];
+        const emailActual = document.querySelector('.perfil-email').textContent;
+        
+        document.getElementById('nombre').value = nombreActual;
+        document.getElementById('apellido').value = apellidoActual || '';
+        document.getElementById('email').value = emailActual;
+        
+        alert('Cambios cancelados. Valores restaurados.');
+    }
 
-        // Cambiar foto de perfil
-        document.addEventListener('DOMContentLoaded', function() {
-            const avatarImg = document.querySelector('.perfil-avatar img');
+    // Código para manejar la foto de perfil (opcional)
+    document.addEventListener('DOMContentLoaded', function() {
+        const avatarImg = document.querySelector('.perfil-avatar img');
+        if (avatarImg) {
             avatarImg.addEventListener('click', function() {
                 const input = document.createElement('input');
                 input.type = 'file';
@@ -412,7 +468,51 @@ $_SESSION['email'] = $user['email'];
                 };
                 input.click();
             });
+            
+            // Agregar cursor pointer para indicar que es clickeable
+            avatarImg.style.cursor = 'pointer';
+            avatarImg.title = 'Haz clic para cambiar la foto de perfil';
+        }
+    });
+
+    // Función para mostrar servicios (si quieres cargarlos dinámicamente)
+    function cargarServicios() {
+        // Esta función podría cargar los servicios reales del usuario
+        console.log('Cargando servicios del usuario...');
+        // Aquí iría un fetch a un endpoint que devuelva los servicios del usuario
+    }
+
+    // Cargar servicios cuando se abre la pestaña (opcional)
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (this.textContent.includes('Servicios')) {
+                setTimeout(cargarServicios, 100);
+            }
         });
+    });
+
+    // Agregar validación en tiempo real a los campos del formulario
+    document.querySelectorAll('#formPerfil input').forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value.trim() === '') {
+                this.style.borderColor = '#f44336';
+            } else {
+                this.style.borderColor = '';
+            }
+        });
+        
+        // Validación especial para email
+        if (input.type === 'email') {
+            input.addEventListener('input', function() {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (this.value && !emailRegex.test(this.value)) {
+                    this.style.borderColor = '#f44336';
+                } else {
+                    this.style.borderColor = '';
+                }
+            });
+        }
+    });
     </script>
 
 </body>
