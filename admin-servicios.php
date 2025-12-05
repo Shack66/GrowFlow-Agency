@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrowFlow Agency - Servicios</title>
+    <title>GrowFlow Agency - Administrar Servicios</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,84 +17,406 @@
     <header>
         <div class="logo">
             <img src="../imags/logo.png" alt="Logo" class="logo-img">
-            <h1>GrowFlow Agency</h1>
+            <h1>GrowFlow Agency - Panel Admin</h1>
         </div>
-
 
         <nav class="main-nav">
             <a href="admin-index.php">Inicio</a>
-            <a href="admin-servicios.php">Servicios</a>
+            <a href="admin-servicios.php" class="active">Servicios</a>
             <a href="admin-mensajes.php">Mensajes</a>
             <a href="admin-perfil.php">Perfil</a>
         </nav>
     </header>
 
-    <!-- SECCIÓN SERVICIOS -->
-    <section class="servicios">
-        <h2 class="servicios-titulo">Servicios</h2>
-        
-        <div class="servicios-grid">
-            <!-- Servicio 1: Planes de Marketing -->
-            <div class="servicio-card" onclick="toggleServicio('servicio-1')">
-                <div class="servicio-icono">
-                    <div class="icono-bg">
-                        <img src="../imags/servicios/planes-de-marketing.png" alt="Marketing" class="icono-img">
-                    </div>
-                </div>
-                <div class="servicio-contenido">
-                    <h3>Planes de Marketing</h3>
-                    <p>Estrategias personalizadas para impulsar tu marca y alcanzar tus metas comerciales.</p>
-                </div>
-            </div>
-
-            <!-- Servicio 2: Publicidad en Redes -->
-            <div class="servicio-card" onclick="toggleServicio('servicio-2')">
-                <div class="servicio-icono">
-                    <div class="icono-bg">
-                        <img src="../imags/servicios/publicidad-en-redes.png" alt="Redes Sociales" class="icono-img">
-                    </div>
-                </div>
-                <div class="servicio-contenido">
-                    <h3>Publicidad en Redes</h3>
-                    <p>Campañas efectivas en redes sociales para conectar con tu audiencia ideal.</p>
-                </div>
-            </div>
-
-            <!-- Servicio 3: Diseño Gráfico -->
-            <div class="servicio-card" onclick="toggleServicio('servicio-3')">
-                <div class="servicio-icono">
-                    <div class="icono-bg">
-                        <img src="../imags/servicios/diseño-gráfico.png" alt="Diseño Gráfico" class="icono-img">
-                    </div>
-                </div>
-                <div class="servicio-contenido">
-                    <h3>Diseño Gráfico</h3>
-                    <p>Diseños creativos que comunican la identidad visual de tu marca.</p>
-                </div>
-            </div>
-
-            <!-- Servicio 4: Estrategia Digital -->
-            <div class="servicio-card" onclick="toggleServicio('servicio-4')">
-                <div class="servicio-icono">
-                    <div class="icono-bg">
-                        <img src="../imags/servicios/estrategia-digital.png" alt="Estrategia Digital" class="icono-img">
-                    </div>
-                </div>
-                <div class="servicio-contenido">
-                    <h3>Estrategia Digital</h3>
-                    <p>Consultoría especializada para optimizar tu presencia digital completa.</p>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="admin-container">
+        <div class="admin-header">
+            <h2 class="admin-title">Servicios Solicitados</h2>
+            <div class="admin-actions">
+                <button class="btn-refresh" onclick="cargarServicios()">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M15.65 4.35A8 8 0 1 0 17.4 10h-2.22a6 6 0 1 1-1-7.22L11 5h5V0l-2.35 2.35z"/>
+                    </svg>
+                </button>
+                <div class="filtros">
+                    <select id="filtro-estado" onchange="filtrarServicios()">
+                        <option value="">Todos los estados</option>
+                        <option value="pending">Pendientes</option>
+                        <option value="accepted">Aceptados</option>
+                        <option value="rejected">Rechazados</option>
+                    </select>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- ESTADÍSTICAS -->
+        <div class="admin-stats" id="estadisticas">
+            <div class="stat-card">
+                <h3>Total</h3>
+                <p class="stat-number" id="total-servicios">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Pendientes</h3>
+                <p class="stat-number stat-pendiente" id="pendientes">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Aceptados</h3>
+                <p class="stat-number stat-aceptado" id="aceptados">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Rechazados</h3>
+                <p class="stat-number stat-rechazado" id="rechazados">0</p>
+            </div>
+        </div>
+
+        <!-- LISTA DE SERVICIOS -->
+        <div class="servicios-lista" id="servicios-lista">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Cargando servicios...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODAL DE CONFIRMACIÓN SIMPLE -->
+    <div class="modal-overlay" id="modal-confirmacion">
+        <div class="modal-contenido modal-sm">
+            <div class="modal-header">
+                <h3 id="confirmacion-titulo">Confirmar acción</h3>
+                <button class="modal-cerrar" onclick="cerrarConfirmacion()">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <p id="confirmacion-mensaje">¿Estás seguro?</p>
+                <div class="form-group" id="notas-container" style="display: none;">
+                    <label for="confirmacion-notas">Notas (opcional):</label>
+                    <textarea id="confirmacion-notas" rows="3" placeholder="Agregar comentarios..."></textarea>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-cancelar" onclick="cerrarConfirmacion()">Cancelar</button>
+                <button class="btn-confirmar" id="btn-confirmar-accion">Confirmar</button>
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer>
         <p>© 2025 - GrowFlow Agency. Todos los derechos reservados.</p>
         <div class="footer-links">
-             <a href="admin-mensajes.php">Mensajes</a>
+            <a href="admin-mensajes.php">Mensajes</a>
         </div>
     </footer>
+
+    <script>
+    // Variables globales
+    let todosServicios = [];
+    let accionPendiente = null;
+
+    // Función para cargar servicios
+    function cargarServicios() {
+        const contenedor = document.getElementById('servicios-lista');
+        contenedor.innerHTML = `
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Cargando servicios...</p>
+            </div>
+        `;
+
+        console.log('Iniciando carga de servicios...');
+        
+        fetch('admin_obtener_servicios.php')
+            .then(response => {
+                console.log('Respuesta HTTP:', response.status, response.statusText);
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Datos recibidos:', data);
+                
+                if (data.error) {
+                    console.error('Error en datos:', data);
+                    contenedor.innerHTML = `
+                        <div class="error">
+                            <p>${data.mensaje || 'Error al cargar servicios'}</p>
+                            <p style="font-size: 12px; color: #666;">Detalles en consola</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                if (!data.data) {
+                    console.warn('No hay propiedad data en la respuesta');
+                    contenedor.innerHTML = `
+                        <div class="error">
+                            <p>Formato de respuesta incorrecto</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                todosServicios = data.data || [];
+                console.log(`${todosServicios.length} servicios cargados`);
+                
+                actualizarEstadisticas(todosServicios);
+                mostrarServicios(todosServicios);
+            })
+            .catch(error => {
+                console.error('Error de fetch:', error);
+                contenedor.innerHTML = `
+                    <div class="error">
+                        <p>Error de conexión. Intenta más tarde.</p>
+                        <p style="font-size: 12px; color: #666;">${error.message}</p>
+                    </div>
+                `;
+            });
+    }
+
+    // Actualizar estadísticas
+    function actualizarEstadisticas(servicios) {
+        const total = servicios.length;
+        const pendientes = servicios.filter(s => s.status === 'pending').length;
+        const aceptados = servicios.filter(s => s.status === 'approved' || s.status === 'accepted').length;
+        const rechazados = servicios.filter(s => s.status === 'rejected').length;
+
+        document.getElementById('total-servicios').textContent = total;
+        document.getElementById('pendientes').textContent = pendientes;
+        document.getElementById('aceptados').textContent = aceptados;
+        document.getElementById('rechazados').textContent = rechazados;
+    }
+
+    // Mostrar servicios en lista
+    function mostrarServicios(servicios) {
+        const contenedor = document.getElementById('servicios-lista');
+        
+        if (servicios.length === 0) {
+            contenedor.innerHTML = `
+                <div class="empty">
+                    <p>No hay servicios solicitados</p>
+                </div>
+            `;
+            return;
+        }
+
+        let html = '';
+        servicios.forEach(servicio => {
+            // Normalizar el estado a minúsculas para comparación
+            const statusNormalizado = (servicio.status || 'pending').toLowerCase().trim();
+            
+            // Determinar clase y texto del estado
+            let estadoClase = '';
+            let estadoTexto = '';
+            
+            switch(statusNormalizado) {
+                case 'pending':
+                    estadoClase = 'estado-pendiente';
+                    estadoTexto = 'PENDIENTE';
+                    break;
+                case 'accepted':
+                case 'approved':
+                    estadoClase = 'estado-aceptado';
+                    estadoTexto = 'ACEPTADO';
+                    break;
+                case 'rejected':
+                    estadoClase = 'estado-rechazado';
+                    estadoTexto = 'RECHAZADO';
+                    break;
+                default:
+                    estadoClase = 'estado-pendiente';
+                    estadoTexto = 'PENDIENTE';
+            }
+
+            // Formatear fecha
+            const fecha = servicio.created_at ? 
+                new Date(servicio.created_at).toLocaleDateString('es-ES', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                }) : 'Fecha no disponible';
+
+            // Mostrar botones SOLO si el estado es pendiente
+            let botonesHTML = '';
+            if (statusNormalizado === 'pending') {
+                botonesHTML = `
+                    <div class="acciones-pendiente">
+                        <button class="btn-aceptar" onclick="aceptarServicio(${servicio.request_id}, '${servicio.service_name.replace(/'/g, "\\'")}')">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                            </svg>
+                            Aceptar
+                        </button>
+                        <button class="btn-rechazar" onclick="rechazarServicio(${servicio.request_id}, '${servicio.service_name.replace(/'/g, "\\'")}')">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                            Rechazar
+                        </button>
+                    </div>
+                `;
+            } else {
+                // Para estados no pendientes, mostrar mensaje
+                botonesHTML = `<span style="color: #666; font-style: italic; font-size: 0.9rem;">Estado: ${estadoTexto}</span>`;
+            }
+
+            html += `
+                <div class="servicio-card-admin">
+                    <div class="servicio-header">
+                        <div class="servicio-info">
+                            <h3>${servicio.service_name}</h3>
+                            <div class="servicio-meta">
+                                <span class="servicio-user">${servicio.user_name || 'Usuario desconocido'}</span>
+                                <span class="servicio-email">${servicio.user_email || 'Email no disponible'}</span>
+                                <span class="servicio-fecha">${fecha}</span>
+                            </div>
+                        </div>
+                        <div class="servicio-estado">
+                            <span class="estado-badge ${estadoClase}">${estadoTexto}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="servicio-desc">
+                        <p>${servicio.description || 'Sin descripción'}</p>
+                    </div>
+                    
+                    <div class="servicio-acciones">
+                        ${botonesHTML}
+                    </div>
+                </div>
+            `;
+        });
+
+        contenedor.innerHTML = html;
+        console.log(`${servicios.length} servicios mostrados en la lista`);
+        
+        // Depuración: mostrar estados de todos los servicios
+        console.log('Estados de servicios:', servicios.map(s => ({
+            id: s.request_id,
+            nombre: s.service_name,
+            status: s.status,
+            normalizado: (s.status || 'pending').toLowerCase().trim()
+        })));
+    }
+
+    // Filtrar servicios
+    function filtrarServicios() {
+        const filtro = document.getElementById('filtro-estado').value;
+        
+        let serviciosFiltrados = todosServicios;
+        if (filtro) {
+            serviciosFiltrados = todosServicios.filter(s => s.status === filtro);
+        }
+        
+        mostrarServicios(serviciosFiltrados);
+        actualizarEstadisticas(serviciosFiltrados);
+    }
+
+    // Aceptar servicio (con confirmación)
+    function aceptarServicio(requestId, servicioNombre) {
+        accionPendiente = {
+            requestId: requestId,
+            accion: 'aceptar',
+            servicioNombre: servicioNombre
+        };
+        
+        document.getElementById('confirmacion-titulo').textContent = 'Aceptar Servicio';
+        document.getElementById('confirmacion-mensaje').textContent = 
+            `¿Estás seguro de aceptar el servicio "${servicioNombre}"?`;
+        document.getElementById('notas-container').style.display = 'block';
+        document.getElementById('confirmacion-notas').value = '';
+        document.getElementById('btn-confirmar-accion').className = 'btn-confirmar btn-aceptar-modal';
+        document.getElementById('btn-confirmar-accion').textContent = 'Aceptar';
+        
+        document.getElementById('modal-confirmacion').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Rechazar servicio (con confirmación)
+    function rechazarServicio(requestId, servicioNombre) {
+        accionPendiente = {
+            requestId: requestId,
+            accion: 'rechazar',
+            servicioNombre: servicioNombre
+        };
+        
+        document.getElementById('confirmacion-titulo').textContent = 'Rechazar Servicio';
+        document.getElementById('confirmacion-mensaje').textContent = 
+            `¿Estás seguro de rechazar el servicio "${servicioNombre}"?`;
+        document.getElementById('notas-container').style.display = 'block';
+        document.getElementById('confirmacion-notas').value = '';
+        document.getElementById('btn-confirmar-accion').className = 'btn-confirmar btn-rechazar-modal';
+        document.getElementById('btn-confirmar-accion').textContent = 'Rechazar';
+        
+        document.getElementById('modal-confirmacion').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Cerrar modal de confirmación
+    function cerrarConfirmacion() {
+        document.getElementById('modal-confirmacion').classList.remove('active');
+        document.body.style.overflow = 'auto';
+        accionPendiente = null;
+    }
+
+    // Enviar acción al servidor
+    function enviarAccion(requestId, accion, notas) {
+        console.log('Enviando acción:', { 
+            requestId: requestId, 
+            accion: accion, 
+            notas: notas 
+        });
+        
+        const formData = new FormData();
+        formData.append('request_id', requestId);
+        formData.append('accion', accion);
+        formData.append('notas', notas);
+        
+        fetch('admin_actualizar_estado.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(text => {
+            console.log('Texto completo de respuesta:', text);
+            
+            try {
+                const data = JSON.parse(text);
+                console.log('JSON parseado correctamente:', data);
+                
+                if (data.success) {
+                    alert(data.mensaje);
+                    cargarServicios();
+                } else {
+                    alert('Error: ' + (data.mensaje || 'Error desconocido'));
+                    console.error('Error del servidor:', data);
+                }
+            } catch (e) {
+                console.error('Error parseando JSON:', e);
+                alert('El servidor devolvió una respuesta inesperada.');
+            }
+        })
+        .catch(error => {
+            console.error('Error de red:', error);
+            alert('Error de conexión al servidor.');
+        });
+    }
+
+    // Configurar botón de confirmación
+    document.getElementById('btn-confirmar-accion').addEventListener('click', function() {
+        if (!accionPendiente) return;
+        
+        const notas = document.getElementById('confirmacion-notas').value;
+        enviarAccion(accionPendiente.requestId, accionPendiente.accion, notas);
+        cerrarConfirmacion();
+    });
+
+    // Cargar servicios al iniciar
+    document.addEventListener('DOMContentLoaded', function() {
+        cargarServicios();
+    });
+    </script>
 
 </body>
 </html>

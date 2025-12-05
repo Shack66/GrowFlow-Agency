@@ -2268,3 +2268,837 @@ footer.footer {
     border: 1px solid #eee;
     margin-top: 10px;
 }
+
+/* ESTILOS PARA PANEL DE ADMINISTRACIÓN */
+
+/* Asegurar que body tenga el fondo y estructura correcta */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image:
+        radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
+    background-size: 8px 8px, 100% 100%;
+    background-attachment: fixed;
+}
+
+/* Contenedor principal admin */
+.admin-container {
+    flex: 1;
+    padding: 30px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Encabezado admin */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--azul);
+}
+
+.admin-title {
+    font-size: 2rem;
+    color: white;
+    margin: 0;
+    font-weight: 600;
+}
+
+.admin-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Botón de actualizar - solo ícono transparente con hover sutil */
+.btn-refresh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    background: transparent;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-refresh:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+}
+
+.btn-refresh svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Filtros */
+.filtros {
+    display: flex;
+    gap: 10px;
+}
+
+.filtros select {
+    padding: 10px 15px;
+    border: 2px solid var(--gris);
+    border-radius: 6px;
+    background: white;
+    font-size: 0.95rem;
+    color: var(--negro);
+    min-width: 180px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.filtros select:focus {
+    outline: none;
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.1);
+}
+
+/* Estadísticas */
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card h3 {
+    margin: 0 0 10px 0;
+    color: var(--negro);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--azul);
+}
+
+.stat-pendiente { color: var(--azul-oscuro); }
+.stat-aceptado { color: var(--azul); }
+.stat-rechazado { color: var(--negro); }
+
+/* Lista de servicios admin */
+.servicios-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.servicio-card-admin {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid var(--azul);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servicio-card-admin:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.servicio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.servicio-info h3 {
+    margin: 0 0 10px 0;
+    color: var(--negro);
+    font-size: 1.3rem;
+}
+
+.servicio-meta {
+    display: flex;
+    gap: 20px;
+    color: #666;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+}
+
+.servicio-user,
+.servicio-email {
+    font-weight: 500;
+}
+
+.servicio-desc p {
+    color: #555;
+    line-height: 1.5;
+    margin: 15px 0;
+}
+
+.servicio-acciones {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--gris);
+}
+
+/* Botones de acción */
+.acciones-pendiente {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-aceptar, .btn-rechazar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+}
+
+.btn-aceptar {
+    background: var(--azul);
+    color: white;
+}
+
+.btn-aceptar:hover {
+    background: var(--azul-oscuro);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 119, 255, 0.3);
+}
+
+.btn-rechazar {
+    background: var(--negro);
+    color: white;
+}
+
+.btn-rechazar:hover {
+    background: #1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Estados */
+.estado-badge {
+    display: inline-block;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 100px;
+    text-align: center;
+}
+
+.estado-pendiente {
+    background: #D1ECF1;
+    color: var(--azul-oscuro);
+    border: 1px solid var(--azul);
+}
+
+.estado-aceptado {
+    background: var(--azul);
+    color: white;
+    border: 1px solid var(--azul);
+}
+
+.estado-rechazado {
+    background: #333;
+    color: white;
+    border: 1px solid var(--negro);
+}
+
+/* Estados de carga */
+.loading, .empty, .error {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: var(--negro);
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--gris);
+    border-top: 4px solid var(--azul);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error {
+    color: var(--negro);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.empty {
+    color: #666;
+    font-style: italic;
+}
+
+/* Modal de confirmación */
+.modal-sm {
+    max-width: 500px;
+}
+
+.modal-header {
+    background: var(--negro);
+    color: white;
+    padding: 25px 30px;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.modal-cerrar {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 36px;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.modal-cerrar:hover {
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 20px 30px;
+}
+
+.modal-body p {
+    color: var(--negro);
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.modal-body .form-group {
+    margin-top: 15px;
+}
+
+.modal-body .form-group label {
+    display: block;
+    color: var(--negro);
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.modal-body .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--gris);
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+    resize: vertical;
+}
+
+.modal-body .form-group textarea:focus {
+    outline: none;
+    border-color: var(--azul);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 20px 30px;
+    border-top: 1px solid var(--gris);
+}
+
+.btn-cancelar {
+    padding: 10px 20px;
+    background: var(--gris);
+    color: var(--negro);
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-cancelar:hover {
+    background: #d0d0d0;
+}
+
+.btn-confirmar {
+    padding: 10px 25px;
+    background: var(--azul);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-confirmar:hover {
+    background: var(--azul-oscuro);
+}
+
+/* Colores específicos para botones de modal */
+.btn-aceptar-modal {
+    background: var(--azul) !important;
+}
+
+.btn-aceptar-modal:hover {
+    background: var(--azul-oscuro) !important;
+}
+
+.btn-rechazar-modal {
+    background: var(--negro) !important;
+}
+
+.btn-rechazar-modal:hover {
+    background: #1a1a1a !important;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .admin-container {
+        padding: 20px;
+    }
+    
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    
+    .admin-actions {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .filtros {
+        flex: 1;
+    }
+    
+    .filtros select {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .servicio-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .servicio-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .servicio-acciones {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+    
+    .acciones-pendiente {
+        flex-direction: column;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+    }
+    
+    .btn-cancelar, .btn-confirmar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-title {
+        font-size: 1.5rem;
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* ESTILOS PARA FORMULARIOS LLENOS EN SERVICIOS SOLICITADOS */
+
+/* Contenedor del formulario con respuestas */
+.formulario-respuestas {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid var(--azul);
+}
+
+.formulario-respuestas h4 {
+    color: var(--negro);
+    font-size: 1.1rem;
+    margin: 0 0 20px 0;
+    font-weight: 600;
+}
+
+/* Grupos de formulario llenos */
+.form-group-filled {
+    margin-bottom: 20px;
+}
+
+.form-group-filled:last-child {
+    margin-bottom: 0;
+}
+
+.form-label-filled {
+    display: block;
+    color: var(--negro);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.form-input-filled {
+    background: white;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    color: var(--negro);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    min-height: 45px;
+    word-wrap: break-word;
+}
+
+/* Tarjeta de información de reunión */
+.reunion-info-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.reunion-info-card.con-reunion {
+    background: #E8F5E9;
+    border-left: 4px solid #2E7D32;
+}
+
+.reunion-info-card.sin-reunion {
+    background: #F5F5F5;
+    border-left: 4px solid #999;
+}
+
+.reunion-icon {
+    flex-shrink: 0;
+}
+
+.reunion-content {
+    flex: 1;
+}
+
+.reunion-titulo {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.reunion-info-card.con-reunion .reunion-titulo {
+    color: #2E7D32;
+}
+
+.reunion-info-card.sin-reunion .reunion-titulo {
+    color: #666;
+}
+
+.reunion-fecha {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Botón ver detalles */
+.servicio-acciones {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.btn-ver-detalles {
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--azul);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-ver-detalles:hover {
+    background: var(--azul-oscuro);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 119, 255, 0.3);
+}
+
+/* ESTILOS PARA EL MODAL DE DETALLES */
+
+.modal-seccion {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #eee;
+}
+
+.modal-seccion:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.modal-seccion h3 {
+    color: var(--negro);
+    font-size: 1.3rem;
+    margin: 0 0 20px 0;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-seccion h3::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 24px;
+    background: var(--azul);
+    border-radius: 2px;
+}
+
+/* Items de detalle en modal */
+.detalle-item {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.detalle-item strong {
+    min-width: 160px;
+    color: #555;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.detalle-item span {
+    color: var(--negro);
+    font-size: 0.95rem;
+    flex: 1;
+}
+
+.estado-badge-modal {
+    display: inline-block;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Formulario en modal */
+.formulario-respuestas-modal {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+}
+
+.form-group-filled-modal {
+    margin-bottom: 20px;
+}
+
+.form-group-filled-modal:last-child {
+    margin-bottom: 0;
+}
+
+.form-label-filled-modal {
+    display: block;
+    color: var(--negro);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.form-input-filled-modal {
+    background: white;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    color: var(--negro);
+    font-size: 1rem;
+    line-height: 1.6;
+    min-height: 50px;
+    word-wrap: break-word;
+}
+
+/* Información de reunión en modal */
+.reunion-info-modal {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.reunion-info-modal.con-reunion {
+    background: #E8F5E9;
+    border: 2px solid #2E7D32;
+}
+
+.reunion-info-modal.sin-reunion {
+    background: #F5F5F5;
+    border: 2px solid #999;
+}
+
+.reunion-icon-modal {
+    flex-shrink: 0;
+}
+
+.reunion-titulo-modal {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.reunion-info-modal.con-reunion .reunion-titulo-modal {
+    color: #2E7D32;
+}
+
+.reunion-info-modal.sin-reunion .reunion-titulo-modal {
+    color: #666;
+}
+
+.reunion-fecha-modal {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+/* Mejorar la fecha en el header */
+.servicio-fecha {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.servicio-fecha svg {
+    opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .formulario-respuestas,
+    .formulario-respuestas-modal {
+        padding: 15px;
+    }
+    
+    .form-input-filled,
+    .form-input-filled-modal {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .detalle-item {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .detalle-item strong {
+        min-width: auto;
+    }
+    
+    .reunion-info-card,
+    .reunion-info-modal {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .modal-seccion h3 {
+        font-size: 1.1rem;
+    }
+}
