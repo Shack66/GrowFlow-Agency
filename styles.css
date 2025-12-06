@@ -3281,15 +3281,15 @@ body {
         display: block;
         margin-bottom: 25px;
         border: 5px solid #82a9d9;
-        border-radius: 8px;
+        border-radius: 8px transparent;
         padding: 15px;
-        background: #00C853;
+        background: #ffffff;
     }
     
     .mensajes-table td {
         display: block;
-        text-align: left;
-        padding: 8px 0;
+        text-align: center;
+        padding: 8px 8;
         border: none;
     }
 }
