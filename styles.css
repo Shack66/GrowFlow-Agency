@@ -3279,8 +3279,8 @@ body {
     
     .mensajes-table tr {
         display: block;
-        border: 8px solid #82a9d9;
-        border-radius: 8px;
+        border: 10px solid #82a9d9;
+        border-radius: 2px;
         padding: 15px;
         background: #ffffff;
     }
