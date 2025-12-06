@@ -3280,10 +3280,10 @@ body {
     .mensajes-table tr {
         display: block;
         margin-bottom: 25px;
-        border: 3px solid #82a9d9;
+        border: 5px solid #82a9d9;
         border-radius: 8px;
         padding: 15px;
-        background: transparent;
+        background: #00C853;
     }
     
     .mensajes-table td {
