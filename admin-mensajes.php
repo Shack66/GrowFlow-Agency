@@ -216,13 +216,81 @@ require_once 'db.php';
             <h1>GrowFlow Agency</h1>
         </div>
 
-        <nav class="main-nav">
+        <!-- Botón hamburguesa (agregado para consistencia) -->
+        <button class="hamburger" id="hamburger" aria-label="Menú">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <!-- Navegación -->
+        <nav class="main-nav" id="mainNav">
             <a href="admin-index.php">Inicio</a>
             <a href="admin-servicios.php">Servicios</a>
             <a href="admin-mensajes.php">Mensajes</a>
             <a href="admin-perfil.php">Perfil</a>
         </nav>
     </header>
+
+    <!-- Script para menú hamburguesa (agregado) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const mainNav = document.getElementById('mainNav');
+            const menuOverlay = document.createElement('div');
+            
+            // Crear overlay
+            menuOverlay.className = 'menu-overlay';
+            document.body.appendChild(menuOverlay);
+            
+            // Toggle menú
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                hamburger.classList.toggle('active');
+                mainNav.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+                document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+            });
+            
+            // Cerrar menú al hacer clic en overlay
+            menuOverlay.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                mainNav.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Cerrar menú al hacer clic en enlaces
+            document.querySelectorAll('.main-nav a').forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    mainNav.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // Cerrar menú al redimensionar a pantalla grande
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    hamburger.classList.remove('active');
+                    mainNav.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Cerrar menú con tecla Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mainNav.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    mainNav.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
 
     <!-- CONTENIDO PRINCIPAL -->
     <section class="mensajes-container">
@@ -272,17 +340,17 @@ require_once 'db.php';
                 <tbody>
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <tr class="mensaje-fila" data-estado="<?php echo $row['status']; ?>">
-                            <td><?php echo $row['contact_id']; ?></td>
-                            <td><?php echo date('d/m/Y H:i', strtotime($row['sent_date'])); ?></td>
-                            <td><?php echo htmlspecialchars($row['name']); ?></td>
-                            <td><?php echo htmlspecialchars($row['email']); ?></td>
-                            <td><?php echo htmlspecialchars($row['subject']); ?></td>
-                            <td>
+                            <td data-label="ID"><?php echo $row['contact_id']; ?></td>
+                            <td data-label="Fecha"><?php echo date('d/m/Y H:i', strtotime($row['sent_date'])); ?></td>
+                            <td data-label="Nombre"><?php echo htmlspecialchars($row['name']); ?></td>
+                            <td data-label="Email"><?php echo htmlspecialchars($row['email']); ?></td>
+                            <td data-label="Asunto"><?php echo htmlspecialchars($row['subject']); ?></td>
+                            <td data-label="Estado">
                                 <span class="estado-badge estado-<?php echo $row['status']; ?>">
                                     <?php echo $row['status'] == 'pending' ? 'Pendiente' : 'Leído'; ?>
                                 </span>
                             </td>
-                            <td class="acciones">
+                            <td data-label="Acciones" class="acciones">
                                 <button class="btn-accion btn-ver" onclick="verDetalle(<?php echo htmlspecialchars(json_encode($row)); ?>)">
                                     Ver
                                 </button>
