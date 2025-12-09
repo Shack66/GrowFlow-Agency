@@ -1481,11 +1481,6 @@ footer.footer {
 }
 
 
-<<<<<<< Updated upstream
-/* Añade esto a tus media queries existentes */
-=======
-
->>>>>>> Stashed changes
 @media (max-width: 768px) {
 
     .servicios, .nosotros, .preguntas-frecuentes, .contacto-contenedor {
@@ -3295,8 +3290,6 @@ body {
         padding: 10px 0;
         border: none;
     }
-<<<<<<< Updated upstream
-=======
 }
 
 /* ESTILOS PARA MODALES Y FORMULARIOS DE SERVICIOS */
@@ -3773,5 +3766,4 @@ body {
     .mis-servicios {
         padding: 30px 20px;
     }
->>>>>>> Stashed changes
 }
