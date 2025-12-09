@@ -1481,9 +1481,13 @@ footer.footer {
 }
 
 
+<<<<<<< Updated upstream
 /* Añade esto a tus media queries existentes */
+=======
+
+>>>>>>> Stashed changes
 @media (max-width: 768px) {
-    /* Ajusta también otras páginas para consistencia */
+
     .servicios, .nosotros, .preguntas-frecuentes, .contacto-contenedor {
         padding: 30px 20px !important;
     }
@@ -3291,4 +3295,483 @@ body {
         padding: 10px 0;
         border: none;
     }
+<<<<<<< Updated upstream
+=======
+}
+
+/* ESTILOS PARA MODALES Y FORMULARIOS DE SERVICIOS */
+
+/* Fondo con patrón para secciones de servicios */
+.mis-servicios {
+    padding: 40px 5%;
+    background-image:
+        radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
+    background-size: 8px 8px, 100% 100%;
+    background-attachment: fixed;
+}
+
+.mis-servicios-titulo {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    color: white;
+    position: relative;
+}
+
+.mis-servicios-titulo::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--azul);
+    margin: 10px auto;
+    border-radius: 2px;
+}
+
+/* Modal con padding lateral - ESTILO ADMIN */
+.modal-detalles-contenido {
+    max-width: 900px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: white;
+}
+
+.detalles-servicio {
+    padding: 30px;
+}
+
+/* Secciones del modal - ESTILO ADMIN */
+.modal-seccion {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #eee;
+}
+
+.modal-seccion:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.modal-seccion h3 {
+    color: var(--negro);
+    font-size: 1.3rem;
+    margin: 0 0 20px 0;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-seccion h3::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 24px;
+    background: var(--azul);
+    border-radius: 2px;
+}
+
+/* Items de detalle en modal - ESTILO ADMIN */
+.detalle-item {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.detalle-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.detalle-item strong {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--negro);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.detalle-item span {
+    color: #555;
+    font-size: 0.95rem;
+    display: block;
+    line-height: 1.5;
+}
+
+/* Estados en modal - COLORES ACTUALIZADOS */
+.estado-badge-modal {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 5px;
+}
+
+/* COLORES DE ESTADOS - UNIFICADOS */
+/* Pendiente - Celeste claro */
+.estado-pendiente,
+.estado-badge-modal[style*="#D1ECF1"] {
+    background: #D1ECF1 !important;
+    color: var(--azul-oscuro) !important;
+    border: 1px solid var(--azul) !important;
+}
+
+/* Aceptado/Completado - Azul */
+.estado-aceptado,
+.estado-completado,
+.estado-badge-modal[style*="#D4EDDA"] {
+    background: var(--azul) !important;
+    color: white !important;
+    border: 1px solid var(--azul) !important;
+}
+
+/* Rechazado - Negro/Gris oscuro */
+.estado-rechazado,
+.estado-badge-modal[style*="#F8D7DA"] {
+    background: #333 !important;
+    color: white !important;
+    border: 1px solid var(--negro) !important;
+}
+
+/* En Proceso - Amarillo (si se necesita) */
+.estado-proceso,
+.estado-badge-modal[style*="#FFF3CD"] {
+    background: #D1ECF1 !important;
+    color: var(--azul-oscuro) !important;
+    border: 1px solid var(--azul) !important;
+}
+
+/* Formulario en modal - ESTILO ADMIN */
+.formulario-respuestas-modal {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    margin-top: 15px;
+}
+
+.form-group-filled-modal {
+    margin-bottom: 25px;
+}
+
+.form-group-filled-modal:last-child {
+    margin-bottom: 0;
+}
+
+.form-label-filled-modal {
+    display: block;
+    color: var(--negro);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.form-input-filled-modal {
+    background: white;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    color: var(--negro);
+    font-size: 1rem;
+    line-height: 1.6;
+    min-height: 50px;
+    word-wrap: break-word;
+    display: block;
+    width: 100%;
+}
+
+/* Información de reunión en modal - ESTILO ADMIN */
+.reunion-info-modal {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 15px;
+}
+
+.reunion-info-modal.con-reunion {
+    background: #E8F5E9;
+    border: 2px solid #2E7D32;
+}
+
+.reunion-info-modal.sin-reunion {
+    background: #F5F5F5;
+    border: 2px solid #999;
+}
+
+.reunion-icon-modal {
+    flex-shrink: 0;
+}
+
+.reunion-titulo-modal {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.reunion-info-modal.con-reunion .reunion-titulo-modal {
+    color: #2E7D32;
+}
+
+.reunion-info-modal.sin-reunion .reunion-titulo-modal {
+    color: #666;
+}
+
+.reunion-fecha-modal {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+/* ESTILOS PARA TARJETAS DE SERVICIOS SOLICITADOS */
+.servicio-solicitado-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-left: 5px solid var(--azul);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servicio-solicitado-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.servicio-solicitado-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.servicio-solicitado-info h3 {
+    margin: 0 0 10px 0;
+    color: var(--negro);
+    font-size: 1.3rem;
+}
+
+.servicio-fecha {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.servicio-fecha svg {
+    opacity: 0.7;
+}
+
+/* Estados en tarjetas - COLORES ACTUALIZADOS */
+.estado-servicio {
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+/* Pendiente - Celeste claro */
+.estado-servicio.estado-pendiente {
+    background: #D1ECF1;
+    color: var(--azul-oscuro);
+    border: 1px solid var(--azul);
+}
+
+/* Aceptado/Completado - Azul */
+.estado-servicio.estado-aceptado,
+.estado-servicio.estado-completado {
+    background: var(--azul);
+    color: white;
+    border: 1px solid var(--azul);
+}
+
+/* Rechazado - Negro/Gris oscuro */
+.estado-servicio.estado-rechazado {
+    background: #333;
+    color: white;
+    border: 1px solid var(--negro);
+}
+
+/* En Proceso - Celeste */
+.estado-servicio.estado-proceso {
+    background: #D1ECF1;
+    color: var(--azul-oscuro);
+    border: 1px solid var(--azul);
+}
+
+.servicio-desc {
+    margin-top: 15px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.servicio-desc p {
+    margin: 0;
+}
+
+.servicio-acciones {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.btn-ver-detalles {
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--azul);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-ver-detalles:hover {
+    background: var(--azul-oscuro);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 119, 255, 0.3);
+}
+
+/* ESTILOS PARA ADMIN - ESTADOS EN TARJETAS */
+.servicio-card-admin .estado-badge {
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* Pendiente - Celeste claro */
+.servicio-card-admin .estado-badge.estado-pendiente {
+    background: #D1ECF1;
+    color: var(--azul-oscuro);
+    border: 1px solid var(--azul);
+}
+
+/* Aceptado - Azul */
+.servicio-card-admin .estado-badge.estado-aceptado {
+    background: var(--azul);
+    color: white;
+    border: 1px solid var(--azul);
+}
+
+/* Rechazado - Negro/Gris oscuro */
+.servicio-card-admin .estado-badge.estado-rechazado {
+    background: #333;
+    color: white;
+    border: 1px solid var(--negro);
+}
+
+/* Contenedor sin servicios */
+.sin-servicios {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.sin-servicios p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.btn-solicitar-primero {
+    background: var(--azul);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-solicitar-primero:hover {
+    background: var(--azul-oscuro);
+}
+
+.cargando-servicios {
+    text-align: center;
+    padding: 40px;
+    color: white;
+}
+
+.error-carga {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    color: #721C24;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .detalles-servicio {
+        padding: 20px 15px;
+    }
+    
+    .formulario-respuestas-modal {
+        padding: 15px;
+    }
+    
+    .form-input-filled-modal {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .detalle-item strong {
+        font-size: 0.9rem;
+    }
+    
+    .detalle-item span {
+        font-size: 0.85rem;
+    }
+    
+    .reunion-info-modal {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .modal-seccion h3 {
+        font-size: 1.1rem;
+    }
+    
+    .servicio-solicitado-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .estado-servicio {
+        align-self: flex-start;
+    }
+    
+    .mis-servicios {
+        padding: 30px 20px;
+    }
+>>>>>>> Stashed changes
 }

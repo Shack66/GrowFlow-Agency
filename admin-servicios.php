@@ -3,8 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrowFlow Agency - Administrar Servicios</title>
+    <title>GrowFlow Agency</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Alineación mejorada para admin-actions */
+        .admin-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-refresh {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            flex-shrink: 0;
+        }
+
+        .filtros {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .filtros select {
+            height: 45px;
+            padding: 10px 15px;
+        }
+    </style>
 </head>
 <body>
 
@@ -26,9 +54,15 @@
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
+<<<<<<< Updated upstream
 
         <!-- Navegación -->
         <nav class="main-nav" id="mainNav">
+=======
+        
+        <!-- Navegación -->
+        <nav class="main-nav">
+>>>>>>> Stashed changes
             <a href="admin-index.php">Inicio</a>
             <a href="admin-servicios.php">Servicios</a>
             <a href="admin-mensajes.php">Mensajes</a>
@@ -101,7 +135,7 @@
         <div class="admin-header">
             <h2 class="admin-title">Servicios Solicitados</h2>
             <div class="admin-actions">
-                <button class="btn-refresh" onclick="cargarServicios()">
+                <button class="btn-refresh" onclick="cargarServicios()" title="Actualizar lista">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M15.65 4.35A8 8 0 1 0 17.4 10h-2.22a6 6 0 1 1-1-7.22L11 5h5V0l-2.35 2.35z"/>
                     </svg>
@@ -146,7 +180,7 @@
         </div>
     </main>
 
-    <!-- MODAL DE CONFIRMACIÓN SIMPLE -->
+    <!-- MODAL DE CONFIRMACIÓN -->
     <div class="modal-overlay" id="modal-confirmacion">
         <div class="modal-contenido modal-sm">
             <div class="modal-header">
@@ -165,6 +199,19 @@
             <div class="modal-footer">
                 <button class="btn-cancelar" onclick="cerrarConfirmacion()">Cancelar</button>
                 <button class="btn-confirmar" id="btn-confirmar-accion">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DETALLES DEL SERVICIO -->
+    <div class="modal-overlay" id="modal-detalles-admin">
+        <div class="modal-contenido">
+            <div class="modal-header">
+                <h3>Detalles del Servicio</h3>
+                <button class="modal-cerrar" onclick="cerrarDetallesAdmin()">&times;</button>
+            </div>
+            <div class="modal-body" id="detalles-admin-contenido">
+                <!-- Se llenará dinámicamente -->
             </div>
         </div>
     </div>
@@ -256,6 +303,200 @@
         document.getElementById('rechazados').textContent = rechazados;
     }
 
+    // Mostrar detalles del servicio en modal
+    function mostrarDetallesAdmin(servicio) {
+        const modal = document.getElementById('modal-detalles-admin');
+        const contenido = document.getElementById('detalles-admin-contenido');
+        
+        // Formatear fecha
+        const fecha = servicio.created_at ? 
+            new Date(servicio.created_at).toLocaleDateString('es-ES', {
+                weekday: 'long',
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            }) : 'Fecha no disponible';
+        
+        // Determinar estado
+        const statusNormalizado = (servicio.status || 'pending').toLowerCase().trim();
+        let estadoTexto = '';
+        let estadoColor = '';
+        let estadoBg = '';
+        
+        switch(statusNormalizado) {
+            case 'pending':
+                estadoTexto = 'PENDIENTE';
+                estadoColor = '#0C5460';
+                estadoBg = '#D1ECF1';
+                break;
+            case 'accepted':
+            case 'approved':
+                estadoTexto = 'ACEPTADO';
+                estadoColor = '#155724';
+                estadoBg = '#D4EDDA';
+                break;
+            case 'rejected':
+                estadoTexto = 'RECHAZADO';
+                estadoColor = '#721C24';
+                estadoBg = '#F8D7DA';
+                break;
+            default:
+                estadoTexto = 'PENDIENTE';
+                estadoColor = '#856404';
+                estadoBg = '#FFF3CD';
+        }
+        
+        let html = `
+            <div class="modal-seccion">
+                <h3>Información General</h3>
+                <div class="detalle-item">
+                    <strong>Servicio:</strong> 
+                    <span>${servicio.service_name}</span>
+                </div>
+                <div class="detalle-item">
+                    <strong>ID de solicitud:</strong> 
+                    <span>${servicio.request_id}</span>
+                </div>
+                <div class="detalle-item">
+                    <strong>Cliente:</strong> 
+                    <span>${servicio.user_name || 'Usuario desconocido'}</span>
+                </div>
+                <div class="detalle-item">
+                    <strong>Email:</strong> 
+                    <span>${servicio.user_email || 'Email no disponible'}</span>
+                </div>
+                <div class="detalle-item">
+                    <strong>Fecha de solicitud:</strong> 
+                    <span>${fecha}</span>
+                </div>
+                <div class="detalle-item">
+                    <strong>Estado:</strong> 
+                    <span class="estado-badge-modal" style="background: ${estadoBg}; color: ${estadoColor};">
+                        ${estadoTexto}
+                    </span>
+                </div>
+            </div>
+        `;
+        
+        // Procesar y mostrar respuestas del formulario
+        if (servicio.answers) {
+            try {
+                const answers = typeof servicio.answers === 'string' ? 
+                    JSON.parse(servicio.answers) : servicio.answers;
+                
+                const preguntas_labels = {
+                    'pregunta-0': '¿Cuál es tu objetivo principal?',
+                    'pregunta-1': '¿Cuál es tu presupuesto mensual aproximado?',
+                    'pregunta-2': '¿Cuánto tiempo llevas en el mercado?',
+                    'pregunta-3': 'Describe tu necesidad específica para este servicio'
+                };
+                
+                let respuestasHTML = '';
+                for (let key in answers) {
+                    if (key.startsWith('pregunta-')) {
+                        const pregunta = preguntas_labels[key] || key;
+                        const respuesta = answers[key] || 'Sin respuesta';
+                        
+                        respuestasHTML += `
+                            <div class="form-group-filled-modal">
+                                <label class="form-label-filled-modal">${pregunta}</label>
+                                <div class="form-input-filled-modal">${respuesta}</div>
+                            </div>
+                        `;
+                    }
+                }
+                
+                if (respuestasHTML) {
+                    html += `
+                        <div class="modal-seccion">
+                            <h3>Respuestas del Formulario</h3>
+                            <div class="formulario-respuestas-modal">
+                                ${respuestasHTML}
+                            </div>
+                        </div>
+                    `;
+                }
+            } catch (e) {
+                console.error('Error procesando respuestas:', e);
+            }
+        }
+        
+        // Sección de reunión
+        html += '<div class="modal-seccion">';
+        html += '<h3>Información de Reunión</h3>';
+        
+        if (servicio.meeting_date && servicio.meeting_date !== '0000-00-00' && 
+            servicio.meeting_time && servicio.meeting_time !== '00:00:00') {
+            try {
+                const fechaReunion = new Date(servicio.meeting_date).toLocaleDateString('es-ES', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                const horaReunion = servicio.meeting_time.substring(0, 5);
+                
+                html += `
+                    <div class="reunion-info-modal con-reunion">
+                        <div class="reunion-icon-modal">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="#005FCC" stroke-width="2" fill="none"/>
+                                <path d="M12 6V12L16 16" stroke="#005FCC" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="reunion-titulo-modal">Reunión Solicitada</div>
+                            <div class="reunion-fecha-modal">${fechaReunion} a las ${horaReunion}</div>
+                        </div>
+                    </div>
+                `;
+            } catch (e) {
+                html += `
+                    <div class="reunion-info-modal sin-reunion">
+                        <div class="reunion-icon-modal">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="#999" stroke-width="2" fill="none"/>
+                                <path d="M8 8L16 16M16 8L8 16" stroke="#999" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="reunion-titulo-modal">Sin Reunión Agendada</div>
+                            <div class="reunion-fecha-modal">No se solicitó reunión para este servicio</div>
+                        </div>
+                    </div>
+                `;
+            }
+        } else {
+            html += `
+                <div class="reunion-info-modal sin-reunion">
+                    <div class="reunion-icon-modal">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#999" stroke-width="2" fill="none"/>
+                            <path d="M8 8L16 16M16 8L8 16" stroke="#999" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="reunion-titulo-modal">Sin Reunión Agendada</div>
+                        <div class="reunion-fecha-modal">No se solicitó reunión para este servicio</div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        html += '</div>';
+        
+        contenido.innerHTML = html;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Cerrar modal de detalles
+    function cerrarDetallesAdmin() {
+        document.getElementById('modal-detalles-admin').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
     // Mostrar servicios en lista
     function mostrarServicios(servicios) {
         const contenedor = document.getElementById('servicios-lista');
@@ -271,10 +512,8 @@
 
         let html = '';
         servicios.forEach(servicio => {
-            // Normalizar el estado a minúsculas para comparación
             const statusNormalizado = (servicio.status || 'pending').toLowerCase().trim();
             
-            // Determinar clase y texto del estado
             let estadoClase = '';
             let estadoTexto = '';
             
@@ -297,7 +536,6 @@
                     estadoTexto = 'PENDIENTE';
             }
 
-            // Formatear fecha
             const fecha = servicio.created_at ? 
                 new Date(servicio.created_at).toLocaleDateString('es-ES', {
                     day: '2-digit',
@@ -305,7 +543,6 @@
                     year: 'numeric'
                 }) : 'Fecha no disponible';
 
-            // Mostrar botones SOLO si el estado es pendiente
             let botonesHTML = '';
             if (statusNormalizado === 'pending') {
                 botonesHTML = `
@@ -325,9 +562,11 @@
                     </div>
                 `;
             } else {
-                // Para estados no pendientes, mostrar mensaje
                 botonesHTML = `<span style="color: #666; font-style: italic; font-size: 0.9rem;">Estado: ${estadoTexto}</span>`;
             }
+
+            // Serializar servicio para pasarlo a la función
+            const servicioJSON = JSON.stringify(servicio).replace(/"/g, '&quot;');
 
             html += `
                 <div class="servicio-card-admin">
@@ -349,7 +588,10 @@
                         <p>${servicio.description || 'Sin descripción'}</p>
                     </div>
                     
-                    <div class="servicio-acciones">
+                    <div class="servicio-acciones" style="display: flex; justify-content: space-between; align-items: center;">
+                        <button class="btn-ver-detalles" onclick='mostrarDetallesAdmin(${servicioJSON})' style="width: auto; padding: 10px 20px;">
+                            Ver Detalles Completos
+                        </button>
                         ${botonesHTML}
                     </div>
                 </div>
@@ -358,14 +600,6 @@
 
         contenedor.innerHTML = html;
         console.log(`${servicios.length} servicios mostrados en la lista`);
-        
-        // Depuración: mostrar estados de todos los servicios
-        console.log('Estados de servicios:', servicios.map(s => ({
-            id: s.request_id,
-            nombre: s.service_name,
-            status: s.status,
-            normalizado: (s.status || 'pending').toLowerCase().trim()
-        })));
     }
 
     // Filtrar servicios
@@ -381,7 +615,7 @@
         actualizarEstadisticas(serviciosFiltrados);
     }
 
-    // Aceptar servicio (con confirmación)
+    // Aceptar servicio
     function aceptarServicio(requestId, servicioNombre) {
         accionPendiente = {
             requestId: requestId,
@@ -389,19 +623,14 @@
             servicioNombre: servicioNombre
         };
         
-        document.getElementById('confirmacion-titulo').textContent = 'Aceptar Servicio';
-        document.getElementById('confirmacion-mensaje').textContent = 
-            `¿Estás seguro de aceptar el servicio "${servicioNombre}"?`;
-        document.getElementById('notas-container').style.display = 'block';
-        document.getElementById('confirmacion-notas').value = '';
-        document.getElementById('btn-confirmar-accion').className = 'btn-confirmar btn-aceptar-modal';
-        document.getElementById('btn-confirmar-accion').textContent = 'Aceptar';
-        
-        document.getElementById('modal-confirmacion').classList.add('active');
-        document.body.style.overflow = 'hidden';
+        // Enviar la acción al servidor directamente
+        enviarAccion(requestId, 'aceptar', '');
+
+        // No mostrar modal de confirmación
+        cerrarConfirmacion();
     }
 
-    // Rechazar servicio (con confirmación)
+    // Rechazar servicio
     function rechazarServicio(requestId, servicioNombre) {
         accionPendiente = {
             requestId: requestId,
@@ -409,16 +638,11 @@
             servicioNombre: servicioNombre
         };
         
-        document.getElementById('confirmacion-titulo').textContent = 'Rechazar Servicio';
-        document.getElementById('confirmacion-mensaje').textContent = 
-            `¿Estás seguro de rechazar el servicio "${servicioNombre}"?`;
-        document.getElementById('notas-container').style.display = 'block';
-        document.getElementById('confirmacion-notas').value = '';
-        document.getElementById('btn-confirmar-accion').className = 'btn-confirmar btn-rechazar-modal';
-        document.getElementById('btn-confirmar-accion').textContent = 'Rechazar';
-        
-        document.getElementById('modal-confirmacion').classList.add('active');
-        document.body.style.overflow = 'hidden';
+        // Enviar la acción al servidor directamente
+        enviarAccion(requestId, 'rechazar', '');
+
+        // No mostrar modal de confirmación
+        cerrarConfirmacion();
     }
 
     // Cerrar modal de confirmación
@@ -478,6 +702,19 @@
         const notas = document.getElementById('confirmacion-notas').value;
         enviarAccion(accionPendiente.requestId, accionPendiente.accion, notas);
         cerrarConfirmacion();
+    });
+
+    // Cerrar modales al hacer clic fuera
+    document.getElementById('modal-confirmacion').addEventListener('click', function(e) {
+        if (e.target.classList.contains('modal-overlay')) {
+            cerrarConfirmacion();
+        }
+    });
+
+    document.getElementById('modal-detalles-admin').addEventListener('click', function(e) {
+        if (e.target.classList.contains('modal-overlay')) {
+            cerrarDetallesAdmin();
+        }
     });
 
     // Cargar servicios al iniciar
