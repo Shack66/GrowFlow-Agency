@@ -3,8 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrowFlow Agency</title>
+    <title>GrowFlow Agency - Servicios</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para tarjetas de cliente */
+        .servicio-solicitado-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--azul);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .servicio-solicitado-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+        .servicio-solicitado-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .servicio-solicitado-info h3 {
+            margin: 0 0 10px 0;
+            color: var(--negro);
+            font-size: 1.3rem;
+        }
+
+        .servicio-fecha {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .servicio-fecha svg {
+            opacity: 0.7;
+        }
+
+        .estado-servicio {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+
+        .estado-pendiente { 
+            background: #D1ECF1; 
+            color: #0C5460; 
+            border: 1px solid #BEE5EB; 
+        }
+        
+        .estado-proceso { 
+            background: #FFF3CD; 
+            color: #856404; 
+            border: 1px solid #FFEAA7; 
+        }
+        
+        .estado-completado { 
+            background: #D4EDDA; 
+            color: #155724; 
+            border: 1px solid #C3E6CB; 
+        }
+        
+        .estado-rechazado { 
+            background: #F8D7DA; 
+            color: #721C24; 
+            border: 1px solid #F5C6CB; 
+        }
+
+        .servicio-desc {
+            margin-top: 15px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .servicio-desc p {
+            margin: 0;
+        }
+
+        .servicio-acciones {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn-ver-detalles {
+            width: 100%;
+            padding: 12px 20px;
+            background: var(--azul);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-ver-detalles:hover {
+            background: var(--azul-oscuro);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 119, 255, 0.3);
+        }
+
+        .mis-servicios {
+            padding: 40px 5%;
+            background-color: #f8f9fa;
+        }
+
+        .servicios-solicitados-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sin-servicios {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .sin-servicios p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-solicitar-primero {
+            background: var(--azul);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-solicitar-primero:hover {
+            background: var(--azul-oscuro);
+        }
+
+        .cargando-servicios {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .error-carga {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            color: #721C24;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .servicio-solicitado-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .estado-servicio {
+                align-self: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -174,6 +355,7 @@
             
             <form class="formulario-contratacion" id="form-contratacion">
                 <input type="hidden" name="service_name" id="input-service-name">
+                <input type="hidden" name="description" id="input-service-description">
 
                 <div id="preguntas-dinamicas"></div>
 
@@ -275,6 +457,17 @@
         function mostrarFormulario(nombre, tipo) {
             document.getElementById('servicio-nombre').textContent = nombre;
             document.getElementById('input-service-name').value = nombre;
+
+            // Descripciones de cada servicio
+            const descripciones = {
+                'Planes de Marketing': 'Estrategias personalizadas para impulsar tu marca y alcanzar tus metas comerciales.',
+                'Publicidad en Redes': 'Campañas efectivas en redes sociales para conectar con tu audiencia ideal.',
+                'Diseño Gráfico': 'Diseños creativos que comunican la identidad visual de tu marca.',
+                'Estrategia Digital': 'Consultoría especializada para optimizar tu presencia digital completa.'
+            };
+
+            // Establecer descripción
+            document.getElementById('input-service-description').value = descripciones[nombre] || 'Servicio solicitado';
 
             const contenedor = document.getElementById('preguntas-dinamicas');
             contenedor.innerHTML = '';

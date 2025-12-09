@@ -944,47 +944,8 @@ footer {
     text-transform: uppercase;
 }
 
-/* Pestañas de Navegación */
-.perfil-tabs {
-    background: #F8F9FA;
-    border-bottom: 1px solid #E8E8E8;
-    display: flex;
-    padding: 0 40px;
-}
-
-.tab-btn {
-    background: none;
-    border: none;
-    padding: 15px 25px;
-    font-size: 15px;
-    color: #666;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    transition: all 0.3s ease;
-}
-
-.tab-btn:hover {
-    color: var(--azul);
-    background: rgba(0,119,255,0.05);
-}
-
-.tab-btn.active {
-    color: var(--azul);
-    border-bottom-color: var(--azul);
-    font-weight: 600;
-}
-
-/* Contenido de Pestañas */
-.tab-content {
+.perfil-body {
     padding: 40px;
-}
-
-.tab-pane {
-    display: none;
-}
-
-.tab-pane.active {
-    display: block;
 }
 
 /* Formulario de Perfil */
@@ -1038,88 +999,6 @@ footer {
     font-size: 12px;
     font-weight: 500;
 }
-
-/* Proyectos */
-.proyectos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-}
-
-.proyecto-card {
-    background: #F8F9FA;
-    border: 1px solid #E8E8E8;
-    border-radius: 12px;
-    padding: 25px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.proyecto-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.proyecto-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.proyecto-header h3 {
-    color: var(--negro);
-    font-size: 18px;
-    margin: 0;
-}
-
-.proyecto-status {
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.proyecto-status.aprobado {
-    background: #D1ECF1 ;
-    color: var(--azul-oscuro);
-}
-
-.proyecto-status.pendiente {
-    background: #D1ECF1;
-    color: var(--azul-oscuro);
-}
-
-.proyecto-status.rechazado {
-    background: #333;
-    color: white;
-}
-
-.proyecto-desc {
-    color: #666;
-    font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-
-
-.btn-ver {
-    width: 100%;
-    padding: 10px;
-    background: var(--azul);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.btn-ver:hover {
-    background: var(--azul-oscuro);
-}
-
-
 
 /* Switch Toggle */
 .switch {
@@ -1873,8 +1752,8 @@ footer.footer {
     text-align: center;
     font-size: 2.2rem;
     margin-bottom: 40px;
-    color: #333;
     position: relative;
+    color: white;
 }
 
 .mis-servicios-titulo::after {
@@ -1882,7 +1761,7 @@ footer.footer {
     display: block;
     width: 80px;
     height: 4px;
-    background: #4CAF50;
+    background: var(--azul);
     margin: 10px auto;
     border-radius: 2px;
 }
@@ -3307,24 +3186,6 @@ body {
         linear-gradient(135deg, var(--negro) 20%, var(--azul) 100%);
     background-size: 8px 8px, 100% 100%;
     background-attachment: fixed;
-}
-
-.mis-servicios-titulo {
-    text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 40px;
-    color: white;
-    position: relative;
-}
-
-.mis-servicios-titulo::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 4px;
-    background: var(--azul);
-    margin: 10px auto;
-    border-radius: 2px;
 }
 
 /* Modal con padding lateral - ESTILO ADMIN */

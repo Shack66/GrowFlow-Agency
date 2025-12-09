@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 $service_name = $_POST['service_name'] ?? '';
-$description = $_POST['pregunta-3'] ?? '';
+$description = $_POST['preg-3'] ?? '';
 $meeting_date = $_POST['fecha_reunion'] ?? NULL;
 $meeting_time = $_POST['hora_reunion'] ?? NULL;
 $status = 'pending';
