@@ -54,15 +54,9 @@
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
-<<<<<<< Updated upstream
 
         <!-- Navegación -->
         <nav class="main-nav" id="mainNav">
-=======
-        
-        <!-- Navegación -->
-        <nav class="main-nav">
->>>>>>> Stashed changes
             <a href="admin-index.php">Inicio</a>
             <a href="admin-servicios.php">Servicios</a>
             <a href="admin-mensajes.php">Mensajes</a>

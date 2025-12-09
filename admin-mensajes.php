@@ -153,14 +153,6 @@ require_once 'db.php';
             background: #3a80d2;
         }
 
-        .btn-pendiente {
-            background: #fdcb6e;
-            color: #333;
-        }
-
-        .btn-pendiente:hover {
-            background: #fdc14a;
-        }
 
         .sin-mensajes {
             text-align: center;

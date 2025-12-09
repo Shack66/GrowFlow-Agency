@@ -455,7 +455,7 @@ a.btn-registrarse:hover {
 }
 
 .reunion-confirmada span {
-    color: #00C853;
+    color: var(--azul);
     font-weight: 600;
     font-size: 15px;
 }
@@ -1081,18 +1081,18 @@ footer {
 }
 
 .proyecto-status.aprobado {
-    background: #e8f9ea;
-    color: #00C853;
+    background: #D1ECF1 ;
+    color: var(--azul-oscuro);
 }
 
 .proyecto-status.pendiente {
-    background: #fbeeda;
-    color: #FF9800;
+    background: #D1ECF1;
+    color: var(--azul-oscuro);
 }
 
 .proyecto-status.rechazado {
-    background: #ffdddd;
-    color: #ff0000;
+    background: #333;
+    color: white;
 }
 
 .proyecto-desc {
@@ -1944,10 +1944,17 @@ footer.footer {
     letter-spacing: 0.5px;
 }
 
-.estado-pendiente { background: #FFF3CD; color: #856404; border: 1px solid #FFEAA7; }
-.estado-proceso { background: #D1ECF1; color: #0C5460; border: 1px solid #BEE5EB; }
-.estado-completado { background: #D4EDDA; color: #155724; border: 1px solid #C3E6CB; }
-.estado-rechazado { background: #F8D7DA; color: #721C24; border: 1px solid #F5C6CB; }
+.estado-completado {
+    background: var(--azul); 
+    color: white; 
+    border: 1px solid var(--azul); 
+}
+
+.estado-rechazado {
+    background: #333 ;
+    color: white;
+    border: 1px solid var(--negro); 
+}
 
 .servicio-detalles {
     margin-top: 15px;
@@ -2189,11 +2196,6 @@ footer.footer {
     display: inline-block;
 }
 
-.estado-pendiente {
-    background: #ffeaa7;
-    color: #d35400;
-}
-
 .estado-leido {
     background: #55efc4;
     color: #00b894;
@@ -2216,19 +2218,22 @@ footer.footer {
 .btn-leido {
     background: #4a90e2;
     color: white;
+    text-decoration: none;
 }
 
 .btn-leido:hover {
     background: #3a80d2;
+    text-decoration: underline;
 }
 
 .btn-pendiente {
-    background: #fdcb6e;
-    color: #333;
+    background: #D1ECF1;
+    color: var(--azul-oscuro);
 }
 
 .btn-pendiente:hover {
-    background: #fdc14a;
+    background: var(--azul);
+    color: white;
 }
 
 .sin-mensajes {
@@ -3490,8 +3495,8 @@ body {
 }
 
 .reunion-info-modal.con-reunion {
-    background: #E8F5E9;
-    border: 2px solid #2E7D32;
+    background: #D1ECF1;
+    border: 2px solid var(--azul);
 }
 
 .reunion-info-modal.sin-reunion {
@@ -3510,7 +3515,7 @@ body {
 }
 
 .reunion-info-modal.con-reunion .reunion-titulo-modal {
-    color: #2E7D32;
+    color: var(--azul-oscuro);
 }
 
 .reunion-info-modal.sin-reunion .reunion-titulo-modal {
@@ -3718,7 +3723,7 @@ body {
     padding: 40px;
     background: white;
     border-radius: 12px;
-    color: #721C24;
+    color: var(--negro);
 }
 
 /* Responsive */
