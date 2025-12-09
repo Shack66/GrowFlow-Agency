@@ -110,98 +110,42 @@ requiereRol('admin');
             <!-- Header del Perfil -->
             <div class="perfil-header">
                 <div class="perfil-avatar">
-                    <!-- Aquí puedes usar una imagen dinámica si la tienes en la base de datos -->
-                    <img src="../imags/perfil-generico.jpeg" alt="<?php echo htmlspecialchars($_SESSION['name']); ?>">
+                    <img src="imags/perfil-generico.jpeg" alt="<?php echo htmlspecialchars($_SESSION['name']); ?>">
                 </div>
                 <div class="perfil-info">
                     <h2><?php echo htmlspecialchars($_SESSION['name'] . ' ' . $_SESSION['apellido']); ?></h2>
                     <p class="perfil-email"><?php echo htmlspecialchars($_SESSION['email']); ?></p>
-                    <div class="perfil-stats">
-                    </div>
                 </div>
             </div>
 
-            <!-- Pestañas de Navegación -->
-            <div class="perfil-tabs">
-                <button class="tab-btn active" onclick="openTab('informacion')">Información Personal</button>
-                <button class="tab-btn" onclick="openTab('servicios')">Servicios</button>
-
-            </div>
-
-            <!-- Contenido de las Pestañas -->
-            <div class="tab-content">
-                <!-- Pestaña Información Personal -->
-                <div id="informacion" class="tab-pane active">
-                    <div class="formulario-perfil">
-                        <form id="formPerfil" method="POST" action="actualizar-perfil.php">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($_SESSION['name']); ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="apellido">Apellido</label>
-                                    <input type="text" id="apellido" name="apellido" value="<?php echo htmlspecialchars($_SESSION['apellido']); ?>">
-                                </div>
+            <!-- Contenido del Perfil -->
+            <div class="perfil-body">
+                <div class="formulario-perfil">
+                    <form id="formPerfil" method="POST" action="actualizar-perfil.php">
+                        <input type="hidden" name="action" value="update_profile">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($user['name']); ?>" required>
                             </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($_SESSION['email']); ?>">
-                                </div>
+                            <div class="form-group">
+                                <label for="apellido">Apellido</label>
+                                <input type="text" id="apellido" name="apellido" value="<?php echo htmlspecialchars($user['apellido']); ?>" required>
                             </div>
+                        </div>
 
-                            <div class="form-buttons">
-                                <button type="submit" class="btn-guardar">Guardar Cambios</button>
-                                <button type="button" class="btn-cancelar" onclick="resetForm()">Cancelar</button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-guardar">Guardar Cambios</button>
+                            <button type="button" class="btn-cancelar" onclick="resetForm()">Cancelar</button>
+                        </div>
+                    </form>
                 </div>
-
-                <!-- Pestaña Proyecto -->
-                <div id="servicios" class="tab-pane">
-                    <div class="proyectos-grid">
-                        <div class="proyecto-card">
-                            <div class="proyecto-header">
-                                <h3>Publicidad en Redes</h3>
-                                <span class="proyecto-status aprobado">Aprobado</span>
-                            </div>
-                            <p class="proyecto-desc">Campañas efectivas en redes sociales para conectar con tu audiencia ideal.</p>
-                            
-                            <div class="proyecto-actions">
-                                <button class="btn-ver">Ver Detalles</button>
-                            </div>
-                        </div>
-
-                        <div class="proyecto-card">
-                            <div class="proyecto-header">
-                                <h3>Planes de Marketing</h3>
-                                <span class="proyecto-status pendiente">Pendiente</span>
-                            </div>
-                            <p class="proyecto-desc">Estrategias personalizadas para impulsar tu marca y alcanzar tus metas comerciales.</p>
-                            
-                            <div class="proyecto-actions">
-                                <button class="btn-ver">Ver Detalles</button>
-                            </div>
-                        </div>
-
-                        <div class="proyecto-card">
-                            <div class="proyecto-header">
-                                <h3>Estrategia Digital</h3>
-                                <span class="proyecto-status rechazado">Rechazado</span>
-                            </div>
-                            <p class="proyecto-desc">Consultoría especializada para optimizar tu prescencia digital completa.</p>
-                            
-                            <div class="proyecto-actions">
-                                <button class="btn-ver">Ver Detalles</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                
             </div>
         </div>
     </section>

@@ -168,7 +168,7 @@ $_SESSION['email'] = $user['email'];
                 </div>
             </div>
 
-            <!-- Contenido del Perfil (sin tabs) -->
+            <!-- Contenido del Perfil -->
             <div class="perfil-body">
                 <div class="formulario-perfil">
                     <form id="formPerfil" method="POST" action="actualizar-perfil.php">
